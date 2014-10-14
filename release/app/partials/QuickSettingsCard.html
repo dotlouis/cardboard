@@ -1,0 +1,41 @@
+<style>
+	.qsettings .content ul{
+		display: table;
+		width: 100%;
+	}
+
+	.qsettings .content li{
+		display: table-cell;
+		text-align: center;
+	}
+
+	.qsettings .content p{
+		margin-bottom: 10px;
+	}
+</style>
+<div ng-controller="QuickSettingsCtrl">
+	<div class="category">
+		<i class="fa fa-circle-o" ng-show="isWorking"></i>
+		<span ng-click="goTo('chrome://settings')">{{settings.cards['qsettings'].name}}</span>
+	</div>
+	<div class="content">
+		<ul>
+			<li>
+				<p>Cache</p>
+				<div class="btn" ng-click="clearCache()">Clear</div>
+			</li>
+			<li>
+				<p>Cookies</p>
+				<div class="btn" ng-click="clearCookies()">Clear</div>
+			</li>
+			<li>
+				<p>History</p>
+				<div class="btn" ng-click="clearHistory()">Clear</div>
+			</li>
+			<li>
+				<p>Local Storage</p>
+				<div class="btn" ng-click="clearLocalStorage()">Clear</div>
+			</li>
+		</ul>
+	</div>
+</div>

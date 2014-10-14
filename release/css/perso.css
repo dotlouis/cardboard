@@ -1,0 +1,337 @@
+/* ------------- ANIMATIONS ------------- */
+
+@-webkit-keyframes pulsate {
+	0% {
+		-webkit-transform: scale(0.1, 0.1); opacity: 0.0;
+	}
+	50% {
+		opacity: 1.0;
+	}
+	100% {
+		-webkit-transform: scale(1.2, 1.2); opacity: 0.0;
+	}
+}
+
+/* slideUp (from down) animation */
+.slideUp{
+	transition: -webkit-transform ease .5s, opacity ease .2s;
+	transition-delay: .2s;
+}
+.slideUp.ng-enter{
+	-webkit-transform: translateY(50px);
+	opacity: 0;
+}
+.slideUp.ng-leave,
+.slideUp.ng-enter.ng-enter-active{
+	-webkit-transform: translateY(0);
+	opacity: 1;
+}
+.slideUp.ng-leave.ng-leave-active{
+	-webkit-transform: translateX(50px);
+	opacity: 0;
+}
+
+/* cascading hard-coded effect */
+.slideUp.t1{ transition-delay: .3s;}
+.slideUp.t2{ transition-delay: .4s;}
+.slideUp.t3{ transition-delay: .5s;}
+.slideUp.t4{ transition-delay: .6s;}
+
+/* slideDown (from up) animation */
+.slideDown{
+	transition: all ease .3s;
+}
+.slideDown.ng-hide-remove{
+	-webkit-transform: translateY(-15px);
+	opacity: 0;
+}
+.slideDown.ng-hide-remove.ng-hide-remove-active{
+	-webkit-transform: translateY(0);
+	opacity: 1;
+}
+
+/* ----------- CARD + ----------- */
+
+strong{
+	font-family: "RobotoRegular";
+	font-weight: normal;
+}
+
+.card a{
+	text-decoration: none;
+	color: #999;
+}
+
+.card a:not(.btn):hover{
+	color: #33A1E5;
+}
+
+.card a:focus{
+	outline: none;
+	color: #33A1E5;
+}
+
+.card .category i{
+	float: right;
+	font-size: 20px;
+	cursor: pointer;
+}
+
+/* card info block for in between cards */
+.card.info{
+	min-height: 30px;
+	background-color: transparent;
+	border: 1px solid #bbb;
+	border-left: 0;
+	border-right: 0;
+	border-radius: 0;
+	box-shadow: 0 0 0 0;
+}
+.card.info .content{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.card.info .content .text{
+	flex-grow: 1;
+}
+.card.info .content i{
+	flex-shrink: 0;
+	font-size: 15px;
+}
+.card.info .content a{
+	text-decoration: underline;
+}
+
+/* ----------- GENERAL ----------- */
+
+*{
+	margin: 0;
+	padding: 0;
+}
+
+body{
+	background-color: #E9E9E9;
+}
+
+::-webkit-scrollbar { 
+    display: none;
+}
+
+.ng-hide{
+	display: none;
+}
+
+i.fa-circle-o{
+	-webkit-animation: pulsate .8s ease-out;
+	-webkit-animation-iteration-count: infinite; 
+}
+i.fa-check{
+	margin-right: 7px;
+	color: #53B853;
+}
+i.fa-warning{
+	color: #FF8500;
+}
+i.fa.blank{
+	visibility: hidden;
+}
+i.fa-arrow-down{
+	color: #33A1E5;
+}
+
+/* ----------- FOOTER ----------- */
+
+
+footer{
+	font-family: "RobotoThin";
+	text-align: center;
+	width: 100%;
+	height: 30px;
+	padding: 10px 0;
+}
+
+footer a{
+	transition: all ease .2s;
+	font-size: 20px;
+	color: #999;
+	text-decoration: none;
+}
+
+footer a:hover,
+footer a:focus{
+	outline: none;
+	color: #777;
+}
+
+footer i{
+	margin-left: 10px;
+}
+
+/* ----------- HEADER ----------- */
+
+header{
+	height: 200px;
+	min-width: 420px;
+	
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+header h1{
+	opacity: 0;
+	width: 100%;
+	height: 120px;
+	margin-bottom: 20px;
+}
+
+header a:focus{
+	outline: none;
+}
+
+header form{
+	display: flex;
+	padding: 0 15px;
+	height: 35px;
+	margin: auto;
+	min-width: 390px;
+	max-width: 800px;
+}
+
+header form.ui-scrollfix{
+	position: fixed;
+	padding: 0;
+	left: 15px;
+	right: 15px;
+	top: 10px;
+	z-index: 20;
+}
+
+header form .searchbox{
+	z-index: 2;
+	width: 100%;
+	height: inherit;
+}
+
+header form .searchbox input[type="text"]{
+	width: inherit;
+	height: inherit;
+	border: none;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+	box-shadow: 1px 2px 8px rgba(0,0,0,0.3);
+}
+
+header form button.search{
+	min-width: 70px;
+	height: inherit;
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+	font-size: 14px;
+	box-shadow: 1px 2px 8px rgba(0,0,0,0.3) !important;
+}
+
+header button.search:hover,
+header button.search:focus{
+	border-bottom-width: 2px;
+}
+
+header form input[type="submit"]{
+	display: none;
+}
+
+/* ----------- TYPEAHEAD ----------- */
+
+.typeahead{
+	z-index: -1;
+	position: relative;
+	margin-top: 4px;
+
+	background-color: white;
+	font-family: sans-serif;
+	font-size: 13px;
+	color: #555;
+	overflow: hidden;
+
+	border-radius: 2px;
+
+	box-shadow: 1px 2px 8px rgba(0,0,0,0.3);
+}
+
+/* fix for buggy animation of ng-show */
+.typeahead.ng-hide{
+	display: block;
+}
+
+.typeahead li{
+	font-family: "RobotoLight";
+	list-style: none;
+	padding: 5px;
+	cursor: pointer;
+	border-left: 3px solid transparent;
+}
+
+.typeahead li a{
+	display: block;
+	background-size: 18px;
+	background-repeat: no-repeat;
+	background-position: 2px center;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.typeahead li a i{
+	margin-right: 10px;
+	color: #427fed;
+}
+
+.typeahead li.active{
+	border-color: #427fed;
+	background-color: #EFEFEF;
+}
+
+/* ----------- FEED ----------- */
+
+#feed{
+	min-width: 420px;
+	transition: -webkit-filter .5s ease;
+	-webkit-filter: blur(0);
+}
+
+#feed.blur{
+	-webkit-filter: blur(2px);
+}
+
+/* Flex method */
+/*#feed{
+	display: -webkit-flex;
+	-webkit-flex-wrap: wrap;
+	-webkit-justify-content: center;
+	-webkit-align-items: center;
+}*/
+
+/* Column method */
+#feed{
+	/*width: 1680px;*/
+	width: 840px;
+	margin: 0 auto;
+	-webkit-column-width: 420px; 
+	-webkit-column-gap: 0px;
+}
+/*@media (max-width: 1679px) {
+  #feed {
+  width: 1260px;
+  }
+}
+@media (max-width: 1259px) {
+  #feed {
+  width: 840px;
+  }
+}*/
+@media (max-width: 839px) {
+  #feed {
+  width: 420px;
+  }
+}

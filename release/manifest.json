@@ -1,0 +1,29 @@
+{
+  "manifest_version": 2,
+
+  "name": "Card Board - New Tab Page",
+  "author": "Virtual Corp",
+  "description": "A better New Tab Page with sleek google design and useful features",
+  "version": "0.2.4",
+  "chrome_url_overrides" : {
+    "newtab": "index.html"
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "permissions": [
+    "storage",
+    "browsingData",
+    "downloads",
+    "downloads.open",
+    "https://suggestqueries.google.com/*"
+  ],
+  "optional_permissions": [
+    "management",
+    "bookmarks",
+    "history",
+    "topSites"
+    ]
+}
