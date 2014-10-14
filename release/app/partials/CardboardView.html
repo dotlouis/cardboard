@@ -1,0 +1,15 @@
+<section id="feed" ng-class="{'blur':query.length && isFocused}">
+
+	<div ng-if="update > 1" class="card slideUp whatsnew"><div ng-include="'app/partials/WhatsNewCard.html'" ng-cloak></div></div>
+
+	<div ng-include="settings.cards['apps'].partial" ng-if="settings.cards['apps'].enabled && settings.cards['apps'].allowed" class="card slideUp apps" ng-cloak></div>
+	<div ng-include="settings.cards['topsites'].partial" ng-if="settings.cards['topsites'].enabled && settings.cards['topsites'].allowed" class="card slideUp topsites" ng-cloak></div>
+	<div ng-include="settings.cards['bookmarks'].partial" ng-if="settings.cards['bookmarks'].enabled && settings.cards['bookmarks'].allowed" class="card slideUp t1 bookmarks" ng-cloak></div>
+	<div ng-include="settings.cards['qsettings'].partial" ng-if="settings.cards['qsettings'].enabled && settings.cards['qsettings'].allowed" class="card slideUp t2 qsettings" ng-cloak></div>
+	<div ng-include="settings.cards['downloads'].partial" ng-if="settings.cards['downloads'].enabled && settings.cards['downloads'].allowed" class="card slideUp t3 downloads" ng-cloak></div>
+	
+</section>
+
+<footer>
+	<a href="#/settings">Settings<i class="fa fa-cog"></i></a>
+</footer>

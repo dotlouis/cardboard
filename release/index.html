@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/cardui.css"/>
+	<link rel="stylesheet" href="css/perso.css"/>
+	<title>New Tab</title>
+</head>
+<body ng-app="cardboard" ng-controller="CardboardCtrl" ng-csp>
+
+	<header ng-style="getHeaderStyle()">
+		<a href="https://google.com/"><h1>Google</h1></a>
+		<form ng-submit="search()" ui-scrollfix="-10">
+			<div class="searchbox">
+				<input ng-model="query" typeahead="suggest.label for suggest in suggestions($viewValue) | filter:$viewValue | limitTo:12" typeahead-on-select="onSelect($item)" typeahead-min-length="3" typeahead-wait-ms="100" ng-focus="isFocused = true" ng-blur="isFocused = false" esc-focus type="text" class="textbox" placeholder="Google it !" tabindex="1" />
+			</div>
+			<button class="btn blue search" ng-click="search()"><i class="fa" ng-class="{'fa-circle-o':isLoading, 'fa-search':!isLoading}"></i></button>
+			<input type="submit" value="Search"/>
+		</form>
+	</header>
+
+	<div ng-view></div>
+
+	<script src="lib/moment-v2.1.0.min.js"></script>
+	<script src="lib/angular1.2.2.min.js"></script>
+	<script src="app/modules/angular1.2.2-route.min.js"></script>
+	<script src="app/modules/angular1.2.2-sanitize.min.js"></script>
+	<script src="app/modules/angular1.2.2-animate.min.js"></script>
+	<script src="app/modules/ui-bootstrap-custom-0.6.0.min.js"></script>
+	<script src="app/modules/scrollfix.js"></script>
+	<script src="app/cardboard.js"></script>
+	<script src="app/Directives.js"></script>
+	<script src="app/Controllers.js"></script>
+	<script src="app/Factories.js"></script>
+	<script src="app/Filters.js"></script>
+	<script src="app/Values.js"></script>
+
+</body>
+</html>

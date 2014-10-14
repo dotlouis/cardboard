@@ -1,0 +1,52 @@
+<style>
+	.apps .app{
+		position: relative;
+		width: 100px;
+		padding: 11px;
+		margin: 0;
+		list-style: none;
+		cursor: pointer;
+		display: inline-block;
+		text-align: center;
+	}
+	.apps .app:hover{
+		color: #666;
+	}
+	.apps .app .fa-trash-o{
+		position: absolute;
+		display: none;
+		font-size: 18px;
+		top: 0;
+		right: 13px;
+	}
+	.apps .app:hover .fa-trash-o{
+		display: inline-block;
+	}
+	.apps .app img{
+		width: 64px;
+		height: 64px;
+	}
+	.apps .app .name{
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+</style>
+<div ng-controller="AppCtrl">
+	<div class="category">
+		<span ng-click="goTo('chrome://extensions')">{{settings.cards['apps'].name}}</span>
+	</div>
+	<ul class="content">
+		<li class="app">
+			<a href="https://chrome.google.com/webstore/category/home?hl=en-US">
+				<img src="/img/cws128.png"/>
+			</a>
+			<div class="name">More Apps</div>
+		</li>
+		<li ng-repeat="(key,app) in apps | orderBy:'-frequency'" class="app">
+			<i class="fa fa-trash-o" ng-click="uninstall()"></i>
+			<img ng-src="{{getIcon()}}" ng-click="launch()"/>
+			<div class="name" ng-click="launch()">{{app.name}}</div>
+		</li>	
+	</ul>
+</div>
