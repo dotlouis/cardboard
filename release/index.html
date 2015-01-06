@@ -13,7 +13,7 @@
 		<a href="https://google.com/"><h1>Google</h1></a>
 		<form ng-submit="search()" ui-scrollfix="-10">
 			<div class="searchbox">
-				<input ng-model="query" typeahead="suggest.label for suggest in suggestions($viewValue) | filter:$viewValue | limitTo:12" typeahead-on-select="onSelect($item)" typeahead-min-length="3" typeahead-wait-ms="100" ng-focus="isFocused = true" ng-blur="isFocused = false" esc-focus type="text" class="textbox" placeholder="Google it !" tabindex="1" />
+				<input ng-model="query" typeahead="suggest.label for suggest in suggestions($viewValue) | filter:$viewValue | limitTo:12" typeahead-on-select="onSelect($item)" typeahead-min-length="3" typeahead-wait-ms="100" ng-focus="isFocused = true" ng-blur="isFocused = false" esc-focus type="text" class="textbox" placeholder="Search" tabindex="1" />
 			</div>
 			<button class="btn blue search" ng-click="search()"><i class="fa" ng-class="{'fa-circle-o':isLoading, 'fa-search':!isLoading}"></i></button>
 			<input type="submit" value="Search"/>
