@@ -25,5 +25,5 @@ cardboard.value('DefaultSettings',{
 		"downloads": {name: "Recent Downloads", enabled: true, partial: "app/partials/DownloadCard.html", permissions: {apis:["downloads"]} },
 		"topsites": {name: "Top Sites", enabled: true, partial: "app/partials/TopSitesCard.html", permissions: {apis:["topSites"]} }
 	},
-	searchEngine : "https://encrypted.google.com/search?q="
+	searchEngine : "https://google.com/search?q="
 });
