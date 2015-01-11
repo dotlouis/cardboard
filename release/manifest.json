@@ -3,7 +3,7 @@
 
   "name": "Card Board - New Tab Page",
   "author": "Virtual Corp",
-  "description": "A better New Tab Page with sleek google design and useful features",
+  "description": "A better New Tab Page with sleek Google inspired design and useful features",
   "version": "0.2.4",
   "chrome_url_overrides" : {
     "newtab": "index.html"
