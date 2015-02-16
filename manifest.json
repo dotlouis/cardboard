@@ -23,8 +23,6 @@
     "optional_permissions": [
         "topSites",
         "bookmarks",
-        "management",
-        "history"
-
+        "management"
     ]
 }
