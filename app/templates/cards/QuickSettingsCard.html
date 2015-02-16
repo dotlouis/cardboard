@@ -1,0 +1,36 @@
+<style>
+.card.quicksettings .card-content p{
+	padding: 4px 20px;
+}
+.card.quicksettings .card-content button{
+	float: right;
+	margin-right: 10px;
+	margin-bottom: 12px;
+	color: #3f51b5;
+	transition-property: color;
+}
+</style>
+<packery-object>
+<div class="card quicksettings" ng-controller="QuickSettingsCtrl">
+	<div class="card-title indigo-text">Quick Settings</div>
+	<div class="card-content">
+		<p>
+			<input type="checkbox" id="checkCache" ng-model="clearTypes.cache"/>
+			<label for="checkCache">Cache</label>
+		</p>
+		<p>
+			<input type="checkbox" id="checkCookies" ng-model="clearTypes.cookies"/>
+			<label for="checkCookies">Cookies</label>
+		</p>
+		<p>
+			<input type="checkbox" id="checkHistory" ng-model="clearTypes.history"/>
+			<label for="checkHistory">History</label>
+		</p>
+		<p>
+			<input type="checkbox" id="checkLocalStorage" ng-model="clearTypes.localStorage"/>
+			<label for="checkLocalStorage">Local Storage</label>
+		</p>
+		<button ng-click="clear()" ng-class="{'disabled': clearDisabled(), 'waves-indigo': !clearDisabled() || !waveTimeout}" class="waves-light waves-effect btn-flat white">{{clearText}}</button>
+	</div>
+</div>
+</packery-object>

@@ -1,0 +1,5 @@
+<section id="feed">
+    <packery column-width="400" gutter="10" draggable="{{isDrag}}">
+        <div ng-repeat="card in cards" ng-if="card.enabled" ng-include="card.template"></div>
+    </packery>
+</section>

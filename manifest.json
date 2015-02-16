@@ -1,0 +1,30 @@
+{
+    "manifest_version": 2,
+
+    "name": "Cardboard - New Tab Page",
+    "author": "virtual-dev",
+    "description": "The default New Tab is not Google enough ? Try Cardboard, Now with more Material Design (plus nifty features)",
+    "version": "2.0.0",
+    "chrome_url_overrides" : {
+        "newtab": "index.html"
+    },
+    "icons": {
+        "16": "resources/icon16.png",
+        "48": "resources/icon48.png",
+        "128": "resources/icon128.png"
+    },
+    "permissions": [
+        "storage",
+        "browsingData",
+        "downloads",
+        "downloads.open",
+        "https://hawttrends.appspot.com/api/terms/"
+    ],
+    "optional_permissions": [
+        "topSites",
+        "bookmarks",
+        "management",
+        "history"
+
+    ]
+}
