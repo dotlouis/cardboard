@@ -51,6 +51,7 @@ angular.module('cardboard.controllers')
             .catch(function(){
                 // Denied, we don't enable the card
                 self.card.enabled = false;
+                toast("Card needs permission to run", 4000);
             });
         else if(!self.card.enabled)
             Chrome.permissions.revoke(self.card.permissions)

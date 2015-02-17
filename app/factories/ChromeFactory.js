@@ -56,19 +56,23 @@ angular.module('cardboard.factories')
                 })
                 // Then we request the one which are not already granted
                 .then(function(){
+                    var deferred = Promise.defer();
                     // if there are permissions not already granted we make the request
                     if(toRequest.length > 0)
-                    chrome.permissions.request({permissions: toRequest}, function(granted){
-                        // Again we make the corresponding API available
-                        if(granted){
-                            for(var i in toRequest)
-                                promisify(toRequest[i]);
-                            return Promise.resolve(permissions);
-                        }
-                        // if the user denied the permission prompt we make a reject
-                        else
-                        return Promise.reject(permissions);
-                    });
+                        chrome.permissions.request({permissions: toRequest}, function(granted){
+                            // Again we make the corresponding API available
+                            if(granted){
+                                for(var i in toRequest)
+                                    promisify(toRequest[i]);
+                                deferred.resolve(permissions);
+                            }
+                            // if the user denied the permission prompt we make a reject
+                            else
+                                deferred.reject(permissions);
+                        });
+                    else
+                        deferred.resolve();
+                    return deferred.promise;
                 });
             },
 
