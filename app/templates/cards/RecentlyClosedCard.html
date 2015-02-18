@@ -1,0 +1,58 @@
+<style>
+.card.recently-closed .node{
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	padding: 7px 15px;
+	margin: 0;
+	text-transform: none;
+}
+
+.card.recently-closed .node:hover{
+	background-color: #f5f5f5;
+}
+
+.card.recently-closed .node .title{
+	color: #424242;
+	margin-left: 9px;
+	font-size: 13px;
+	flex-grow: 1;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.card.recently-closed i{
+	width: 20px;
+	height: 20px;
+	background-size: 16px;
+	background-repeat: no-repeat;
+	background-position: center;
+	font-size: 20px;
+	line-height: 18px;
+	color: #757575;
+	flex-shrink: 0;
+}
+.card.recently-closed .card-content .node .more{
+	flex-shrink: 0;
+	color: #757575;
+	margin-left: 10px;
+}
+.card.recently-closed .card-content .node .time{
+	font-size: 11px;
+}
+</style>
+<packery-object>
+<div class="card recently-closed" ng-controller="RecentlyClosedCtrl">
+	<div class="card-title indigo-text">Recently Closed</div>
+	<ul class="card-content">
+		<li ng-repeat="node in recentlyClosed | limitTo:maxRecentlyClosed">
+			<a ng-href="{{node.url}}" class="node waves-effect">
+				<i ng-style="{'background-image': 'url('+node.favIconUrl+')'}"></i>
+				<span class="title">{{node.title}}</span>
+				<span class="more time">{{node.lastModified | fromNow}}</span>
+			</a>
+		</li>
+	</ul>
+</div>
+</packery-object>
