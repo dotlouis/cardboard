@@ -4,7 +4,6 @@ angular.module('cardboard.controllers')
     $scope.apps = [];
     $scope.extensions = [];
     $scope.themes = [];
-    $scope.maxApps = 8;
 
     Chrome.management.getAllAsync()
     .then(function(all){
