@@ -5,6 +5,8 @@
 	align-items: center;
 	justify-content: flex-start;
 	padding: 10px 20px;
+	max-height: 380px;
+	overflow-y: scroll;
 }
 .card.apps .app a{
 	width: 120px;
@@ -39,12 +41,11 @@
 				<i ng-style="{'background-image': 'url(/resources/cws128.webp)'}"></i>
 			</a>
 		</li>
-		<li ng-repeat="app in apps | limitTo:maxApps" ng-click="updateFrequency()" class="app waves-effect tooltipped" data-position="bottom" data-tooltip="{{app.name}}">
+		<li ng-repeat="app in apps" ng-click="updateFrequency()" class="app waves-effect tooltipped" data-position="bottom" data-tooltip="{{app.name}}">
 			<a ng-href="{{app.appLaunchUrl}}" ng-click="launch()">
 				<i ng-style="{'background-image': 'url('+getIcon()+')'}"></i>
 			</a>
 		</li>
 	</ul>
-	<button ng-click="maxApps=apps.length" ng-class="{'ng-hide':maxApps>=apps.length}" class="waves-indigo waves-effect btn-flat white">Show All</button>
 <div>
 </packery-object>
