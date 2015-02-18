@@ -81,6 +81,12 @@ angular.module('cardboard', [
 			enabled: false,
 			template: "app/templates/cards/TopSitesCard.html",
 			permissions: ["topSites"]
+		},
+		{
+			name: "history",
+			enabled: true,
+			template: "app/templates/cards/HistoryCard.html",
+			permissions: ["history"]
 		}
 		// {name: "changelog", system: true, enabled: false, template: "app/templates/cards/ChangelogCard.html" }
 		// {name: "appearance", system: true, enabled: true, template: "app/templates/cards/AppearanceCard.html" },
