@@ -8,7 +8,6 @@ angular.module('cardboard.controllers')
     var willGetRecentlyClosed = Chrome.sessions.getRecentlyClosedAsync({
         maxResults: $scope.maxRecentlyClosed
     }).then(function(recentlyClosed){
-        console.log(recentlyClosed);
         $scope.recentlyClosed = mergeTabsAndWindows(recentlyClosed);
     });
 

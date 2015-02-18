@@ -16,13 +16,13 @@
     "permissions": [
         "storage",
         "sessions",
-        "tabs",
         "browsingData",
         "downloads",
         "downloads.open",
         "https://hawttrends.appspot.com/api/terms/"
     ],
     "optional_permissions": [
+        "tabs",
         "topSites",
         "bookmarks",
         "management",
