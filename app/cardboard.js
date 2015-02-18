@@ -89,11 +89,12 @@ angular.module('cardboard', [
 			permissions: ["history"]
 		},
 		{
-			name: "recently_closed",
+			name: "sessions",
 			enabled: false,
-			template: "app/templates/cards/RecentlyClosedCard.html",
+			template: "app/templates/cards/SessionsCard.html",
 			permissions: ["sessions", "tabs"]
 		}
+
 		// {name: "changelog", system: true, enabled: false, template: "app/templates/cards/ChangelogCard.html" }
 		// {name: "appearance", system: true, enabled: true, template: "app/templates/cards/AppearanceCard.html" },
 		// {name: "cards", system: true, enabled: true, template: "app/templates/cards/CardsCard.html" },
