@@ -5,12 +5,29 @@ angular.module('cardboard.factories')
     var promisifiedApis = {};
 
     function promisify(api){
-        // if not already promisified we do it and save it
-        if(!angular.isDefined(promisifiedApis[api]))
-            promisifiedApis[api] = Promise.promisifyAll(chrome[api], {promisifier: noErrPromisifier});
 
-        // We link the api to the factory object
-        Chrome[api] = promisifiedApis[api];
+        // if the API is simple (e.g: chrome.history)
+        if(!isNestedAPI(api)){
+            // if not already promisified we do it and save it
+            if(!angular.isDefined(promisifiedApis[api]))
+                promisifiedApis[api] = Promise.promisifyAll(chrome[api], {promisifier: noErrPromisifier});
+
+            // We link the api to the factory object
+            Chrome[api] = promisifiedApis[api];
+        }
+        // if the api is nested (e.g: chrome.system.cpu)
+        else{
+            var apiBase = api.substring(0,api.indexOf('.'));
+            var apiEnd = api.substring(api.indexOf('.')+1);
+
+            if(!angular.isDefined(promisifiedApis[apiBase]))
+                promisifiedApis[apiBase] = {};
+
+            if(!angular.isDefined(promisifiedApis[apiBase][apiEnd]))
+                promisifiedApis[apiBase][apiEnd] = Promise.promisifyAll(chrome[apiBase][apiEnd], {promisifier: noErrPromisifier});
+
+            Chrome[apiBase] = promisifiedApis[apiBase];
+        }
     }
 
     return Chrome = {
@@ -148,4 +165,18 @@ function isOptional(permission){
        if(permission == optionals[i])
            return true;
    return false;
+}
+
+
+function isNestedAPI(api){
+    var nested = [
+        "system.cpu",
+        "system.memory",
+        "system.storage"
+    ];
+
+    for(var i in nested)
+        if(api == nested[i])
+            return true;
+    return false;
 }

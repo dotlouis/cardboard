@@ -19,6 +19,9 @@
         "browsingData",
         "downloads",
         "downloads.open",
+        "system.cpu",
+        "system.memory",
+        "system.storage",
         "https://hawttrends.appspot.com/api/terms/"
     ],
     "optional_permissions": [

@@ -93,6 +93,12 @@ angular.module('cardboard', [
 			enabled: false,
 			template: "app/templates/cards/SessionsCard.html",
 			permissions: ["sessions", "tabs"]
+		},
+		{
+			name: "system",
+			enabled: false,
+			template: "app/templates/cards/SystemCard.html",
+			permissions: ["system.cpu", "system.memory", "system.storage"]
 		}
 
 		// {name: "changelog", system: true, enabled: false, template: "app/templates/cards/ChangelogCard.html" }

@@ -78,7 +78,7 @@ button.disabled
     transition-duration: 0.23s;
 }
 
-.progress{
+.global.progress{
     margin: 0;
     opacity: 0;
     transition: opacity 0.1s;
