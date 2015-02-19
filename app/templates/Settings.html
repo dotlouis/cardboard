@@ -5,9 +5,11 @@
         <div class="sub-setting">
             <label>Background</label>
             <div class="md-select">
-                <select ng-model="$parent.background" ng-change="selectBg()" ng-options="bg.name group by bg.type for bg in $parent.backgrounds"></select>
+                <select ng-model="$parent.background" ng-change="save('backgroundId',background.id)" ng-options="bg.name group by bg.type for bg in $parent.backgrounds"></select>
             </div>
         </div>
+        <button ng-click="openLocal()" class="btn">From Local</button>
+        <button ng-click="openUrl()" class="btn">From URL</button>
         <div class="sub-setting">
             <div class="switch"><label>Google Trends<input type="checkbox" ng-model="$parent.trends.enabled" ng-change="save('trends',$parent.trends)"><span class="lever"></span></label></div>
         </div>
