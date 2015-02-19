@@ -30,7 +30,7 @@ angular.module('cardboard', [
 
 .value('DefaultSettings',{
 	version: { "update": 4, "settings": 4},
-	
+
 	// imgur album: https://imgur.com/a/NAaUE
 	backgrounds : [
 		{
@@ -164,9 +164,7 @@ angular.module('cardboard', [
 				dusk: "https://i.imgur.com/Buxx2Cs.jpg",
 				night: "https://i.imgur.com/g761v2t.jpg"
 			}
-		},
-		{id: 13, name: "choose", type: "URL"},
-		{id: 14, name: "choose", type: "Local"}
+		}
 	],
 	backgroundId : 4,
 	trends : {

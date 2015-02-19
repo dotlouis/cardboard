@@ -45,7 +45,7 @@ angular.module('cardboard.controllers')
     $scope.trendsData = trendsDataDeferred.promise;
 
     // Get storage (null == root object)
-    Chrome.storage.getAsync(null).then(function(storage){
+    var syncStorage = Chrome.storage.getAsync(null).then(function(storage){
         // If storage empty or settings version is older ...
         if((Object.keys(storage).length == 0) || (storage.version && storage.version.settings < DefaultSettings.version.settings)){
             // ... we clear storage, set it to default and return it
@@ -58,11 +58,25 @@ angular.module('cardboard.controllers')
         }
         else
             return storage;
-    })
+    });
+
+    var localStorage = Chrome.cache.getAsync(null);
+
+    Promise.all([syncStorage,localStorage])
     // Once we get all the settings, we fill the scope with it
-    .then(function(settings){
+    .then(function(storage){
+        var settings = storage[0];
+        var cache = storage[1];
+
+        // If local background (dataURl) we get it from cache
+        for(var i in settings.backgrounds)
+            if(settings.backgrounds[i].type == "Local" && settings.backgrounds[i].url)
+                settings.backgrounds[i].url = cache.localBackgroundDataUrl;
+
+        // Fill the scope
         $scope.backgrounds = settings.backgrounds;
         $scope.background = settings.backgrounds[settings.backgroundId];
+
         $scope.trends = settings.trends;
 
         // Check each card permissions
@@ -117,10 +131,10 @@ angular.module('cardboard.controllers')
         };
         // check background property exists to avoid errors due to promise not
         // beeing resolved yet
-        if($scope.background && $scope.background.url){
+        if($scope.background){
             if($scope.background.type == "Google Now")
                 style.backgroundImage = "url("+getBackgroundTime($scope.background.url)+")";
-            else
+            else if($scope.background.url)
                 style.backgroundImage = "url("+$scope.background.url+")";
         }
         return style;
