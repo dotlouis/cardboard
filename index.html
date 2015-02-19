@@ -16,7 +16,7 @@
 		<typer ng-show="route() == '/settings'" source="['Settings']" start="route() == '/settings'" class="header-typer"></typer>
 		<div id="more" ng-show="route() == '/feed'"><a href="#/settings"><i class="mdi-navigation-more-vert small waves-effect waves-light white-text"></i></a></div>
 	</header>
-	<div class="progress" ng-class="{'loading':$root.loading}"><div class="indeterminate"></div></div>
+	<div class="global progress" ng-class="{'loading':$root.loading}"><div class="indeterminate"></div></div>
 
 	<div ng-view></div>
 
@@ -45,12 +45,14 @@
 <script src="app/controllers/RootCtrl.js"></script>
 <script src="app/controllers/SessionsCtrl.js"></script>
 <script src="app/controllers/SettingsCtrl.js"></script>
+<script src="app/controllers/SystemCtrl.js"></script>
 <script src="app/controllers/TopSitesCtrl.js"></script>
 
 <!-- Directives -->
 <script src="app/directives/bootstrap.js"></script>
 <script src="app/directives/BgPick.js"></script>
 <script src="app/directives/PieDownloader.js"></script>
+<script src="app/directives/ProgressBar.js"></script>
 <script src="app/directives/Typer.js"></script>
 
 <!-- Factories -->
