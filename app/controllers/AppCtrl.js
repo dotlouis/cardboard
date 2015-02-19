@@ -12,9 +12,14 @@ angular.module('cardboard.controllers')
                 $scope.extensions.push(value);
             else if (value.type == "theme")
                 $scope.themes.push(value);
-            else
-                if(value.enabled)
-                    $scope.apps.push(value);
+            else if(value.enabled){
+                if($scope.$parent.card.settings && $scope.$parent.card.settings[value.id])
+                    value.frequency = $scope.$parent.card.settings[value.id].frequency;
+                else
+                    value.frequency = 0;
+
+                $scope.apps.push(value);
+            }
         });
         $scope.$apply();
         $('.card.apps .tooltipped').tooltip({delay: 1000});
@@ -34,6 +39,22 @@ angular.module('cardboard.controllers')
         if(!this.app.enabled)
             icon_url+="?grayscale=true";
         return icon_url;
+    };
+
+    $scope.updateFrequency = function(){
+        if(!$scope.$parent.card.settings)
+            $scope.$parent.card.settings = {};
+
+        // If frequency not defined we put 1 else we increment it
+        if(!$scope.$parent.card.settings[this.app.id])
+            $scope.$parent.card.settings[this.app.id] = {'frequency': 1};
+        else if($scope.$parent.card.settings[this.app.id].frequency)
+            $scope.$parent.card.settings[this.app.id] = {'frequency': $scope.$parent.card.settings[this.app.id].frequency+1};
+
+        // We don't update scope to avoid suddenly changing apps position after click
+
+        // We save frequency in storage
+        Chrome.storage.setAsync({'cards': $scope.$parent.cards});
     };
 
 }]);
