@@ -40,7 +40,7 @@ angular.module('cardboard.controllers')
     };
 
     /********* INIT STUFF **********/
-    
+
     var trendsDataDeferred = Promise.defer();
     $scope.trendsData = trendsDataDeferred.promise;
 
@@ -118,30 +118,28 @@ angular.module('cardboard.controllers')
         // check background property exists to avoid errors due to promise not
         // beeing resolved yet
         if($scope.background && $scope.background.url){
-            style.backgroundImage = "url("+$scope.background.url;
-
             if($scope.background.type == "Google Now")
-                style.backgroundImage += "_"+$scope.getBackgroundTime()+".webp";
-
-            style.backgroundImage += ")";
+                style.backgroundImage = "url("+getBackgroundTime($scope.background.url)+")";
+            else
+                style.backgroundImage = "url("+$scope.background.url+")";
         }
         return style;
     };
 
-    $scope.getBackgroundTime = function(){
+    function getBackgroundTime(url){
         var date = new Date;
         date.setTime(date);
         var hour = date.getHours();
         var time;
 
         if (hour>5 && hour<8)
-            time="Dawn";
+            time = url.dawn;
         else if (hour>8 && hour<19)
-            time="Day";
+            time = url.day;
         else if (hour>19 && hour<21)
-            time="Dusk";
+            time = url.dusk;
         else
-            time="Night";
+            time = url.night;
         return time;
-    };
+    }
 }]);
