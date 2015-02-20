@@ -123,12 +123,6 @@ button.disabled
     margin: 0;
 }
 
-.waves-effect.waves-indigo .waves-ripple {
-    /* The alpha value allows the text and background color
-    of the button to still show through. */
-    background-color: rgba(63, 81, 181, 0.5);
-}
-
 section.container{
     margin-top: 10px;
     margin-bottom: 10px;
@@ -203,6 +197,7 @@ input[type="file"]::-webkit-file-upload-button:hover{
     margin-bottom: 40px;
 }
 .sub-header{
+    color: #26a69a;
     font-size: 14px;
     font-weight: 500;
     margin-bottom: 20px;
