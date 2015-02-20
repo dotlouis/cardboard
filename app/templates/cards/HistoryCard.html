@@ -1,4 +1,7 @@
 <style>
+.card.history{
+	height: 250px:
+}
 .card.history .node{
 	cursor: pointer;
 	display: flex;
@@ -7,11 +10,9 @@
 	margin: 0;
 	text-transform: none;
 }
-
 .card.history .node:hover{
 	background-color: #f5f5f5;
 }
-
 .card.history .node .title{
 	color: #424242;
 	margin-left: 9px;
@@ -21,7 +22,6 @@
 	white-space: nowrap;
 	text-overflow: ellipsis;
 }
-
 .card.history i{
 	width: 20px;
 	height: 20px;
@@ -44,7 +44,7 @@
 </style>
 <packery-object>
 <div class="card history" ng-controller="HistoryCtrl">
-	<div class="card-title indigo-text">History</div>
+	<div class="card-title">History</div>
 	<ul class="card-content">
 		<li ng-repeat="node in history | limitTo:maxHistory">
 			<a ng-href="{{node.url}}" class="node waves-effect">

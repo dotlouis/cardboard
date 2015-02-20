@@ -1,4 +1,7 @@
 <style>
+.card.sessions{
+	height: 298px;
+}
 .card.sessions .node{
 	cursor: pointer;
 	display: flex;
@@ -7,11 +10,9 @@
 	margin: 0;
 	text-transform: none;
 }
-
 .card.sessions .node:hover{
 	background-color: #f5f5f5;
 }
-
 .card.sessions .node .title{
 	color: #424242;
 	margin-left: 9px;
@@ -21,7 +22,6 @@
 	white-space: nowrap;
 	text-overflow: ellipsis;
 }
-
 .card.sessions i{
 	width: 20px;
 	height: 20px;
@@ -41,17 +41,13 @@
 .card.sessions .card-content .node .time{
 	font-size: 11px;
 }
-.card.sessions .tabs .indicator{
-	background-color: #5c6bc0;
-	z-index: 1;
-}
 </style>
 <packery-object>
 <div class="card sessions" ng-controller="SessionsCtrl">
-	<div class="card-title indigo-text">Sessions</div>
+	<div class="card-title">Sessions</div>
 	<ul class="tabs">
-		<li class="tab waves-effect waves-indigo"><a ng-href="#tab-content-recent" class="indigo-text">Recently Closed</a></li>
-		<li ng-repeat="(key,node) in devices" class="tab waves-effect waves-indigo"><a ng-href="#tab-content-{{key}}" class="indigo-text">{{node.deviceName}}</a></li>
+		<li class="tab waves-effect"><a ng-href="#tab-content-recent">Recently Closed</a></li>
+		<li ng-repeat="(key,node) in devices" class="tab waves-effect waves-light"><a ng-href="#tab-content-{{key}}">{{node.deviceName}}</a></li>
 	</ul>
 	<ul id="tab-content-recent" class="card-content">
 		<li ng-repeat="node in recentlyClosed | limitTo:maxRecentlyClosed">

@@ -1,4 +1,7 @@
 <style>
+.card.topsites{
+	height: 250px;
+}
 .card.topsites .node{
 	cursor: pointer;
 	display: flex;
@@ -7,11 +10,9 @@
 	margin: 0;
 	text-transform: none;
 }
-
 .card.topsites .node:hover{
 	background-color: #f5f5f5;
 }
-
 .card.topsites .node .title{
 	color: #424242;
 	margin-left: 9px;
@@ -21,7 +22,6 @@
 	white-space: nowrap;
 	text-overflow: ellipsis;
 }
-
 .card.topsites i{
 	width: 20px;
 	height: 20px;
@@ -33,11 +33,10 @@
 	color: #757575;
 	flex-shrink: 0;
 }
-
 </style>
 <packery-object>
 <div class="card topsites" ng-controller="TopSitesCtrl">
-	<div class="card-title indigo-text">Top Sites</div>
+	<div class="card-title">Top Sites</div>
 	<ul class="card-content">
 		<li ng-repeat="node in topSites | limitTo:maxTopSites">
 			<a ng-href="{{node.url}}" class="node waves-effect">
