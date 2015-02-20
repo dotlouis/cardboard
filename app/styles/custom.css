@@ -98,11 +98,11 @@ button.disabled
 .card .card-title{
     padding: 12px 20px;
     color: white;
-    background-color: #455a64;
+    background-color: #546e7a;
 }
 .card .tabs,
 .card .tabs .tab{
-	background-color: #455a64;
+	background-color: #546e7a;
 }
 .card .tabs .tab a{
     color: #f5f5f5;
