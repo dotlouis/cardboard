@@ -1,0 +1,71 @@
+<section class="container white z-depth-1">
+
+    <div class="category">
+        <div class="sub-header">Header</div>
+        <div class="sub-setting">
+            <label>Background</label>
+            <div class="md-select">
+                <select ng-model="$parent.background" ng-change="save('backgroundId',background.id)" ng-options="bg.name group by bg.type for bg in $parent.backgrounds"></select>
+            </div>
+        </div>
+        <button ng-click="openLocal()" class="btn">From Local</button>
+        <button ng-click="openUrl()" class="btn">From URL</button>
+        <div class="sub-setting">
+            <div class="switch"><label>Google Trends<input type="checkbox" ng-model="$parent.trends.enabled" ng-change="save('trends',$parent.trends)"><span class="lever"></span></label></div>
+        </div>
+    </div>
+
+    <div class="category">
+        <div class="sub-header">Cards</div>
+        <div class="sub-setting" ng-repeat="card in $parent.cards">
+            <div class="switch"><label>{{card.name | humanize}}<input type="checkbox" ng-model="card.enabled" ng-change="request()"><span class="lever"></span></label></div>
+        </div>
+    </div>
+
+    <div class="category">
+        <div class="sub-header">About</div>
+        <p>
+            Cardboard is developed by a <a href="https://plus.google.com/+LouisLafont">young french developer</a> when he's not busy
+            working on his startup, praying thy Lord Duarte or fighting exploding kittens.
+        </p>
+
+        <h4>Have 1 min?</h4>
+        <p>
+            Help me improve Cardboard by taking 1 minute to review and report bugs
+        </p>
+        <a href="https://chrome.google.com/webstore/support/hilmkmopmiomkmehbhajigccnglobaap" class="btn waves-effect waves-light">Feedback</a>
+
+        <h4>Stay tuned</h4>
+        <p>Follow the project</p>
+        <a href="https://plus.google.com/115967816314012668475" class="btn waves-effect waves-light red">Google +</a>
+        <a href="https://github.com/virtual-dev/cardboard" class="btn waves-effect tooltipped github" data-position="top" data-delay="50" data-tooltip="For Hardcores ;)">github</a>
+    </div>
+</section>
+
+
+
+
+<!-- *************** MODALS ************* -->
+
+<div id="modalBgUrl" class="modal">
+    <div class="modal-content">
+        <div class="input-field col s12">
+            <input id="bgUrl" type="url" ng-model="backgroundFromUrl" class="validate">
+            <label for="bgUrl">Background URL</label>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button ng-click="saveBackgroundFromUrl()" class="waves-effect waves-teal btn-flat modal-action modal-close">Save</button>
+        <button class="waves-effect waves-teal btn-flat modal-action modal-close">Dismiss</button>
+    </div>
+</div>
+
+<div id="modalBgDevice" class="modal">
+    <div class="modal-content">
+        <bg-pick></bg-pick>
+    </div>
+    <div class="modal-footer">
+        <button ng-click="saveBackgroundFromDevice()" class="waves-effect waves-teal btn-flat modal-action modal-close">Save</button>
+        <button class="waves-effect waves-teal btn-flat modal-action modal-close">Dismiss</button>
+    </div>
+</div>
