@@ -41,13 +41,36 @@ header{
     font-size: 50px;
 }
 
+.fab{
+    position: initial;
+    float: right;
+    margin-right: 30px;
+    margin-bottom: 10px;
+}
+.fab ul{
+    position: relative;
+    margin: 0;
+    bottom: initial;
+}
+#toast-container{
+    z-index: initial;
+}
+.toast{
+    margin-top: 0;
+}
 @media (min-width: 601px){
     #toast-container{
-        bottom: 30px;
+        bottom: 20px;
         right: 30px;
         top: initial;
         left: initial;
         min-width: initial;
+    }
+    .fab{
+        margin: 0;
+    }
+    .toast{
+        margin-top: 10px;
     }
 }
 
@@ -59,7 +82,6 @@ header{
     margin-left: 150px;
     width: 70%;
 }
-
 
 button,
 .btn{
