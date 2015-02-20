@@ -1,12 +1,7 @@
+
 <style>
 .card.bookmarks{
-	height: 238px;
-}
-.card.bookmarks .card-header{
-	display: flex;
-}
-.card.bookmarks .tabs{
-	flex: 4;
+	height: 298px;
 }
 .card.bookmarks .card-content{
 	height: inherit;
@@ -55,20 +50,14 @@
 .card.bookmarks .card-content .node .time{
 	font-size: 11px;
 }
-.card.bookmarks .tabs .indicator{
-	background-color: #5c6bc0;
-	z-index: 1;
-}
 </style>
 <packery-object>
 <div class="card bookmarks" ng-controller="BookmarkCtrl">
-	<div class="card-header">
-		<div class="card-title indigo-text">Bookmarks</div>
-		<ul class="tabs">
-			<li class="tab waves-effect waves-indigo"><a href="#recent-bookmarks" class="indigo-text">Recents</a></li>
-			<li class="tab waves-effect waves-indigo"><a href="#all-bookmarks" class="indigo-text">All</a></li>
-		</ul>
-	</div>
+	<div class="card-title">Bookmarks</div>
+	<ul class="tabs">
+		<li class="tab waves-effect waves-light"><a href="#recent-bookmarks">Recents</a></li>
+		<li class="tab waves-effect waves-light"><a href="#all-bookmarks">All</a></li>
+	</ul>
 	<ul id="recent-bookmarks" class="card-content">
 		<li ng-repeat="node in recents" ng-include="'node.html'" class="waves-effect"></li>
 	</ul>
