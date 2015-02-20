@@ -46,7 +46,7 @@
 <div class="card sessions" ng-controller="SessionsCtrl">
 	<div class="card-title">Sessions</div>
 	<ul class="tabs">
-		<li class="tab waves-effect"><a ng-href="#tab-content-recent">Recently Closed</a></li>
+		<li class="tab waves-effect waves-light"><a ng-href="#tab-content-recent">Recently Closed</a></li>
 		<li ng-repeat="(key,node) in devices" class="tab waves-effect waves-light"><a ng-href="#tab-content-{{key}}">{{node.deviceName}}</a></li>
 	</ul>
 	<ul id="tab-content-recent" class="card-content">

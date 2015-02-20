@@ -24,7 +24,10 @@ angular.module('cardboard.controllers')
     .then(function(){
         $scope.$apply();
         $('.card.sessions .tabs').tabs();
-        $('.card.sessions .tabs').tabs('select_tab', 'tab-content-recent');
+        // dirty fix for the tab indicator to display at correct size
+        setTimeout(function () {
+            $('.card.sessions .tabs').tabs('select_tab', 'tab-content-recent');
+        }, 250);
     });
 
     // Return an array of tabs wether the input object contains tabs
