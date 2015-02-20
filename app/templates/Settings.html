@@ -1,7 +1,7 @@
 <section class="container white z-depth-1">
 
     <div class="category">
-        <div class="sub-header indigo-text">Header</div>
+        <div class="sub-header">Header</div>
         <div class="sub-setting">
             <label>Background</label>
             <div class="md-select">
@@ -16,14 +16,14 @@
     </div>
 
     <div class="category">
-        <div class="sub-header indigo-text">Cards</div>
+        <div class="sub-header">Cards</div>
         <div class="sub-setting" ng-repeat="card in $parent.cards">
             <div class="switch"><label>{{card.name | humanize}}<input type="checkbox" ng-model="card.enabled" ng-change="request()"><span class="lever"></span></label></div>
         </div>
     </div>
 
     <div class="category">
-        <div class="sub-header indigo-text">About</div>
+        <div class="sub-header">About</div>
         <p>
             Cardboard is developed by a <a href="https://plus.google.com/+LouisLafont">young french developer</a> when he's not busy
             working on his startup, praying thy Lord Duarte or fighting exploding kittens.
