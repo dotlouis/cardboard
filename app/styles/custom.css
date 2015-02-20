@@ -8,6 +8,7 @@ body{
 header{
     display: flex;
     height: 200px;
+    transition: background-image .5s linear .2s;
 }
 
 .header-typer{
