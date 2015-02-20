@@ -10,7 +10,7 @@
 </head>
 <body ng-app="cardboard" ng-csp ng-controller="RootCtrl">
 
-	<header class="indigo white-text" ng-style="getBackgroundStyle()">
+	<header class="blue-grey white-text" ng-style="getBackgroundStyle()">
 		<div id="back" ng-show="route() == '/settings'"><a href="#/feed"><i class="mdi-navigation-arrow-back medium waves-effect waves-light white-text"></i></a></div>
 		<typer ng-show="route() == '/feed' && trends.enabled" source="trendsData" start="true" class="header-typer"></typer>
 		<typer ng-show="route() == '/settings'" source="['Settings']" start="route() == '/settings'" class="header-typer"></typer>
