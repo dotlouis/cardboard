@@ -20,6 +20,19 @@
 
 	<div ng-view></div>
 
+	<div id="toast-container">
+		<div class="fab fixed-action-btn" ng-show="route() == '/feed'">
+			<ul>
+				<li ng-repeat="card in cards" ng-show="!card.enabled" ng-click="card.enabled=true">
+					<a class="btn-floating blue-grey" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px); opacity: 0;"><i class="large" ng-class="card.icon"></i></a>
+				</li>
+			</ul>
+			<a class="btn-floating btn-large red">
+				<i class="large mdi-content-add"></i>
+			</a>
+		</div>
+	</div>
+
 <!-- Angular, Bluebird & co. -->
 <script src="bower_components/angular/angular.min.js"></script>
 <script src="bower_components/angular-route/angular-route.min.js"></script>
