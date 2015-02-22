@@ -1,5 +1,9 @@
 <section id="feed">
     <packery column-width="400" gutter="10" draggable="{{isDrag}}">
+        <div class="empty-feed" ng-class="{'mask':!allCardsDisabled}">
+            <p class="daily">{{dailyMsg}}</p>
+            <p>Add cards with the button in the bottom right corner</p>
+        </div>
         <div ng-repeat="card in cards" ng-if="card.enabled" ng-include="card.template"></div>
     </packery>
 </section>

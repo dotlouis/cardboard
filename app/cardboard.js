@@ -30,9 +30,19 @@ angular.module('cardboard', [
 
 .value('DefaultSettings',{
 	version: { "update": 4, "settings": 4},
+	welcomeMessages: [
+        "Hey, how's your day?",
+        "Hope you're doing well",
+        "Someone think of you ;)",
+        "Hello !",
+        "Try smiling, it works !",
+        "Did you know you rock ?",
+        "Let's get motivated shall we ?",
+        "Come on buddy, you can be whoever you want"
+    ],
 
 	// imgur album: https://imgur.com/a/NAaUE
-	backgrounds : [
+	backgrounds: [
 		{
 			id: 0,
 			name: "Austin",
@@ -166,12 +176,12 @@ angular.module('cardboard', [
 			}
 		}
 	],
-	backgroundId : 4,
-	trends : {
+	backgroundId: 4,
+	trends: {
 		url: "https://hawttrends.appspot.com/api/terms/",
 		enabled: true
 	},
-	cards : [
+	cards: [
 		{
 			name: "apps",
 			enabled: false,
