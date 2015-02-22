@@ -71,7 +71,10 @@
 </style>
 <packery-object>
 <div class="card downloads" ng-controller="DownloadCtrl">
-	<div class="card-title">Dowloads</div>
+	<div class="card-title">
+		Dowloads
+		<span data-activates="dropdown-card-download" class="dropdown-card-btn"><i class="mdi-navigation-more-vert waves-effect waves-light"></i></span>
+	</div>
 	<ul class="card-content">
 		<li ng-repeat="download in downloads | limitTo: '5'" ng-click="open()" class="download waves-effect">
 			<div class="icon" ng-switch on="download.state">
@@ -101,3 +104,7 @@
 	</ul>
 </div>
 </packery-object>
+
+<ul id="dropdown-card-download" class="dropdown-content">
+	<li ng-click="toggle(card,false)"><a>Remove</a></li>
+</ul>

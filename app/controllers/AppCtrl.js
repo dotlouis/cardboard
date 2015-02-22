@@ -22,6 +22,7 @@ angular.module('cardboard.controllers')
             }
         });
         $scope.$apply();
+        $scope.initDropdowns('.card.apps .dropdown-card-btn');
         $('.card.apps .tooltipped').tooltip({delay: 1000});
     });
 

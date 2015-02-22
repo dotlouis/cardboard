@@ -16,7 +16,10 @@
 </style>
 <packery-object>
 <div class="card quicksettings" ng-controller="QuickSettingsCtrl">
-	<div class="card-title">Quick Settings</div>
+	<div class="card-title">
+		Quick Settings
+		<span data-activates="dropdown-card-quicksettings" class="dropdown-card-btn"><i class="mdi-navigation-more-vert waves-effect waves-light"></i></span>
+	</div>
 	<div class="card-content">
 		<p>
 			<input type="checkbox" id="checkCache" ng-model="clearTypes.cache"/>
@@ -38,3 +41,7 @@
 	</div>
 </div>
 </packery-object>
+
+<ul id="dropdown-card-quicksettings" class="dropdown-content">
+	<li ng-click="toggle(card,false)"><a>Remove</a></li>
+</ul>
