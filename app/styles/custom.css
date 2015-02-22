@@ -144,6 +144,15 @@ button.disabled
     color: white;
     background-color: #546e7a;
 }
+.card .dropdown-card-btn{
+    float: right;
+    margin-right: -18px;
+    display: inline-flex;
+}
+.card .dropdown-card-btn i{
+    border-radius: 50%;
+    padding: 0 6px;
+}
 .card .tabs,
 .card .tabs .tab{
 	background-color: #546e7a;

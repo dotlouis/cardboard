@@ -22,7 +22,7 @@
 	white-space: nowrap;
 	text-overflow: ellipsis;
 }
-.card.history i{
+.card.history .card-content i{
 	width: 20px;
 	height: 20px;
 	background-size: 16px;
@@ -44,7 +44,10 @@
 </style>
 <packery-object>
 <div class="card history" ng-controller="HistoryCtrl">
-	<div class="card-title">History</div>
+	<div class="card-title">
+		History
+		<span data-activates="dropdown-card-history" class="dropdown-card-btn"><i class="mdi-navigation-more-vert waves-effect waves-light"></i></span>
+	</div>
 	<ul class="card-content">
 		<li ng-repeat="node in history | limitTo:maxHistory">
 			<a ng-href="{{node.url}}" class="node waves-effect">
@@ -56,3 +59,7 @@
 	</ul>
 </div>
 </packery-object>
+
+<ul id="dropdown-card-history" class="dropdown-content">
+	<li ng-click="toggle(card,false)"><a>Remove</a></li>
+</ul>

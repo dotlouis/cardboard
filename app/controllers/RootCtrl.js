@@ -92,6 +92,7 @@ angular.module('cardboard.controllers')
             $scope.$apply(function(){
                 $scope.cards = cards;
             });
+            checkCardsEnabled();
         });
 
         // load new trends of the day
@@ -161,31 +162,52 @@ angular.module('cardboard.controllers')
 
     /********* PERMISSIONS FUNCTIONS **********/
 
-    $scope.toggleCard = function(on){
+    $scope.toggle = function(card, on){
         var self = this;
         if(typeof on === "undefined")
-            on = self.card.enabled;
+            on = card.enabled;
 
         if(on)
-            Chrome.permissions.request(self.card.permissions)
+            Chrome.permissions.request(card.permissions)
             .then(function(){
                 // Granted
                 $scope.$apply(function(){
-                    self.card.enabled = true;
+                    card.enabled = true;
                 });
+                checkCardsEnabled();
                 $scope.save('cards', $scope.cards);
             })
             .catch(function(){
                 // Denied, we don't enable the card
-                self.card.enabled = false;
+                $scope.$apply(function(){
+                    card.enabled = false;
+                });
+                checkCardsEnabled();
                 toast("Card needs permission to run", 4000);
             });
         else
-            Chrome.permissions.revoke(self.card.permissions)
+            Chrome.permissions.revoke(card.permissions)
             .then(function(){
+                $scope.$apply(function(){
+                    card.enabled = false;
+                });
+                checkCardsEnabled();
                 $scope.save('cards', $scope.cards);
             });
     };
+
+    function checkCardsEnabled(){
+        $scope.allCardsEnabled = false;
+        for(var i=0; i<$scope.cards.length; i++){
+            if(!$scope.cards[i].enabled){
+                $scope.$apply(function(){$scope.allCardsEnabled = false;});
+                break;
+            }
+            else if(i == $scope.cards.length-1)
+                $scope.$apply(function(){$scope.allCardsEnabled = true;});
+        }
+        console.log($scope.allCardsEnabled);
+    }
 
     $scope.save = function(storageKey, value){
         var toSave = {};

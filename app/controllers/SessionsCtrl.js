@@ -23,6 +23,7 @@ angular.module('cardboard.controllers')
     Promise.all([willGetDevices, willGetRecentlyClosed])
     .then(function(){
         $scope.$apply();
+        $scope.initDropdowns('.card.sessions .dropdown-card-btn');
         $('.card.sessions .tabs').tabs();
         // dirty fix for the tab indicator to display at correct size
         setTimeout(function () {

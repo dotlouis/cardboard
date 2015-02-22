@@ -56,7 +56,10 @@
 </style>
 <packery-object>
 <div class="card bookmarks" ng-controller="BookmarkCtrl">
-	<div class="card-title">Bookmarks</div>
+	<div class="card-title">
+		Bookmarks
+		<span data-activates="dropdown-card-bookmarks" class="dropdown-card-btn"><i class="mdi-navigation-more-vert waves-effect waves-light"></i></span>
+	</div>
 	<ul class="tabs">
 		<li class="tab waves-effect waves-light"><a href="#recent-bookmarks">Recents</a></li>
 		<li class="tab waves-effect waves-light"><a href="#all-bookmarks">All</a></li>
@@ -92,3 +95,7 @@
 	</script>
 </div>
 </packery-object>
+
+<ul id="dropdown-card-bookmarks" class="dropdown-content">
+	<li ng-click="toggle(card,false)"><a>Remove</a></li>
+</ul>
