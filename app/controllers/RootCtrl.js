@@ -89,7 +89,9 @@ angular.module('cardboard.controllers')
             });
         })
         .then(function(cards){
-            $scope.cards = cards;
+            $scope.$apply(function(){
+                $scope.cards = cards;
+            });
         });
 
         // load new trends of the day
