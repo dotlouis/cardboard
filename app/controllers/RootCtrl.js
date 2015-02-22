@@ -77,6 +77,8 @@ angular.module('cardboard.controllers')
         $scope.backgrounds = settings.backgrounds;
         $scope.background = settings.backgrounds[settings.backgroundId];
 
+        $scope.welcomeMessages = settings.welcomeMessages;
+
         $scope.trends = settings.trends;
 
         // Check each card permissions
@@ -93,6 +95,7 @@ angular.module('cardboard.controllers')
                 $scope.cards = cards;
             });
             checkCardsEnabled();
+            checkCardsDisabled();
         });
 
         // load new trends of the day
@@ -175,6 +178,7 @@ angular.module('cardboard.controllers')
                     card.enabled = true;
                 });
                 checkCardsEnabled();
+                checkCardsDisabled();
                 $scope.save('cards', $scope.cards);
             })
             .catch(function(){
@@ -183,6 +187,7 @@ angular.module('cardboard.controllers')
                     card.enabled = false;
                 });
                 checkCardsEnabled();
+                checkCardsDisabled();
                 toast("Card needs permission to run", 4000);
             });
         else
@@ -192,6 +197,7 @@ angular.module('cardboard.controllers')
                     card.enabled = false;
                 });
                 checkCardsEnabled();
+                checkCardsDisabled();
                 $scope.save('cards', $scope.cards);
             });
     };
@@ -205,6 +211,17 @@ angular.module('cardboard.controllers')
             }
             else if(i == $scope.cards.length-1)
                 $scope.$apply(function(){$scope.allCardsEnabled = true;});
+        }
+    }
+    function checkCardsDisabled(){
+        $scope.allCardsDisabled = false;
+        for(var i=0; i<$scope.cards.length; i++){
+            if($scope.cards[i].enabled){
+                $scope.$apply(function(){$scope.allCardsDisabled = false;});
+                break;
+            }
+            else if(i == $scope.cards.length-1)
+                $scope.$apply(function(){$scope.allCardsDisabled = true;});
         }
     }
 
