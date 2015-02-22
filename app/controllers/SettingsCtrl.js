@@ -40,33 +40,6 @@ angular.module('cardboard.controllers')
         $('#modalBgDevice').openModal();
     };
 
-    $scope.request = function(){
-        var self = this;
-        // if card is enabled
-        if(self.card.enabled)
-            Chrome.permissions.request(self.card.permissions)
-            .then(function(){
-                // Granted, we save the change
-                $scope.save('cards', $scope.cards);
-            })
-            .catch(function(){
-                // Denied, we don't enable the card
-                self.card.enabled = false;
-                toast("Card needs permission to run", 4000);
-            });
-        else if(!self.card.enabled)
-            Chrome.permissions.revoke(self.card.permissions)
-            .then(function(){
-                $scope.save('cards', $scope.cards);
-            });
-    };
-
-    $scope.save = function(storageKey, value){
-        var toSave = {};
-        toSave[storageKey] = value;
-        Chrome.storage.setAsync(toSave);
-    };
-
     $scope.backgroundSave = function(bg){
         var bgIndex = $scope.$parent.backgrounds.length;
 

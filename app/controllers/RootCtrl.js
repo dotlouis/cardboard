@@ -158,4 +158,38 @@ angular.module('cardboard.controllers')
             time = url.night;
         return time;
     }
+
+    /********* PERMISSIONS FUNCTIONS **********/
+
+    $scope.toggleCard = function(on){
+        var self = this;
+        if(typeof on === "undefined")
+            on = self.card.enabled;
+
+        if(on)
+            Chrome.permissions.request(self.card.permissions)
+            .then(function(){
+                // Granted
+                $scope.$apply(function(){
+                    self.card.enabled = true;
+                });
+                $scope.save('cards', $scope.cards);
+            })
+            .catch(function(){
+                // Denied, we don't enable the card
+                self.card.enabled = false;
+                toast("Card needs permission to run", 4000);
+            });
+        else
+            Chrome.permissions.revoke(self.card.permissions)
+            .then(function(){
+                $scope.save('cards', $scope.cards);
+            });
+    };
+
+    $scope.save = function(storageKey, value){
+        var toSave = {};
+        toSave[storageKey] = value;
+        Chrome.storage.setAsync(toSave);
+    };
 }]);
