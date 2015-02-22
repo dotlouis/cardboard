@@ -206,7 +206,6 @@ angular.module('cardboard.controllers')
             else if(i == $scope.cards.length-1)
                 $scope.$apply(function(){$scope.allCardsEnabled = true;});
         }
-        console.log($scope.allCardsEnabled);
     }
 
     $scope.save = function(storageKey, value){
