@@ -7,7 +7,9 @@ angular.module('cardboard.controllers')
         text: "", // empty for all pages
         maxResults: $scope.maxHistory
     }).then(function(history){
-        $scope.history = history;
-        $scope.$apply();
+        $scope.$apply(function(){
+            $scope.history = history;
+        });
+        $scope.initDropdowns('.card.history .dropdown-card-btn');
     });
 }]);

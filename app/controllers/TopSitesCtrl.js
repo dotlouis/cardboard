@@ -4,7 +4,9 @@ angular.module('cardboard.controllers')
     $scope.maxTopSites = 5;
 
     Chrome.topSites.getAsync().then(function(topSites){
-        $scope.topSites = topSites;
-        $scope.$apply();
+        $scope.$apply(function(){
+            $scope.topSites = topSites;
+        });
+        $scope.initDropdowns('.card.topsites .dropdown-card-btn');
     });
 }]);

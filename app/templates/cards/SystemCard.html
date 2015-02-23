@@ -76,7 +76,10 @@
 </style>
 <packery-object>
 <div class="card system" ng-controller="SystemCtrl">
-    <div class="card-title">System</div>
+    <div class="card-title">
+        System
+        <span data-activates="dropdown-card-system" class="dropdown-card-btn"><i class="mdi-navigation-more-vert waves-effect waves-light"></i></span>
+    </div>
     <div class="card-content">
         <div class="wrapper cpu">
             <div class="wrapper-name">
@@ -117,3 +120,7 @@
     </div>
 </div>
 </packery-object>
+
+<ul id="dropdown-card-system" class="dropdown-content">
+    <li ng-click="toggle(card,false)"><a>Remove</a></li>
+</ul>

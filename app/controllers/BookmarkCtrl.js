@@ -6,14 +6,17 @@ angular.module('cardboard.controllers')
     $('.card.bookmarks .tabs').tabs('select_tab', 'recent-bookmarks');
 
     Chrome.bookmarks.getRecentAsync(5).then(function(recents){
-        $scope.recents = recents;
-        $scope.$apply();
+        $scope.$apply(function(){
+            $scope.recents = recents;
+        });
+        $scope.initDropdowns('.card.bookmarks .dropdown-card-btn');
     });
 
     // get root bookmarks
     Chrome.bookmarks.getChildrenAsync("0").then(function(root){
-        $scope.tree = root;
-        $scope.$apply();
+        $scope.$apply(function(){
+            $scope.tree = root;
+        });
     });
 
     $scope.getChildren = function(id){

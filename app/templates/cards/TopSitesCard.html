@@ -22,7 +22,7 @@
 	white-space: nowrap;
 	text-overflow: ellipsis;
 }
-.card.topsites i{
+.card.topsites .card-content i{
 	width: 20px;
 	height: 20px;
 	background-size: 16px;
@@ -36,7 +36,10 @@
 </style>
 <packery-object>
 <div class="card topsites" ng-controller="TopSitesCtrl">
-	<div class="card-title">Top Sites</div>
+	<div class="card-title">
+		Top Sites
+		<span data-activates="dropdown-card-topsites" class="dropdown-card-btn"><i class="mdi-navigation-more-vert waves-effect waves-light"></i></span>
+	</div>
 	<ul class="card-content">
 		<li ng-repeat="node in topSites | limitTo:maxTopSites">
 			<a ng-href="{{node.url}}" class="node waves-effect">
@@ -47,3 +50,7 @@
 	</ul>
 </div>
 </packery-object>
+
+<ul id="dropdown-card-topsites" class="dropdown-content">
+	<li ng-click="toggle(card,false)"><a>Remove</a></li>
+</ul>

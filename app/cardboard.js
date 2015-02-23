@@ -30,9 +30,19 @@ angular.module('cardboard', [
 
 .value('DefaultSettings',{
 	version: { "update": 4, "settings": 4},
+	welcomeMessages: [
+        "Hey, how's your day?",
+        "Hope you're doing well",
+        "Someone think of you ;)",
+        "Hello !",
+        "Try smiling, it works !",
+        "Did you know you rock ?",
+        "Let's get motivated shall we ?",
+        "Come on buddy, you can be whoever you want"
+    ],
 
 	// imgur album: https://imgur.com/a/NAaUE
-	backgrounds : [
+	backgrounds: [
 		{
 			id: 0,
 			name: "Austin",
@@ -166,58 +176,66 @@ angular.module('cardboard', [
 			}
 		}
 	],
-	backgroundId : 4,
-	trends : {
+	backgroundId: 4,
+	trends: {
 		url: "https://hawttrends.appspot.com/api/terms/",
 		enabled: true
 	},
-	cards : [
+	cards: [
 		{
 			name: "apps",
 			enabled: false,
 			template: "app/templates/cards/AppCard.html",
+			icon: "mdi-navigation-apps",
 			permissions: ["management"]
 		},
 		{
 			name: "bookmarks",
 			enabled: false,
 			template: "app/templates/cards/BookmarkCard.html",
+			icon: "mdi-action-bookmark",
 			permissions: ["bookmarks"]
 		},
 		{
 			name: "quick_settings",
 			enabled: false,
 			template: "app/templates/cards/QuickSettingsCard.html",
+			icon: "mdi-action-settings",
 			permissions: ["browsingData"]
 		},
 		{
 			name: "downloads",
 			enabled: false,
 			template: "app/templates/cards/DownloadCard.html",
+			icon: "mdi-file-cloud-download",
 			permissions: ["downloads"]
 		},
 		{
 			name: "top_sites",
 			enabled: false,
 			template: "app/templates/cards/TopSitesCard.html",
+			icon: "mdi-social-whatshot",
 			permissions: ["topSites"]
 		},
 		{
 			name: "history",
 			enabled: false,
 			template: "app/templates/cards/HistoryCard.html",
+			icon: "mdi-action-history",
 			permissions: ["history"]
 		},
 		{
 			name: "sessions",
 			enabled: false,
 			template: "app/templates/cards/SessionsCard.html",
+			icon: "mdi-device-devices",
 			permissions: ["sessions", "tabs"]
 		},
 		{
 			name: "system",
 			enabled: false,
 			template: "app/templates/cards/SystemCard.html",
+			icon: "mdi-hardware-memory",
 			permissions: ["system.cpu", "system.memory", "system.storage"]
 		}
 

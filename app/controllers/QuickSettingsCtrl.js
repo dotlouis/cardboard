@@ -8,6 +8,7 @@ angular.module('cardboard.controllers')
         "history": false,
         "localStorage": false,
     };
+    $scope.initDropdowns('.card.quicksettings .dropdown-card-btn');
 
     function isAllFalse(object){
         for (var key in object)
