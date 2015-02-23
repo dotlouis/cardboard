@@ -3,15 +3,22 @@ angular.module('cardboard.controllers')
 .controller('SystemCtrl', ['$scope','ChromeFactory',function($scope, Chrome){
 
     Chrome.system.cpu.getInfoAsync().then(function(cpu){
-        $scope.cpu = cpu;
+        $scope.$apply(function(){
+            $scope.cpu = cpu;
+        });
+        $scope.initDropdowns('.card.system .dropdown-card-btn');
     });
 
     Chrome.system.memory.getInfoAsync().then(function(memory){
-        $scope.memory = memory;
+        $scope.$apply(function(){
+            $scope.memory = memory;
+        });
     });
 
     Chrome.system.storage.getInfoAsync().then(function(storage){
-        $scope.storage = storage;
+        $scope.$apply(function(){
+            $scope.storage = storage;
+        });
     });
 
     Chrome.system.storage.onAttached.addListener(function(storage){

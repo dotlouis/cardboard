@@ -22,6 +22,7 @@ angular.module('cardboard.controllers')
         $scope.downloads = downloads;
         $scope.$apply();
         // init all dropdowns
+        $scope.initDropdowns('.card.downloads .dropdown-card-btn');
         $scope.initDropdowns('.card.downloads .download .more');
     });
 

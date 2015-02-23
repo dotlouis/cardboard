@@ -62,9 +62,10 @@ angular.module('cardboard.controllers')
 
     var localStorage = Chrome.cache.getAsync(null);
 
-    Promise.all([syncStorage,localStorage])
-    // Once we get all the settings, we fill the scope with it
-    .then(function(storage){
+    $scope.settings = Promise.all([syncStorage,localStorage]);
+
+    // Once we get all the settings, we init the scope with it
+    $scope.settings.then(function(storage){
         var settings = storage[0];
         var cache = storage[1];
 
@@ -73,24 +74,12 @@ angular.module('cardboard.controllers')
             if(settings.backgrounds[i].type == "Local" && settings.backgrounds[i].url)
                 settings.backgrounds[i].url = cache.localBackgroundDataUrl;
 
-        // Fill the scope
+        // Init background
         $scope.backgrounds = settings.backgrounds;
         $scope.background = settings.backgrounds[settings.backgroundId];
 
+        // Init Trends
         $scope.trends = settings.trends;
-
-        // Check each card permissions
-        Promise.map(settings.cards, function(card){
-            return Chrome.permissions.check(card.permissions)
-            .then(function(granted){
-                // Disable the card if not granted AND enabled
-                card.enabled = (granted && card.enabled);
-                return card;
-            });
-        })
-        .then(function(cards){
-            $scope.cards = cards;
-        });
 
         // load new trends of the day
         if(!settings.trends.lastRefresh || !(new Date(settings.trends.lastRefresh).isSameDateAs(new Date()))){
