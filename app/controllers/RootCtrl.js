@@ -62,9 +62,10 @@ angular.module('cardboard.controllers')
 
     var localStorage = Chrome.cache.getAsync(null);
 
-    Promise.all([syncStorage,localStorage])
-    // Once we get all the settings, we fill the scope with it
-    .then(function(storage){
+    $scope.settings = Promise.all([syncStorage,localStorage]);
+
+    // Once we get all the settings, we init the scope with it
+    $scope.settings.then(function(storage){
         var settings = storage[0];
         var cache = storage[1];
 
@@ -73,30 +74,12 @@ angular.module('cardboard.controllers')
             if(settings.backgrounds[i].type == "Local" && settings.backgrounds[i].url)
                 settings.backgrounds[i].url = cache.localBackgroundDataUrl;
 
-        // Fill the scope
+        // Init background
         $scope.backgrounds = settings.backgrounds;
         $scope.background = settings.backgrounds[settings.backgroundId];
 
-        $scope.welcomeMessages = settings.welcomeMessages;
-
+        // Init Trends
         $scope.trends = settings.trends;
-
-        // Check each card permissions
-        Promise.map(settings.cards, function(card){
-            return Chrome.permissions.check(card.permissions)
-            .then(function(granted){
-                // Disable the card if not granted AND enabled
-                card.enabled = (granted && card.enabled);
-                return card;
-            });
-        })
-        .then(function(cards){
-            $scope.$apply(function(){
-                $scope.cards = cards;
-            });
-            checkCardsEnabled();
-            checkCardsDisabled();
-        });
 
         // load new trends of the day
         if(!settings.trends.lastRefresh || !(new Date(settings.trends.lastRefresh).isSameDateAs(new Date()))){
@@ -162,72 +145,4 @@ angular.module('cardboard.controllers')
             time = url.night;
         return time;
     }
-
-    /********* PERMISSIONS FUNCTIONS **********/
-
-    $scope.toggle = function(card, on){
-        var self = this;
-        if(typeof on === "undefined")
-            on = card.enabled;
-
-        if(on)
-            Chrome.permissions.request(card.permissions)
-            .then(function(){
-                // Granted
-                $scope.$apply(function(){
-                    card.enabled = true;
-                });
-                checkCardsEnabled();
-                checkCardsDisabled();
-                $scope.save('cards', $scope.cards);
-            })
-            .catch(function(){
-                // Denied, we don't enable the card
-                $scope.$apply(function(){
-                    card.enabled = false;
-                });
-                checkCardsEnabled();
-                checkCardsDisabled();
-                toast("Card needs permission to run", 4000);
-            });
-        else
-            Chrome.permissions.revoke(card.permissions)
-            .then(function(){
-                $scope.$apply(function(){
-                    card.enabled = false;
-                });
-                checkCardsEnabled();
-                checkCardsDisabled();
-                $scope.save('cards', $scope.cards);
-            });
-    };
-
-    function checkCardsEnabled(){
-        $scope.allCardsEnabled = false;
-        for(var i=0; i<$scope.cards.length; i++){
-            if(!$scope.cards[i].enabled){
-                $scope.$apply(function(){$scope.allCardsEnabled = false;});
-                break;
-            }
-            else if(i == $scope.cards.length-1)
-                $scope.$apply(function(){$scope.allCardsEnabled = true;});
-        }
-    }
-    function checkCardsDisabled(){
-        $scope.allCardsDisabled = false;
-        for(var i=0; i<$scope.cards.length; i++){
-            if($scope.cards[i].enabled){
-                $scope.$apply(function(){$scope.allCardsDisabled = false;});
-                break;
-            }
-            else if(i == $scope.cards.length-1)
-                $scope.$apply(function(){$scope.allCardsDisabled = true;});
-        }
-    }
-
-    $scope.save = function(storageKey, value){
-        var toSave = {};
-        toSave[storageKey] = value;
-        Chrome.storage.setAsync(toSave);
-    };
 }]);

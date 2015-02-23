@@ -5,6 +5,12 @@ angular.module('cardboard.controllers')
     //init tooltips
     $('.tooltipped').tooltip({delay: 50});
 
+    $scope.save = function(storageKey, value){
+        var toSave = {};
+        toSave[storageKey] = value;
+        Chrome.storage.setAsync(toSave);
+    };
+
     $scope.saveBackgroundFromDevice = function(){
         // backgroundFromDevice is defined into <bg-pick> (directive)
         if(!this.backgroundFromDevice)
