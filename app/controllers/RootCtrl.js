@@ -85,4 +85,8 @@ angular.module('cardboard.controllers')
         return $location.path();
     };
 
+    $scope.goTo = function(url){
+        chrome.tabs.update({url:url});
+    };
+
 }]);
