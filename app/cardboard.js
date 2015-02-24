@@ -29,7 +29,6 @@ angular.module('cardboard', [
 
 
 .value('DefaultSettings',{
-	version: { "update": 4, "settings": 4},
 	welcomeMessages: [
         "Hey, how's your day?",
         "Hope you're doing well",
@@ -237,9 +236,8 @@ angular.module('cardboard', [
 			template: "app/templates/cards/SystemCard.html",
 			icon: "mdi-hardware-memory",
 			permissions: ["system.cpu", "system.memory", "system.storage"]
-		}
-
-		// {name: "changelog", system: true, enabled: false, template: "app/templates/cards/ChangelogCard.html" }
+		},
+		{name: "changelog", system: true, enabled: false, template: "app/templates/cards/ChangelogCard.html" }
 		// {name: "appearance", system: true, enabled: true, template: "app/templates/cards/AppearanceCard.html" },
 		// {name: "cards", system: true, enabled: true, template: "app/templates/cards/CardsCard.html" },
 		// {name: "about", system: true, enabled: true, template: "app/templates/cards/AboutCard.html" }

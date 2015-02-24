@@ -1,0 +1,64 @@
+<style>
+.card.changelog{
+	font-size: 14px;
+	height: 395px;
+}
+.card.changelog .version{
+	float: right;
+	padding-top: 10px;
+	font-size: 14px;
+}
+.card.changelog .card-content p{
+	padding: 4px 20px;
+}
+.card.changelog .card-content button{
+	float: right;
+	margin-right: 10px;
+	margin-bottom: 12px;
+	font-weight: 500;
+	transition-property: color;
+}
+</style>
+<packery-object>
+<div class="card changelog" ng-controller="ChangelogCtrl">
+	<div class="card-title">
+		What's new
+		<span class="version">{{version}}</span>
+	</div>
+	<div class="card-content">
+		<p>
+			<input type="checkbox" checked="checked"/>
+			<label>Material Design</label>
+		</p>
+		<p>
+			<input type="checkbox" checked="checked"/>
+			<label>Google Trends</label>
+		</p>
+		<p>
+			<input type="checkbox" checked="checked"/>
+			<label>All bookmarks. much folders. such links. wow</label>
+		</p>
+		<p>
+			<input type="checkbox" checked="checked"/>
+			<label>Synced devices and recently closed tabs</label>
+		</p>
+		<p>
+			<input type="checkbox" checked="checked"/>
+			<label>Recent history</label>
+		</p>
+		<p>
+			<input type="checkbox" checked="checked"/>
+			<label>System card. Yeah... nerd !</label>
+		</p>
+		<p>
+			<input type="checkbox" checked="checked"/>
+			<label>Choose a background from URL</label>
+		</p>
+		<p style="margin-bottom: 15px;">
+			<input type="checkbox"/>
+			<label>Card ordering. Sorry this is not finished. #soon</label>
+		</p>
+		<button ng-click="toggle(card,false)" class="waves-effect btn-flat white teal-text">Got it</button>
+	</div>
+</div>
+</packery-object>
