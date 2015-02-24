@@ -12,7 +12,7 @@ angular.module('cardboard.controllers')
         // init cards
         return Promise.map(settings.cards, function(card){
             // if cardboard installed or updated we show the changelog
-            if(settings.status && card.name == 'changelog')
+            if(settings.status && card.name == 'changelog' && ($scope.route()=='/feed') )
                 card.enabled = true;
 
             // if the card has permission we check for them before
@@ -107,6 +107,14 @@ angular.module('cardboard.controllers')
                 $scope.$apply(function(){$scope.allCardsDisabled = true;});
         }
     }
+
+    /********* ONBOARDING **********/
+
+    $scope.nextCard = 0;
+
+    $scope.next = function(){
+        $scope.nextCard++;
+    };
 
     /********* FAB STUFF **********/
 

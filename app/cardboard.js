@@ -17,10 +17,10 @@ angular.module('cardboard', [
 		controller: 'SettingsCtrl',
 		templateUrl: 'app/templates/Settings.html'
 	})
-	// .when('/onboarding', {
-	// 	controller: 'OnboardingCtrl',
-	// 	templateUrl: 'app/templates/Onboarding.html'
-	// })
+	.when('/onboarding', {
+		controller: 'FeedCtrl',
+		templateUrl: 'app/templates/Onboarding.html'
+	})
 	.otherwise({ redirectTo: '/feed'});
 
 	// sanitize urls from chrome-extension
