@@ -1,26 +1,36 @@
 angular.module('cardboard.controllers')
 
-.controller('FeedCtrl',['$scope', function($scope){
+.controller('FeedCtrl',['$scope','ChromeFactory', function($scope, Chrome){
 
     $scope.isDrag = false;
 
-    $scope.settings.then(function(storage){
-        var settings = storage[0];
+    $scope.settings.spread(function(settings){
 
         // init welcome messages
         $scope.dailyMsg = settings.welcomeMessages[Math.floor((Math.random() * settings.welcomeMessages.length))];
 
-        // check each card permissions;
+        // init cards
         return Promise.map(settings.cards, function(card){
-            return Chrome.permissions.check(card.permissions)
-            .then(function(granted){
-                // Disable the card if not granted AND enabled
-                card.enabled = (granted && card.enabled);
+            // if cardboard installed or updated we show the changelog
+            if(settings.status && card.name == 'changelog')
+                card.enabled = true;
+
+            // if the card has permission we check for them before
+            if(card.permissions)
+                return Chrome.permissions.check(card.permissions)
+                .then(function(granted){
+                    // Disable the card if not granted AND enabled
+                    card.enabled = (granted && card.enabled);
+                    return card;
+                });
+            else
                 return card;
-            });
         });
     })
     .then(function(cards){
+        // we save the init state
+        Chrome.storage.setAsync({'cards':cards});
+
         $scope.$apply(function(){
             $scope.cards = cards;
         });
@@ -32,9 +42,7 @@ angular.module('cardboard.controllers')
     // see http://packery.metafizzy.co/faq.html#order-after-drag
     // and http://packery.metafizzy.co/methods.html#packery-data
     // var pckryElement = document.querySelector('#feed > div');
-    // console.log(pckryElement);
     // var pckry = Packery.data(pckryElement);
-    // console.log(pckry.getItemElements());
 
     $scope.toggle = function(card, on){
         var self = this;
@@ -45,40 +53,43 @@ angular.module('cardboard.controllers')
             Chrome.permissions.request(card.permissions)
             .then(function(){
                 // Granted
-                $scope.$apply(function(){
-                    card.enabled = true;
-                    // We know all cards are not disabled, we just enabled one
-                    $scope.allCardsDisabled = false;
-                });
-                checkCardsEnabled();
-                Chrome.storage.setAsync({'cards':$scope.cards});
+                enable(card);
             })
             .catch(function(){
                 // Denied, we don't enable the card
-                $scope.$apply(function(){
-                    card.enabled = false;
-                    // We know all cards are not enabled, we just disabled one
-                    $scope.allCardsEnabled = false;
-                });
-                checkCardsDisabled();
+                disable(card);
                 toast("Card needs permission to run", 4000);
             });
         else
             Chrome.permissions.revoke(card.permissions)
             .then(function(){
-                $scope.$apply(function(){
-                    card.enabled = false;
-                    // We know all cards are not enabled, we just disabled one
-                    $scope.allCardsEnabled = false;
-                });
-                checkCardsDisabled();
-                Chrome.storage.setAsync({'cards':$scope.cards});
+                disable(card);
             });
     };
 
+    function enable(card){
+        $scope.$apply(function(){
+            card.enabled = true;
+            // We know all cards are not disabled, we just enabled one
+            $scope.allCardsDisabled = false;
+        });
+        checkCardsEnabled();
+        Chrome.storage.setAsync({'cards':$scope.cards});
+    }
+    function disable(card){
+        $scope.$apply(function(){
+            card.enabled = false;
+            // We know all cards are not enabled, we just disabled one
+            if(!card.system)
+                $scope.allCardsEnabled = false;
+        });
+        checkCardsDisabled();
+        Chrome.storage.setAsync({'cards':$scope.cards});
+    }
+
     function checkCardsEnabled(){
         for(var i=0; i<$scope.cards.length; i++){
-            if(!$scope.cards[i].enabled){
+            if(!$scope.cards[i].enabled && !$scope.cards[i].system){
                 $scope.$apply(function(){$scope.allCardsEnabled = false;});
                 break;
             }

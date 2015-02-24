@@ -105,6 +105,7 @@ header{
 }
 
 .modal-footer .modal-action{
+    background: #eee;
     float: right;
 }
 
@@ -147,6 +148,7 @@ button.disabled
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    text-align: center;
     opacity: 0;
     padding-top: 100px;
     transition: opacity .3s linear;

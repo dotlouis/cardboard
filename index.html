@@ -12,7 +12,7 @@
 
 	<header class="blue-grey white-text" ng-style="getBackgroundStyle()">
 		<div id="back" ng-show="route() == '/settings'"><a href="#/feed"><i class="mdi-navigation-arrow-back medium waves-effect waves-light white-text"></i></a></div>
-		<typer ng-show="route() == '/feed' && trends.enabled" source="trendsData" start="true" class="header-typer"></typer>
+		<typer ng-show="route() == '/feed' && trends.enabled" source="trends.data" start="trends.start" class="header-typer"></typer>
 		<typer ng-show="route() == '/settings'" source="['Settings']" start="route() == '/settings'" class="header-typer"></typer>
 		<div id="more" ng-show="route() == '/feed'"><a href="#/settings"><i class="mdi-navigation-more-vert small waves-effect waves-light white-text"></i></a></div>
 	</header>
@@ -42,6 +42,7 @@
 <script src="app/controllers/bootstrap.js"></script>
 <script src="app/controllers/AppCtrl.js"></script>
 <script src="app/controllers/BookmarkCtrl.js"></script>
+<script src="app/controllers/ChangelogCtrl.js"></script>
 <script src="app/controllers/DownloadCtrl.js"></script>
 <script src="app/controllers/FeedCtrl.js"></script>
 <script src="app/controllers/HistoryCtrl.js"></script>
@@ -62,6 +63,7 @@
 <!-- Factories -->
 <script src="app/factories/bootstrap.js"></script>
 <script src="app/factories/ChromeFactory.js"></script>
+<script src="app/factories/TrendsFactory.js"></script>
 
 <!-- Filters -->
 <script src="app/filters/bootstrap.js"></script>
