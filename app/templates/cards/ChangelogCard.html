@@ -1,7 +1,11 @@
 <style>
 .card.changelog{
 	font-size: 14px;
-	height: 395px;
+	height: 415px;
+}
+.card.changelog .card-title{
+	padding: 0;
+	background: transparent;
 }
 .card.changelog .version{
 	float: right;
@@ -11,16 +15,27 @@
 .card.changelog .card-content p{
 	padding: 4px 20px;
 }
+.card.changelog .card-content p label{
+	color: white;
+}
+.card.changelog .card-content [type="checkbox"]:checked+label:before{
+	border-bottom-color: #00bfa5; /* teal accent 4 */
+	border-right-color: #00bfa5; /* teal accent 4 */
+}
+.card.changelog .card-content [type="checkbox"]:not(:checked)+label:before {
+	border-color: white;
+}
 .card.changelog .card-content button{
 	float: right;
 	margin-right: 10px;
 	margin-bottom: 12px;
 	font-weight: 500;
 	transition-property: color;
+	background: transparent;
 }
 </style>
 <packery-object>
-<div class="card changelog" ng-controller="ChangelogCtrl">
+<div class="card card-panel blue-grey darken-1 changelog" ng-controller="ChangelogCtrl">
 	<div class="card-title">
 		What's new
 		<span class="version">{{version}}</span>
@@ -56,9 +71,9 @@
 		</p>
 		<p style="margin-bottom: 15px;">
 			<input type="checkbox"/>
-			<label>Card ordering. Sorry this is not finished. #soon</label>
+			<label>Card ordering in the work. #soon</label>
 		</p>
-		<button ng-click="toggle(card,false)" class="waves-effect btn-flat white teal-text">Got it</button>
+		<button ng-click="toggle(card,false)" class="waves-effect waves-light btn-flat teal-text text-accent-4">Got it</button>
 	</div>
 </div>
 </packery-object>
