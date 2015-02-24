@@ -8,7 +8,7 @@
     </packery>
 </section>
 
-<div class="fab fixed-action-btn" ng-show="route() == '/feed' && !allCardsEnabled">
+<div class="fab fixed-action-btn" ng-show="!allCardsEnabled">
     <ul>
         <li ng-repeat="card in cards" ng-show="!card.enabled && !card.system">
             <span class="fab-name">{{card.name | humanize}}</span>

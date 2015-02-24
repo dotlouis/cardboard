@@ -1,0 +1,140 @@
+<style>
+#welcome .card,
+#welcome .separator{
+	font-size: 14px;
+}
+#welcome .card-panel .card-title{
+	padding: 0 inherit;
+	background: transparent;
+}
+#welcome .card-content p{
+	padding: 4px 20px;
+}
+#welcome .card-panel p{
+    color: white;
+}
+#welcome .card .card-content .btn-flat{
+	float: right;
+	margin-right: 10px;
+	margin-bottom: 12px;
+	font-weight: 500;
+	transition-property: color;
+	background: transparent;
+}
+#welcome .card-panel .card-content .btn-flat{
+    background-color: #455a64;
+}
+
+#welcome .separator{
+    display: flex;
+    margin: 15px 0;
+    padding: 15px 0;
+    color: #424242;
+    border-width: 1px;
+    border-color: #9e9e9e;
+    border-bottom-style: solid;
+    border-top-style: solid;
+}
+#welcome .separator p{
+    flex-grow: 1;
+}
+#welcome .separator i{
+    color: #009688;
+    flex-shrink: 0;
+    font-size: 24px;
+    height: 0px;
+    align-self: center;
+    line-height: 0;
+    margin-left: 20px;
+}
+</style>
+<section id="welcome">
+
+    <div>
+        <div class="card card-panel blue-grey darken-1" style="height: 140px">
+            <div class="card-title">
+                Hello there
+            </div>
+            <div class="card-content">
+                <p>This is your shiny new tab page !</p>
+                <button ng-click="next()" class="waves-effect waves-light btn-flat teal-text text-accent-4">Begin</button>
+            </div>
+        </div>
+    </div>
+
+    <div ng-if="nextCard >= 1">
+        <div class="separator">
+            <p>This is a card, it shows useful information about your browser</p>
+        </div>
+
+        <div class="card" style="height: 235px">
+            <div class="card-title">
+                Why Cardboard is Awesome
+            </div>
+            <div class="card-content">
+                <p>
+                    <input type="checkbox" checked="checked"/>
+                    <label>Preferences synced with Chrome (if signed in)</label>
+                </p>
+                <p>
+                    <input type="checkbox" checked="checked"/>
+                    <label>Privacy: Cardboard only requests permissions when needed</label>
+                </p>
+                <p>
+                    <input type="checkbox" checked="checked"/>
+                    <label>Material Design</label>
+                </p>
+                <button ng-click="next()" class="waves-effect btn-flat teal-text">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <div ng-if="nextCard >= 2">
+        <div class="separator">
+            <div>
+                <p>Some cards need your consent because they display your data such as apps, bookmarks and top sites.</p>
+            </div>
+            <i class="mdi-action-verified-user" style="padding: 5px;"></i>
+        </div>
+
+        <div class="card card-panel blue-grey darken-1" style="height: 118px">
+            <div class="card-content">
+                <p>See that button in the bottom right corner ?</p>
+                <p>Click it and choose a card you want to add</p>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <packery column-width="400" gutter="10" draggable="false" ng-if="nextCard >= 3">
+        <div ng-repeat="card in cards" ng-if="card.enabled" ng-include="card.template"></div>
+    </packery>
+    <br>
+
+    <div ng-if="nextCard >= 3">
+        <div class="card card-panel blue-grey darken-1" style="height: 140px">
+            <div class="card-title">
+                Congratulation
+            </div>
+            <div class="card-content">
+                <p>Your new tab page is set up</p>
+                <a ng-href="#/feed" class="waves-effect waves-light btn-flat teal-text text-accent-4">Show me</a>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<div class="fab fixed-action-btn" ng-show="!allCardsEnabled && nextCard == 2">
+    <ul>
+        <li ng-repeat="card in cards" ng-show="!card.enabled && !card.system">
+            <span class="fab-name">{{card.name | humanize}}</span>
+            <a ng-click="toggle(card,true); next();" class="btn-floating blue-grey waves-effect waves-light" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px); opacity: 0;">
+                <i class="large" ng-class="card.icon"></i>
+            </a>
+        </li>
+    </ul>
+    <a class="btn-floating btn-large red waves-effect waves-light" ng-click="triggerFab()">
+        <i class="large mdi-content-add"></i>
+    </a>
+</div>

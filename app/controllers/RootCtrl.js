@@ -28,6 +28,9 @@ angular.module('cardboard.controllers')
         $scope.backgrounds = settings.backgrounds;
         $scope.background = settings.backgrounds[settings.backgroundId];
 
+        // if it's a new install we redirect to the onboarding page
+        if(status == "new")
+            $location.path("onboarding");
     });
 
     $scope.getBackgroundStyle = function(){

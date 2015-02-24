@@ -172,6 +172,9 @@ button.disabled
     color: white;
     background-color: #546e7a;
 }
+.card p label{
+    color: #757575;
+}
 .card .dropdown-card-btn{
     float: right;
     margin-right: -18px;
@@ -325,10 +328,14 @@ margin: 10px 0;
 /* For an alternate way of centering the container
 see https://github.com/metafizzy/packery/issues/8 */
 
-#feed{
+#feed,
+#welcome{
     padding: 10px;
     width: 830px;
     margin: 0 auto;
+}
+#welcome{
+    width: 420px;
 }
 
 @media (max-width: 839px) {
