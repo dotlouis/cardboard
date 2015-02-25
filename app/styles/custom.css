@@ -285,7 +285,7 @@ input[type="file"]::-webkit-file-upload-button:hover{
 
 
 .category{
-    margin-bottom: 40px;
+    margin-bottom: 60px;
 }
 .sub-header{
     color: #26a69a;
@@ -294,8 +294,13 @@ input[type="file"]::-webkit-file-upload-button:hover{
     margin-bottom: 20px;
     text-transform: uppercase;
 }
+.setting-flex{
+    display: flex;
+}
 .sub-setting{
-    margin: 30px 0;
+    margin-bottom: 20px;
+    margin-right: 40px;
+    max-width: 400px;
 }
 .sub-setting label{
     font-size: 14px;

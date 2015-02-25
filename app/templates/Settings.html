@@ -8,8 +8,10 @@
                 <select ng-model="$parent.background" ng-change="save('backgroundId',background.id); setBackground($parent.background)" ng-options="bg.name group by bg.type for bg in $parent.backgrounds"></select>
             </div>
         </div>
-        <button ng-click="openLocal()" class="btn">From Local</button>
-        <button ng-click="openUrl()" class="btn">From URL</button>
+        <div class="sub-setting">
+            <button ng-click="openLocal()" class="btn">From Local</button>
+            <button ng-click="openUrl()" class="btn">From URL</button>
+        </div>
         <div class="sub-setting">
             <div class="switch"><label>Google Trends<input type="checkbox" ng-model="$parent.trends.enabled" ng-change="save('trends',$parent.trends)"><span class="lever"></span></label></div>
         </div>
@@ -17,21 +19,27 @@
 
     <div class="category">
         <div class="sub-header">About</div>
-        <p>
+        <p class="sub-setting">
             Cardboard is developed by a <a href="https://plus.google.com/+LouisLafont">young french developer</a> when he's not busy
             working on his startup, praying thy Lord Duarte or fighting exploding kittens.
         </p>
 
-        <h4>Have 1 min?</h4>
-        <p>
-            Help me improve Cardboard by taking 1 minute to review and report bugs
-        </p>
-        <a href="https://chrome.google.com/webstore/support/hilmkmopmiomkmehbhajigccnglobaap" class="btn waves-effect waves-light">Feedback</a>
+        <div class="setting-flex">
+            <div class="sub-setting">
+                <h4>Have 1 min?</h4>
+                <p>
+                    Help me improve Cardboard by taking 1 minute to review and report bugs
+                </p>
+                <a href="https://chrome.google.com/webstore/support/hilmkmopmiomkmehbhajigccnglobaap" class="btn waves-effect waves-light">Feedback</a>
+            </div>
 
-        <h4>Stay tuned</h4>
-        <p>Follow the project</p>
-        <a href="https://plus.google.com/115967816314012668475" class="btn waves-effect waves-light red">Google +</a>
-        <a href="https://github.com/virtual-dev/cardboard" class="btn waves-effect tooltipped github" data-position="top" data-delay="50" data-tooltip="For Hardcores ;)">github</a>
+            <div class="sub-setting">
+                <h4>Stay tuned</h4>
+                <p>Follow the project</p>
+                <a href="https://plus.google.com/115967816314012668475" class="btn waves-effect waves-light red">Google +</a>
+                <a href="https://github.com/virtual-dev/cardboard" class="btn waves-effect tooltipped github">github</a>
+            </div>
+        </div>
     </div>
 </section>
 
