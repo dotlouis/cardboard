@@ -1,11 +1,11 @@
-<section class="container white z-depth-1">
+<section ng-if="settingsViewTimeout" class="card-wrapper container white z-depth-1">
 
     <div class="category">
         <div class="sub-header">Header</div>
         <div class="sub-setting">
             <label>Background</label>
             <div class="md-select">
-                <select ng-model="$parent.background" ng-change="save('backgroundId',background.id)" ng-options="bg.name group by bg.type for bg in $parent.backgrounds"></select>
+                <select ng-model="$parent.background" ng-change="save('backgroundId',background.id); setBackground($parent.background)" ng-options="bg.name group by bg.type for bg in $parent.backgrounds"></select>
             </div>
         </div>
         <button ng-click="openLocal()" class="btn">From Local</button>

@@ -1,5 +1,8 @@
 <style>
-#welcome .card,
+#welcome .card-wrapper{
+	position: absolute;
+}
+#welcome .card .card-content,
 #welcome .separator{
 	font-size: 14px;
 }
@@ -50,7 +53,7 @@
 </style>
 <section id="welcome">
 
-    <div>
+    <div ng-if="nextCard == 0" class="card-wrapper">
         <div class="card card-panel blue-grey darken-1" style="height: 140px">
             <div class="card-title">
                 Hello there
@@ -62,7 +65,7 @@
         </div>
     </div>
 
-    <div ng-if="nextCard >= 1">
+    <div ng-if="nextCard == 1" class="card-wrapper">
         <div class="separator">
             <p>This is a card, it shows useful information about your browser</p>
         </div>
@@ -89,7 +92,7 @@
         </div>
     </div>
 
-    <div ng-if="nextCard >= 2">
+    <div ng-if="nextCard == 2" class="card-wrapper">
         <div class="separator">
             <div>
                 <p>Some cards need your consent because they display your data such as apps, bookmarks and top sites.</p>
@@ -106,19 +109,19 @@
     </div>
 
     <br>
-    <packery column-width="400" gutter="10" draggable="false" ng-if="nextCard >= 3">
-        <div ng-repeat="card in cards" ng-if="card.enabled" ng-include="card.template"></div>
+    <packery column-width="400" gutter="10" draggable="false" transition-duration="0" ng-if="nextCard >= 3">
+        <div ng-repeat="card in cards" ng-if="card.enabled" ng-include="card.template" class="card-wrapper"></div>
     </packery>
     <br>
 
-    <div ng-if="nextCard >= 3">
+    <div ng-if="nextCard == 3" class="card-wrapper">
         <div class="card card-panel blue-grey darken-1" style="height: 140px">
             <div class="card-title">
                 Congratulation
             </div>
             <div class="card-content">
                 <p>Your new tab page is set up</p>
-                <a ng-href="#/feed" class="waves-effect waves-light btn-flat teal-text text-accent-4">Show me</a>
+                <a ng-href="#/feed" ng-click="wipe();" class="waves-effect waves-light btn-flat teal-text text-accent-4">Show me</a>
             </div>
         </div>
     </div>

@@ -1,8 +1,13 @@
 angular.module('cardboard.controllers')
 
-.controller('SettingsCtrl',['$scope','$q','ChromeFactory',function($scope, $q, Chrome){
+.controller('SettingsCtrl',['$scope','$q','$timeout','ChromeFactory',function($scope, $q, $timeout, Chrome){
 
-    //init tooltips
+    // Animate the setting container
+    $timeout(function(){
+        $scope.settingsViewTimeout = true;
+    }, 200);
+
+    // Init tooltips
     $('.tooltipped').tooltip({delay: 50});
 
     $scope.save = function(storageKey, value){
@@ -61,8 +66,8 @@ angular.module('cardboard.controllers')
         // Update the scope (add the new background in the list)
         $scope.$parent.backgrounds[bgIndex] = bg;
         $scope.$parent.background = bg;
-        // $scope.backgroundSelect = bg;
         $scope.$parent.backgroundId = bgIndex;
+        $scope.$parent.setBackground(bg);
 
         // Create a copy of $scope.$parent.backgrounds
         var bgs = JSON.parse(JSON.stringify($scope.$parent.backgrounds));
