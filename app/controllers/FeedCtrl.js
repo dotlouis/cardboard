@@ -1,8 +1,11 @@
 angular.module('cardboard.controllers')
 
-.controller('FeedCtrl',['$scope','ChromeFactory', function($scope, Chrome){
+.controller('FeedCtrl',['$scope','$timeout','ChromeFactory', function($scope, $timeout, Chrome){
 
     $scope.isDrag = false;
+
+    // Prevent the FAB from flashing due to value beeing brievly undefined
+    $scope.allCardsEnabled = true;
 
     $scope.settings.spread(function(settings){
 
@@ -110,7 +113,9 @@ angular.module('cardboard.controllers')
 
     /********* ONBOARDING **********/
 
-    $scope.nextCard = 0;
+    $timeout(function(){
+        $scope.nextCard = 0;
+    }, 200);
 
     $scope.next = function(){
         $scope.nextCard++;

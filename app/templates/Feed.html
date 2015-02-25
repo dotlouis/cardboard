@@ -1,14 +1,14 @@
 <section id="feed">
-    <packery column-width="400" gutter="10" draggable="{{isDrag}}">
+    <packery column-width="400" gutter="10" transition-duration="0" draggable="{{isDrag}}">
         <div class="empty-feed" ng-class="{'reveal':allCardsDisabled}">
             <p class="daily">{{dailyMsg}}</p>
             <p>Add cards with the button in the bottom right corner</p>
         </div>
-        <div ng-repeat="card in cards" ng-if="card.enabled" ng-include="card.template"></div>
+        <div ng-repeat="card in cards" ng-if="card.enabled" ng-include="card.template" class="card-wrapper"></div>
     </packery>
 </section>
 
-<div class="fab fixed-action-btn" ng-show="!allCardsEnabled">
+<div class="fab fixed-action-btn" ng-hide="allCardsEnabled">
     <ul>
         <li ng-repeat="card in cards" ng-show="!card.enabled && !card.system">
             <span class="fab-name">{{card.name | humanize}}</span>

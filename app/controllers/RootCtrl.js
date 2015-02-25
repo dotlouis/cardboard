@@ -4,10 +4,11 @@ angular.module('cardboard.controllers')
     '$scope',
     '$location',
     '$http',
+    '$timeout',
     'DefaultSettings',
     'ChromeFactory',
     'TrendsFactory',
-    function($scope, $location, $http, DefaultSettings, Chrome, Trends){
+    function($scope, $location, $http, $timeout, DefaultSettings, Chrome, Trends){
 
     // We gather all the settings;
     $scope.settings = Chrome.settings;
@@ -27,26 +28,27 @@ angular.module('cardboard.controllers')
 
         $scope.backgrounds = settings.backgrounds;
         $scope.background = settings.backgrounds[settings.backgroundId];
+        $scope.setBackground($scope.background);
 
         // if it's a new install we redirect to the onboarding page
         if(status == "new")
             $location.path("onboarding");
     });
 
-    $scope.getBackgroundStyle = function(){
-        var style = {
-            backgroundPosition: "center",
-            backgroundSize: "cover"
-        };
+    $scope.setBackground = function(background){
         // check background property exists to avoid errors due to promise not
         // beeing resolved yet
-        if($scope.background){
-            if($scope.background.type == "Google Now")
-                style.backgroundImage = "url("+getBackgroundTime($scope.background.url)+")";
-            else if($scope.background.url)
-                style.backgroundImage = "url("+$scope.background.url+")";
-        }
-        return style;
+        if(background.type == "Google Now")
+            $scope.backgroundImageUrl = getBackgroundTime(background.url);
+        else
+            $scope.backgroundImageUrl = background.url;
+    };
+
+    $scope.wipe = function(){
+        $scope.wipeRipple = true;
+        $timeout(function(){
+            $scope.wipeRipple = false;
+        }, 1300);
     };
 
     function getBackgroundTime(url){

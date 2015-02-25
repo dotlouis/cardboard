@@ -1,5 +1,6 @@
 angular.module('cardboard', [
 	'ngRoute',
+	'ngAnimate',
 	'angular-packery',
 	'cardboard.controllers',
 	'cardboard.factories',

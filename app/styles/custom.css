@@ -12,7 +12,9 @@ body{
 header{
     display: flex;
     height: 200px;
-    transition: background-image .5s linear .2s;
+    transition: background .5s linear .2s;
+    background-position: center;
+    background-size: cover;
 }
 
 .header-typer{
@@ -45,6 +47,13 @@ header{
     font-size: 50px;
 }
 
+#view{
+    position: relative;
+}
+
+.fab{
+    z-index: 9;
+}
 .fab ul{
     padding-top: 30px;
     padding-right: 30px;
@@ -144,13 +153,11 @@ button.disabled
 }
 
 .empty-feed{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    position: absolute;
+    margin: 100px auto;
+    width: 100%;
     text-align: center;
     opacity: 0;
-    padding-top: 100px;
     transition: opacity .3s linear;
     color: #9e9e9e;
     font-size: 16px;
@@ -307,21 +314,24 @@ h4{
     color: #424242;
 }
 
-/************** COLUMNS ***************/
-/*
-#feed{
-width: 840px;
-margin: 10px auto;
--webkit-column-width: 420px;
--webkit-column-gap: 0px;
+.wipe-ripple-wrapper{
+    position: absolute;
+    overflow: hidden;
+    top: 200px;
+    width: 100%;
+    height: 100%;
 }
-
-.card-wrapper{
--webkit-column-break-inside: avoid;
-display: inline-block;
-margin: 10px 0;
+.wipe-ripple{
+    z-index: 10;
+    position: absolute;
+    bottom: -170px;
+    right: -170px;
+    height: 500px;
+    width: 500px;
+    border-radius: 50%;
+    background: #546e7a;
+    opacity: 0;
 }
-*/
 
 /************** PACKERY ***************/
 
@@ -330,6 +340,7 @@ see https://github.com/metafizzy/packery/issues/8 */
 
 #feed,
 #welcome{
+    position: relative;
     padding: 10px;
     width: 830px;
     margin: 0 auto;
@@ -352,7 +363,7 @@ see https://github.com/metafizzy/packery/issues/8 */
     transition: box-shadow 0.2s;
 }
 .packery-object.is-dragging {
-    z-index: 1000000;
+    z-index: 8;
     box-shadow: 0 10px 30px rgba(100,100,100,0.1), 0 8px 10px rgba(100,100,100,0.2)
 }
 
