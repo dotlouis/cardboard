@@ -7,9 +7,6 @@ angular.module('cardboard.controllers')
         $scope.settingsViewTimeout = true;
     }, 200);
 
-    // Init tooltips
-    $('.tooltipped').tooltip({delay: 50});
-
     $scope.save = function(storageKey, value){
         var toSave = {};
         toSave[storageKey] = value;
