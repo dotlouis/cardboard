@@ -76,7 +76,7 @@
 		<span data-activates="dropdown-card-download" class="dropdown-card-btn"><i class="mdi-navigation-more-vert waves-effect waves-light"></i></span>
 	</div>
 	<ul class="card-content">
-		<li ng-repeat="download in downloads | limitTo: '5'" ng-click="open()" class="download waves-effect">
+		<li ng-repeat="download in downloads | limitTo: '5'" ng-click="open(); track(card.name, 'Opened')" class="download waves-effect">
 			<div class="icon" ng-switch on="download.state">
 				<pie-downloader ng-switch-when="in_progress" class="pie" stream="download">
 					<div class="fileicon" ng-style="{'background-image': 'url('+download.icon+')'}"></div>

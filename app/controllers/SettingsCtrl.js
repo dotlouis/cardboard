@@ -13,12 +13,22 @@ angular.module('cardboard.controllers')
         Chrome.storage.setAsync(toSave);
     };
 
+    service.getConfig().addCallback(function(config){
+        $scope.analytics = config.isTrackingPermitted();
+    });
+    $scope.toggleAnalytics = function(){
+        service.getConfig().addCallback(function(config) {
+            config.setTrackingPermitted($scope.analytics);
+        });
+    };
+
     $scope.saveBackgroundFromDevice = function(){
         // backgroundFromDevice is defined into <bg-pick> (directive)
         if(!this.backgroundFromDevice)
             toast("no file selected", 4000);
         else
             this.backgroundFromDevice.then(function(bg){
+                $scope.track('Background', 'Saved', 'From Device');
                 $scope.backgroundSave({
                     name: bg.filename,
                     type: "Local",
@@ -32,6 +42,7 @@ angular.module('cardboard.controllers')
         if(!this.backgroundFromUrl)
             toast("invalid URL", 4000);
         else{
+            $scope.track('Background', 'Saved', 'From URL');
             $scope.backgroundSave({
                 name: this.backgroundFromUrl.substring(this.backgroundFromUrl.lastIndexOf('/')+1),
                 type: "URL",

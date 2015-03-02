@@ -50,11 +50,11 @@
 	</div>
 	<ul class="tabs">
 		<li class="tab waves-effect waves-light"><a ng-href="#tab-content-recent">Recently Closed</a></li>
-		<li ng-repeat="(key,node) in devices" class="tab waves-effect waves-light"><a ng-href="#tab-content-{{key}}">{{node.deviceName}}</a></li>
+		<li ng-repeat="(key,node) in devices" class="tab waves-effect waves-light"><a ng-href="#tab-content-{{key}}" ng-click="track(card.name,'Tab','Device')">{{node.deviceName}}</a></li>
 	</ul>
 	<ul id="tab-content-recent" class="card-content">
 		<li ng-repeat="node in recentlyClosed | limitTo:maxRecentlyClosed">
-			<a ng-href="{{node.url}}" class="node waves-effect">
+			<a ng-href="{{node.url}}" ng-click="track(card.name, 'Opened', 'Recently Closed')" class="node waves-effect">
 				<i ng-style="{'background-image': 'url('+(node.favIconUrl != ''? node.favIconUrl: getFavicon(node.url))+')'}"></i>
 				<span class="title">{{node.title}}</span>
 				<span class="more time">{{node.lastModified | fromNow}}</span>
@@ -63,7 +63,7 @@
 	</ul>
 	<ul ng-repeat="(key,node) in devices" id="tab-content-{{key}}" class="card-content">
 		<li ng-repeat="tab in node.tabs | limitTo:maxDeviceTabs">
-			<a ng-href="{{tab.url}}" class="node waves-effect">
+			<a ng-href="{{tab.url}}" ng-click="track(card.name, 'Opened', 'Device Link')" class="node waves-effect">
 				<i ng-style="{'background-image': 'url('+getFavicon(tab.url)+')'}"></i>
 				<span class="title">{{tab.title}}</span>
 			</a>

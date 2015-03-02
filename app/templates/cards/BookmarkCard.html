@@ -62,7 +62,7 @@
 	</div>
 	<ul class="tabs">
 		<li class="tab waves-effect waves-light"><a href="#recent-bookmarks">Recents</a></li>
-		<li class="tab waves-effect waves-light"><a href="#all-bookmarks">All</a></li>
+		<li class="tab waves-effect waves-light"><a href="#all-bookmarks" ng-click="track(card.name,'Tab','All')">All</a></li>
 	</ul>
 	<ul id="recent-bookmarks" class="card-content">
 		<li ng-repeat="node in recents" ng-include="'node.html'" class="waves-effect"></li>
@@ -86,7 +86,7 @@
 			<i class="more mdi-hardware-keyboard-arrow-right"></i>
 		</div>
 		<!-- // else it's a bookmark -->
-		<a ng-switch-default ng-href="{{node.url}}" class="node">
+		<a ng-switch-default ng-href="{{node.url}}" ng-click="track(card.name, 'Opened')" class="node">
 			<i ng-style="{'background-image': 'url('+getFavicon(node.url)+')'}"></i>
 			<span class="title">{{node.title}}</span>
 			<span class="more time">{{node.dateAdded | fromNow}}</span>

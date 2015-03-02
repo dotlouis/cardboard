@@ -56,16 +56,19 @@ angular.module('cardboard.controllers')
             Chrome.permissions.request(card.permissions)
             .then(function(){
                 // Granted
+                tracker.sendEvent('Card', 'Granted', card.name);
                 enable(card);
             })
             .catch(function(){
                 // Denied, we don't enable the card
+                tracker.sendEvent('Card', 'Denied', card.name);
                 disable(card);
                 toast("Card needs permission to run", 4000);
             });
         else
             Chrome.permissions.revoke(card.permissions)
             .then(function(){
+                tracker.sendEvent('Card', 'Removed', card.name);
                 disable(card);
             });
     };

@@ -94,4 +94,7 @@ angular.module('cardboard.controllers')
         chrome.tabs.update({url:url});
     };
 
+    $scope.track = function(category, action, label, value){
+        tracker.sendEvent(category, action, label, value);
+    };
 }]);
