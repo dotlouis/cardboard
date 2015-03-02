@@ -37,7 +37,7 @@
 			<input type="checkbox" id="checkLocalStorage" ng-model="clearTypes.localStorage"/>
 			<label for="checkLocalStorage">Local Storage</label>
 		</p>
-		<button ng-click="clear()" ng-class="{'disabled': clearDisabled(), 'waves-light': clearDisabled() && waveTimeout}" class="waves-effect waves-light btn-flat white">{{clearText}}</button>
+		<button ng-click="clear(); track(card.name, 'Cleared')" ng-class="{'disabled': clearDisabled(), 'waves-light': clearDisabled() && waveTimeout}" class="waves-effect waves-light btn-flat white">{{clearText}}</button>
 	</div>
 </div>
 </packery-object>

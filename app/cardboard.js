@@ -1,3 +1,7 @@
+// Chrome Platform Analytics
+var service = analytics.getService('Cardboard');
+var tracker = service.getTracker('UA-60245585-4');
+
 angular.module('cardboard', [
 	'ngRoute',
 	'ngAnimate',
@@ -28,6 +32,13 @@ angular.module('cardboard', [
 	$compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|chrome-extension):/);
 }])
 
+.run(['$rootScope','$location', function($rootScope, $location){
+	// Track route changes
+	$rootScope.$on('$routeChangeSuccess', function() {
+		var path = $location.path();
+		tracker.sendAppView(path.substring(1));
+	});
+}])
 
 .value('DefaultSettings',{
 	welcomeMessages: [
@@ -239,9 +250,6 @@ angular.module('cardboard', [
 			permissions: ["system.cpu", "system.memory", "system.storage"]
 		},
 		{name: "changelog", system: true, enabled: false, template: "app/templates/cards/ChangelogCard.html" }
-		// {name: "appearance", system: true, enabled: true, template: "app/templates/cards/AppearanceCard.html" },
-		// {name: "cards", system: true, enabled: true, template: "app/templates/cards/CardsCard.html" },
-		// {name: "about", system: true, enabled: true, template: "app/templates/cards/AboutCard.html" }
 	],
 	faviconURL: "https://www.google.com/s2/favicons?domain_url="
 });

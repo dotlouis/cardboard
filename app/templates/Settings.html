@@ -13,9 +13,22 @@
             <button ng-click="openUrl()" class="btn waves-effect waves-light">From URL</button>
         </div>
         <div class="sub-setting">
-            <div class="switch"><label>Google Trends<input type="checkbox" ng-model="$parent.trends.enabled" ng-change="save('trends',$parent.trends)"><span class="lever"></span></label></div>
+            <div class="switch"><label>Google Trends<input type="checkbox" ng-model="$parent.trends.enabled" ng-change="save('trends',$parent.trends); track('Trends',($parent.trends.enabled ? 'Enabled': 'Disabled'))"><span class="lever"></span></label></div>
         </div>
     </div>
+
+    <div class="category">
+        <div class="sub-header">Analytics</div>
+        <div class="sub-setting">
+            <p>
+                Help making Cardboard better by allowing it to see which card you choose and how you use them.
+                No content such as bookmarks, links, downloads and apps are sent.
+                <a href="https://github.com/virtual-dev/cardboard/wiki/Analytics">learn more</a>
+            </p>
+            <div class="switch"><label>Enable Analytics<input type="checkbox" ng-model="$parent.analytics" ng-change="toggleAnalytics()"><span class="lever"></span></label></div>
+        </div>
+    </div>
+
 
     <div class="category">
         <div class="sub-header">About</div>
