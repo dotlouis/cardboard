@@ -94,24 +94,26 @@ angular.module('cardboard.controllers')
     }
 
     function checkCardsEnabled(){
-        for(var i=0; i<$scope.cards.length; i++){
-            if(!$scope.cards[i].enabled && !$scope.cards[i].system){
-                $scope.$apply(function(){$scope.allCardsEnabled = false;});
-                break;
+        if($scope.cards)
+            for(var i=0; i<$scope.cards.length; i++){
+                if(!$scope.cards[i].enabled && !$scope.cards[i].system){
+                    $scope.$apply(function(){$scope.allCardsEnabled = false;});
+                    break;
+                }
+                else if(i == $scope.cards.length-1)
+                    $scope.$apply(function(){$scope.allCardsEnabled = true;});
             }
-            else if(i == $scope.cards.length-1)
-                $scope.$apply(function(){$scope.allCardsEnabled = true;});
-        }
     }
     function checkCardsDisabled(){
-        for(var i=0; i<$scope.cards.length; i++){
-            if($scope.cards[i].enabled){
-                $scope.$apply(function(){$scope.allCardsDisabled = false;});
-                break;
+        if($scope.cards)
+            for(var i=0; i<$scope.cards.length; i++){
+                if($scope.cards[i].enabled){
+                    $scope.$apply(function(){$scope.allCardsDisabled = false;});
+                    break;
+                }
+                else if(i == $scope.cards.length-1)
+                    $scope.$apply(function(){$scope.allCardsDisabled = true;});
             }
-            else if(i == $scope.cards.length-1)
-                $scope.$apply(function(){$scope.allCardsDisabled = true;});
-        }
     }
 
     /********* ONBOARDING **********/
