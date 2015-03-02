@@ -48,7 +48,7 @@
 			</a>
 		</li>
 		<li ng-repeat="app in apps | orderBy:'-frequency'" ng-click="updateFrequency()" class="app waves-effect tooltipped" data-position="bottom" data-tooltip="{{app.name}}">
-			<a ctrl-click url="app.appLaunchUrl" before-click="track(card.name, 'Launched')">
+			<a ctrl-click url="app.appLaunchUrl" before-click="track(card.name, 'Launched'); launch()">
 				<i ng-style="{'background-image': 'url('+getIcon()+')'}"></i>
 			</a>
 		</li>
