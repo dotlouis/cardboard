@@ -16,15 +16,15 @@ angular.module('cardboard', [
 	$routeProvider
 	.when('/feed', {
 		controller: 'FeedCtrl',
-		templateUrl: 'app/templates/Feed.html'
+		templateUrl: 'src/templates/Feed.html'
 	})
 	.when('/settings', {
 		controller: 'SettingsCtrl',
-		templateUrl: 'app/templates/Settings.html'
+		templateUrl: 'src/templates/Settings.html'
 	})
 	.when('/onboarding', {
 		controller: 'FeedCtrl',
-		templateUrl: 'app/templates/Onboarding.html'
+		templateUrl: 'src/templates/Onboarding.html'
 	})
 	.otherwise({ redirectTo: '/feed'});
 
@@ -196,60 +196,60 @@ angular.module('cardboard', [
 		{
 			name: "apps",
 			enabled: false,
-			template: "app/templates/cards/AppCard.html",
+			template: "src/templates/cards/AppCard.html",
 			icon: "mdi-navigation-apps",
 			permissions: ["management"]
 		},
 		{
 			name: "bookmarks",
 			enabled: false,
-			template: "app/templates/cards/BookmarkCard.html",
+			template: "src/templates/cards/BookmarkCard.html",
 			icon: "mdi-action-bookmark",
 			permissions: ["bookmarks"]
 		},
 		{
 			name: "quick_settings",
 			enabled: false,
-			template: "app/templates/cards/QuickSettingsCard.html",
+			template: "src/templates/cards/QuickSettingsCard.html",
 			icon: "mdi-action-settings",
 			permissions: ["browsingData"]
 		},
 		{
 			name: "downloads",
 			enabled: false,
-			template: "app/templates/cards/DownloadCard.html",
+			template: "src/templates/cards/DownloadCard.html",
 			icon: "mdi-file-cloud-download",
 			permissions: ["downloads"]
 		},
 		{
 			name: "top_sites",
 			enabled: false,
-			template: "app/templates/cards/TopSitesCard.html",
+			template: "src/templates/cards/TopSitesCard.html",
 			icon: "mdi-social-whatshot",
 			permissions: ["topSites"]
 		},
 		{
 			name: "history",
 			enabled: false,
-			template: "app/templates/cards/HistoryCard.html",
+			template: "src/templates/cards/HistoryCard.html",
 			icon: "mdi-action-history",
 			permissions: ["history"]
 		},
 		{
 			name: "sessions",
 			enabled: false,
-			template: "app/templates/cards/SessionsCard.html",
+			template: "src/templates/cards/SessionsCard.html",
 			icon: "mdi-device-devices",
 			permissions: ["sessions", "tabs"]
 		},
 		{
 			name: "system",
 			enabled: false,
-			template: "app/templates/cards/SystemCard.html",
+			template: "src/templates/cards/SystemCard.html",
 			icon: "mdi-hardware-memory",
 			permissions: ["system.cpu", "system.memory", "system.storage"]
 		},
-		{name: "changelog", system: true, enabled: false, template: "app/templates/cards/ChangelogCard.html" }
+		{name: "changelog", system: true, enabled: false, template: "src/templates/cards/ChangelogCard.html" }
 	],
 	faviconURL: "https://www.google.com/s2/favicons?domain_url="
 });
