@@ -50,7 +50,7 @@
 	</div>
 	<ul class="card-content">
 		<li ng-repeat="node in history | limitTo:maxHistory">
-			<a ng-href="{{node.url}}" ng-click="track(card.name,'Opened')" class="node waves-effect">
+			<a ctrl-click url="node.url" before-click="track(card.name,'Opened')" class="node waves-effect">
 				<i ng-style="{'background-image': 'url('+getFavicon(node.url)+')'}"></i>
 				<span class="title">{{node.title != '' ? node.title : node.url }}</span>
 				<span class="more time">{{node.lastVisitTime | fromNow}}</span>

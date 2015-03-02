@@ -86,7 +86,7 @@
 			<i class="more mdi-hardware-keyboard-arrow-right"></i>
 		</div>
 		<!-- // else it's a bookmark -->
-		<a ng-switch-default ng-href="{{node.url}}" ng-click="track(card.name, 'Opened')" class="node">
+		<a ng-switch-default ctrl-click url="node.url" before-click="track(card.name, 'Opened')" class="node">
 			<i ng-style="{'background-image': 'url('+getFavicon(node.url)+')'}"></i>
 			<span class="title">{{node.title}}</span>
 			<span class="more time">{{node.dateAdded | fromNow}}</span>

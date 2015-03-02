@@ -26,11 +26,6 @@ angular.module('cardboard.controllers')
         $('.card.apps .tooltipped').tooltip({delay: 1000});
     });
 
-    $scope.launch = function(){
-        if(this.app.launchType == "OPEN_AS_WINDOW")
-            Chrome.management.launchApp(this.app.id);
-    }
-
     $scope.getIcon = function(){
         var icon_url;
         if(this.app.icons)
