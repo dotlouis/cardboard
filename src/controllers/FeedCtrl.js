@@ -1,6 +1,10 @@
 angular.module('cardboard.controllers')
 
-.controller('FeedCtrl',['$scope','$timeout','ChromeFactory', function($scope, $timeout, Chrome){
+.controller('FeedCtrl',[
+    '$scope',
+    '$timeout',
+    'ChromeFactory',
+    function($scope, $timeout, Chrome){
 
     $scope.isDrag = false;
 

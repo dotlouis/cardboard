@@ -1,6 +1,9 @@
 angular.module('cardboard.controllers')
 
-.controller('SystemCtrl', ['$scope','ChromeFactory',function($scope, Chrome){
+.controller('SystemCtrl', [
+    '$scope',
+    'ChromeFactory',
+    function($scope, Chrome){
 
     Chrome.system.cpu.getInfoAsync().then(function(cpu){
         $scope.$apply(function(){

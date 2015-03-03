@@ -1,6 +1,9 @@
 angular.module('cardboard.controllers')
 
-.controller('SessionsCtrl', ['$scope','ChromeFactory', function($scope, Chrome){
+.controller('SessionsCtrl', [
+    '$scope',
+    'ChromeFactory',
+    function($scope, Chrome){
     $scope.maxDevices = 5;
     $scope.maxDeviceTabs = 5;
     $scope.maxRecentlyClosed = 5;

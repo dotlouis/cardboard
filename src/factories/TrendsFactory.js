@@ -1,6 +1,10 @@
 angular.module('cardboard.factories')
 
-.factory('TrendsFactory', ['$http','ChromeFactory','DefaultSettings', function($http, Chrome, DefaultSettings){
+.factory('TrendsFactory', [
+    '$http',
+    'ChromeFactory',
+    'DefaultSettings',
+    function($http, Chrome, DefaultSettings){
     var Trends = {};
 
     function fromNetwork(){

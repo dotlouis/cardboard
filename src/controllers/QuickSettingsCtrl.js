@@ -1,6 +1,10 @@
 angular.module('cardboard.controllers')
 
-.controller('QuickSettingsCtrl', ['$rootScope','$scope','ChromeFactory', function($rootScope, $scope, Chrome){
+.controller('QuickSettingsCtrl', [
+    '$rootScope',
+    '$scope',
+    'ChromeFactory',
+    function($rootScope, $scope, Chrome){
 
     $scope.clearTypes = {
         "cache": false,

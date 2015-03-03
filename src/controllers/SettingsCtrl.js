@@ -1,6 +1,11 @@
 angular.module('cardboard.controllers')
 
-.controller('SettingsCtrl',['$scope','$q','$timeout','ChromeFactory',function($scope, $q, $timeout, Chrome){
+.controller('SettingsCtrl',[
+    '$scope',
+    '$q',
+    '$timeout',
+    'ChromeFactory',
+    function($scope, $q, $timeout, Chrome){
 
     // Animate the setting container
     $timeout(function(){

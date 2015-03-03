@@ -1,6 +1,9 @@
 angular.module('cardboard.controllers')
 
-.controller('AppCtrl', ['$scope','ChromeFactory', function($scope, Chrome){
+.controller('AppCtrl', [
+    '$scope',
+    'ChromeFactory',
+    function($scope, Chrome){
     $scope.apps = [];
     $scope.extensions = [];
     $scope.themes = [];
