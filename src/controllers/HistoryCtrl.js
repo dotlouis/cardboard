@@ -1,6 +1,9 @@
 angular.module('cardboard.controllers')
 
-.controller('HistoryCtrl', ['$scope','ChromeFactory', function($scope, Chrome){
+.controller('HistoryCtrl', [
+    '$scope',
+    'ChromeFactory',
+    function($scope, Chrome){
     $scope.maxHistory = 5;
 
     Chrome.history.searchAsync({

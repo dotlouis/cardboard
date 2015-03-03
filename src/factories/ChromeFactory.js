@@ -1,6 +1,8 @@
 angular.module('cardboard.factories')
 
-.factory('ChromeFactory', ['DefaultSettings',function(DefaultSettings){
+.factory('ChromeFactory', [
+    'DefaultSettings',
+    function(DefaultSettings){
 
     var Chrome = {};
     var promisifiedApis = {};

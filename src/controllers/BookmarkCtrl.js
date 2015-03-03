@@ -1,6 +1,9 @@
 angular.module('cardboard.controllers')
 
-.controller('BookmarkCtrl', ['$scope','ChromeFactory', function($scope, Chrome){
+.controller('BookmarkCtrl', [
+    '$scope',
+    'ChromeFactory',
+    function($scope, Chrome){
     // init tabs
     $('.card.bookmarks .tabs').tabs();
     $('.card.bookmarks .tabs').tabs('select_tab', 'recent-bookmarks');

@@ -1,6 +1,11 @@
 angular.module('cardboard.controllers')
 
-.controller('DownloadCtrl', ['$scope','ChromeFactory','fromNowFilter','humanizeFilter', function($scope, Chrome, fromNow, humanize){
+.controller('DownloadCtrl', [
+    '$scope',
+    'ChromeFactory',
+    'fromNowFilter',
+    'humanizeFilter',
+    function($scope, Chrome, fromNow, humanize){
     $scope.downloads = [];
 
     // get recent Downloads

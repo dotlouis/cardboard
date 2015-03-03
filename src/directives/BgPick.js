@@ -1,6 +1,8 @@
 angular.module('cardboard.directives')
 
-.directive('myBgPick', ['$q',function($q) {
+.directive('myBgPick', [
+    '$q',
+    function($q) {
     return {
         restrict: 'E',
         replace: true,

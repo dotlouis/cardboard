@@ -12,7 +12,10 @@ angular.module('cardboard', [
 	'cardboard.filters'
 ])
 
-.config(['$routeProvider','$compileProvider', function($routeProvider, $compileProvider) {
+.config([
+	'$routeProvider',
+	'$compileProvider',
+	function($routeProvider, $compileProvider) {
 	$routeProvider
 	.when('/feed', {
 		controller: 'FeedCtrl',
@@ -32,7 +35,10 @@ angular.module('cardboard', [
 	$compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|chrome-extension):/);
 }])
 
-.run(['$rootScope','$location', function($rootScope, $location){
+.run([
+	'$rootScope',
+	'$location',
+	function($rootScope, $location){
 	// Track route changes
 	$rootScope.$on('$routeChangeSuccess', function() {
 		var path = $location.path();
