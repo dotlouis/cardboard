@@ -60,6 +60,12 @@ gulp.task('build',['templates'], function(){
     gulp.src('resources/**')
         .pipe(gulp.dest('dist/resources'));
 
+    gulp.src('bower_components/materialize/font/**')
+        .pipe(gulp.dest('dist/font'));
+
+    gulp.src('bower_components/**')
+        .pipe(gulp.dest('dist/bower_components'));
+
     return gulp.src('index.html')
         .pipe(inject(gulp.src('src/**/*.css',{read: false})))
         .pipe(inject(
@@ -80,13 +86,12 @@ gulp.task('build',['templates'], function(){
             css: [minifyCss({
                 keepSpecialComments: 0
             }), rev()],
-            js: [ngAnnotate({single_quotes: true}), uglify(), rev()],
-            bower: [uglify(), rev()]
+            js: [ngAnnotate({single_quotes: true}), uglify(), rev()]
         }))
         .pipe(htmlify({
             customPrefixes: ['my-']
         }))
-        .pipe(minifyHtml())
+        // .pipe(minifyHtml())
         .pipe(size())
         .pipe(gulp.dest('dist/'));
 });
