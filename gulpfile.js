@@ -12,6 +12,10 @@ var size = require('gulp-filesize');
 var usemin = require('gulp-usemin');
 var rev = require('gulp-rev');
 
+var fs = require("fs");
+var ChromeExtension = require("crx");
+var join = require("path").join;
+
 gulp.task('default',['build', 'templates'], function(){
 
 });
@@ -33,12 +37,13 @@ gulp.task('templates', function(){
             module: 'cardboard'
         }))
         .pipe(rev())
+        .pipe(size())
         .pipe(gulp.dest('dist'));
 });
 
 // Inject App files (no bower_components) in index.html for development
 gulp.task('inject', function(){
-    return gulp.src('index.html')
+    gulp.src('index.html')
         .pipe(inject(gulp.src('src/**/*.css',{read: false})))
         .pipe(inject(
             gulp.src('src/**/*.js')
@@ -49,6 +54,12 @@ gulp.task('inject', function(){
 
 // Build a production-ready dist folder
 gulp.task('build',['templates'], function(){
+    gulp.src('manifest.json')
+        .pipe(gulp.dest('dist'));
+
+    gulp.src('resources/**')
+        .pipe(gulp.dest('dist/resources'));
+
     return gulp.src('index.html')
         .pipe(inject(gulp.src('src/**/*.css',{read: false})))
         .pipe(inject(
@@ -75,7 +86,21 @@ gulp.task('build',['templates'], function(){
         .pipe(htmlify({
             customPrefixes: ['my-']
         }))
-        // .pipe(minifyHtml())
+        .pipe(minifyHtml())
         .pipe(size())
         .pipe(gulp.dest('dist/'));
+});
+
+gulp.task('pack',['build'], function(){
+    var crx = new ChromeExtension({
+        codebase: "cardboard.crx",
+        privateKey: fs.readFileSync("cardboard.pem")
+    });
+
+    return crx.load('dist/')
+    .then(function() {
+        return crx.pack().then(function(crxBuffer){
+            fs.writeFile('dist/cardboard.crx', crxBuffer);
+        })
+    });
 });
