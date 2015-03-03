@@ -12,10 +12,6 @@ var size = require('gulp-filesize');
 var usemin = require('gulp-usemin');
 var rev = require('gulp-rev');
 
-var fs = require("fs");
-var ChromeExtension = require("crx");
-var join = require("path").join;
-
 gulp.task('default',['build', 'templates'], function(){
 
 });
@@ -94,18 +90,4 @@ gulp.task('build',['templates'], function(){
         // .pipe(minifyHtml())
         .pipe(size())
         .pipe(gulp.dest('dist/'));
-});
-
-gulp.task('pack',['build'], function(){
-    var crx = new ChromeExtension({
-        codebase: "cardboard.crx",
-        privateKey: fs.readFileSync("cardboard.pem")
-    });
-
-    return crx.load('dist/')
-    .then(function() {
-        return crx.pack().then(function(crxBuffer){
-            fs.writeFile('dist/cardboard.crx', crxBuffer);
-        })
-    });
 });

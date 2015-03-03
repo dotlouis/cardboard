@@ -27,7 +27,6 @@
   },
   "homepage": "https://github.com/virtual-dev/cardboard",
   "devDependencies": {
-    "crx": "^3.0.2",
     "del": "^1.1.1",
     "event-stream": "^3.2.2",
     "gulp": "^3.8.11",
