@@ -5,11 +5,15 @@
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
 	<title>New Tab</title>
 
+	<!-- build:css cardboard.min.css-->
 	<link rel="stylesheet" href="bower_components/materialize/dist/css/materialize.min.css"/>
-	<link rel="stylesheet" href="src/styles/animations.css"/>
-	<link rel="stylesheet" href="src/styles/custom.css"/>
+	<!-- inject:css -->
+	<link rel="stylesheet" href="/src/styles/animations.css">
+	<link rel="stylesheet" href="/src/styles/custom.css">
+	<!-- endinject -->
+	<!-- endbuild -->
 </head>
-<body ng-app="cardboard" ng-csp ng-controller="RootCtrl">
+<body ng-app="cardboard" ng-csp ng-strict-di ng-controller="RootCtrl">
 
 	<header class="blue-grey white-text" ng-style="{'background-image':'url('+backgroundImageUrl+')'}">
 		<div id="back" ng-show="route() == '/settings'"><a href="#/feed" ng-click="wipe()"><i class="mdi-navigation-arrow-back medium waves-effect waves-light white-text"></i></a></div>
@@ -26,10 +30,9 @@
 
 	<ng-view id="view"></ng-view>
 
-	<div id="toast-container">
-		<!-- Populated by toasts afterwards -->
-	</div>
+	<div id="toast-container"></div>
 
+<!-- build:bower bower.min.js-->
 <!-- Dependencies -->
 <script src="bower_components/chrome-platform-analytics/google-analytics-bundle.js"></script>
 <script src="bower_components/angular/angular.min.js"></script>
@@ -38,49 +41,48 @@
 <script src="bower_components/bluebird/js/browser/bluebird.min.js"></script>
 <script src="bower_components/packery/dist/packery.pkgd.min.js"></script>
 <script src="bower_components/draggabilly/dist/draggabilly.pkgd.min.js"></script>
-<script src="bower_components/angular-packery/dist/packery.js"></script>
+<script src="bower_components/angular-packery/dist/packery.min.js"></script>
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script src="bower_components/materialize/dist/js/materialize.min.js"></script>
 <script src="bower_components/moment/min/moment.min.js"></script>
+<!-- endbuild -->
 
-<!-- App -->
-<script src="src/cardboard.js"></script>
+<!-- build:js cardboard.min.js-->
+<!-- inject:js -->
+<script src="/src/cardboard.js"></script>
+<script src="/src/filters/bootstrap.js"></script>
+<script src="/src/filters/Humanize.js"></script>
+<script src="/src/filters/Host.js"></script>
+<script src="/src/filters/FromNow.js"></script>
+<script src="/src/filters/Filename.js"></script>
+<script src="/src/filters/Bytes.js"></script>
+<script src="/src/factories/bootstrap.js"></script>
+<script src="/src/factories/TrendsFactory.js"></script>
+<script src="/src/factories/ChromeFactory.js"></script>
+<script src="/src/directives/bootstrap.js"></script>
+<script src="/src/directives/Typer.js"></script>
+<script src="/src/directives/ProgressBar.js"></script>
+<script src="/src/directives/PieDownloader.js"></script>
+<script src="/src/directives/CtrlClick.js"></script>
+<script src="/src/directives/BgPick.js"></script>
+<script src="/src/controllers/bootstrap.js"></script>
+<script src="/src/controllers/TopSitesCtrl.js"></script>
+<script src="/src/controllers/SystemCtrl.js"></script>
+<script src="/src/controllers/SettingsCtrl.js"></script>
+<script src="/src/controllers/SessionsCtrl.js"></script>
+<script src="/src/controllers/RootCtrl.js"></script>
+<script src="/src/controllers/QuickSettingsCtrl.js"></script>
+<script src="/src/controllers/HistoryCtrl.js"></script>
+<script src="/src/controllers/FeedCtrl.js"></script>
+<script src="/src/controllers/DownloadCtrl.js"></script>
+<script src="/src/controllers/ChangelogCtrl.js"></script>
+<script src="/src/controllers/BookmarkCtrl.js"></script>
+<script src="/src/controllers/AppCtrl.js"></script>
+<!-- endinject -->
+<!-- endbuild -->
 
-<!-- Controllers -->
-<script src="src/controllers/bootstrap.js"></script>
-<script src="src/controllers/AppCtrl.js"></script>
-<script src="src/controllers/BookmarkCtrl.js"></script>
-<script src="src/controllers/ChangelogCtrl.js"></script>
-<script src="src/controllers/DownloadCtrl.js"></script>
-<script src="src/controllers/FeedCtrl.js"></script>
-<script src="src/controllers/HistoryCtrl.js"></script>
-<script src="src/controllers/QuickSettingsCtrl.js"></script>
-<script src="src/controllers/RootCtrl.js"></script>
-<script src="src/controllers/SessionsCtrl.js"></script>
-<script src="src/controllers/SettingsCtrl.js"></script>
-<script src="src/controllers/SystemCtrl.js"></script>
-<script src="src/controllers/TopSitesCtrl.js"></script>
-
-<!-- Directives -->
-<script src="src/directives/bootstrap.js"></script>
-<script src="src/directives/BgPick.js"></script>
-<script src="src/directives/CtrlClick.js"></script>
-<script src="src/directives/PieDownloader.js"></script>
-<script src="src/directives/ProgressBar.js"></script>
-<script src="src/directives/Typer.js"></script>
-
-<!-- Factories -->
-<script src="src/factories/bootstrap.js"></script>
-<script src="src/factories/ChromeFactory.js"></script>
-<script src="src/factories/TrendsFactory.js"></script>
-
-<!-- Filters -->
-<script src="src/filters/bootstrap.js"></script>
-<script src="src/filters/Bytes.js"></script>
-<script src="src/filters/Filename.js"></script>
-<script src="src/filters/FromNow.js"></script>
-<script src="src/filters/Host.js"></script>
-<script src="src/filters/Humanize.js"></script>
+<!-- templates:js -->
+<!-- endinject -->
 
 </body>
 </html>
