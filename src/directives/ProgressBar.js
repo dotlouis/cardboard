@@ -1,6 +1,6 @@
 angular.module('cardboard.directives')
 
-.directive('progressBar', ['ChromeFactory','$interval','$timeout', function(Chrome, $interval, $timeout) {
+.directive('myProgressBar', ['ChromeFactory','$interval','$timeout', function(Chrome, $interval, $timeout) {
     return {
         restrict: 'E',
         scope:{

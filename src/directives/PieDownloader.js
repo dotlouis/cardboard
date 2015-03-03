@@ -1,6 +1,6 @@
 angular.module('cardboard.directives')
 
-.directive('pieDownloader', ['ChromeFactory','$interval','$timeout', function(Chrome, $interval, $timeout) {
+.directive('myPieDownloader', ['ChromeFactory','$interval','$timeout', function(Chrome, $interval, $timeout) {
     return {
         scope:{
             stream: "="

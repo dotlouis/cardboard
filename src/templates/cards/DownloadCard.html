@@ -78,9 +78,9 @@
 	<ul class="card-content">
 		<li ng-repeat="download in downloads | limitTo: '5'" ng-click="open(); track(card.name, 'Opened')" class="download waves-effect">
 			<div class="icon" ng-switch on="download.state">
-				<pie-downloader ng-switch-when="in_progress" class="pie" stream="download">
+				<my-pie-downloader ng-switch-when="in_progress" class="pie" stream="download">
 					<div class="fileicon" ng-style="{'background-image': 'url('+download.icon+')'}"></div>
-				</pie-downloader>
+				</my-pie-downloader>
 				<div ng-switch-default class="fileicon" ng-style="{'background-image': 'url('+download.icon+')'}"></div>
 			</div>
 

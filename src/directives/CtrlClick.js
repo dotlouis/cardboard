@@ -1,6 +1,6 @@
 angular.module('cardboard.directives')
 
-.directive('ctrlClick',['$parse',function($parse){
+.directive('myCtrlClick',['$parse',function($parse){
     return{
         restrict: 'A',
         scope: {

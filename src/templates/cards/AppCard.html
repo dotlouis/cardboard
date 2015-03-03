@@ -43,12 +43,12 @@
 	</div>
 	<ul class="card-content">
 		<li class="app waves-effect tooltipped" data-position="bottom" data-tooltip="Chrome Web Store">
-			<a ctrl-click url="'https://chrome.google.com/webstore/category/home'" before-click="track(card.name, 'Launched')">
+			<a my-ctrl-click url="'https://chrome.google.com/webstore/category/home'" before-click="track(card.name, 'Launched')">
 				<i ng-style="{'background-image': 'url(/resources/cws128.webp)'}"></i>
 			</a>
 		</li>
 		<li ng-repeat="app in apps | orderBy:'-frequency'" ng-click="updateFrequency()" class="app waves-effect tooltipped" data-position="bottom" data-tooltip="{{app.name}}">
-			<a ctrl-click url="app.appLaunchUrl" before-click="track(card.name, 'Launched'); launch()">
+			<a my-ctrl-click url="app.appLaunchUrl" before-click="track(card.name, 'Launched'); launch()">
 				<i ng-style="{'background-image': 'url('+getIcon()+')'}"></i>
 			</a>
 		</li>
