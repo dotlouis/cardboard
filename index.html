@@ -13,9 +13,9 @@
 
 	<header class="blue-grey white-text" ng-style="{'background-image':'url('+backgroundImageUrl+')'}">
 		<div id="back" ng-show="route() == '/settings'"><a href="#/feed" ng-click="wipe()"><i class="mdi-navigation-arrow-back medium waves-effect waves-light white-text"></i></a></div>
-		<typer ng-if="route() == '/onboarding'" source="['Welcome to Cardboard']" start="route() == '/onboarding'" class="header-typer"></typer>
-		<typer ng-show="route() == '/feed' && trends.enabled" source="trends.data" start="trends.start" class="header-typer"></typer>
-		<typer ng-show="route() == '/settings'" source="['Settings']" start="route() == '/settings'" class="header-typer"></typer>
+		<my-typer ng-if="route() == '/onboarding'" source="['Welcome to Cardboard']" start="route() == '/onboarding'" class="header-typer"></my-typer>
+		<my-typer ng-show="route() == '/feed' && trends.enabled" source="trends.data" start="trends.start" class="header-typer"></my-typer>
+		<my-typer ng-show="route() == '/settings'" source="['Settings']" start="route() == '/settings'" class="header-typer"></my-typer>
 		<div id="more" ng-show="route() == '/feed'"><a href="#/settings" ng-click="wipe()"><i class="mdi-navigation-more-vert small waves-effect waves-light white-text"></i></a></div>
 	</header>
 	<div class="global progress" ng-class="{'loading':$root.loading}"><div class="indeterminate"></div></div>

@@ -90,7 +90,7 @@
                 <p>{{cpu.modelName}}</p>
                 <p>{{cpu.archName}} - {{cpu.numOfProcessors}} core{{cpu.numOfProcessors > 1 ? 's':''}}</p>
 
-                <progress-bar ng-repeat="(key,core) in cpu.processors" progress="getCpuLoad(key)" monitor relative></progress-bar>
+                <my-progress-bar ng-repeat="(key,core) in cpu.processors" progress="getCpuLoad(key)" monitor relative></my-progress-bar>
             </div>
         </div>
         <div class="wrapper memory">
@@ -101,7 +101,7 @@
             <div class="wrapper-info">
                 <p>{{memory.availableCapacity | bytes}} available of {{memory.capacity | bytes}}</p>
 
-                <progress-bar progress="getMemoryLoad()" monitor="5000"></progress-bar>
+                <my-progress-bar progress="getMemoryLoad()" monitor="5000"></my-progress-bar>
             </div>
         </div>
         <div class="wrapper storage">

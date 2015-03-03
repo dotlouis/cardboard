@@ -1,6 +1,6 @@
 angular.module('cardboard.directives')
 
-.directive('typer',['$interval','$timeout', function($interval, $timeout){
+.directive('myTyper',['$interval','$timeout', function($interval, $timeout){
     return {
         scope: {
             source: "=",
