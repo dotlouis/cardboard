@@ -153,20 +153,35 @@ angular.module('cardboard.factories')
             settings = DefaultSettings;
             settings.status = "new";
         }
+        // Else we compare versions (new, old)
+        else{
+            var v = semver(info.version, storage.version);
 
-        // We compare versions. If new version we update the settings
-        else if(storage.version && isNewerVersion(info.version, storage.version)){
-            Chrome.cache.clearAsync();
-            Chrome.storage.clearAsync().then(function(){
-                Chrome.storage.setAsync(DefaultSettings);
-            });
-            settings = DefaultSettings;
-            settings.status = "updated";
+            // If new major version we update/reset the settings
+            if(v.isNew == true){
+                if(v.release == "major"){
+                    Chrome.cache.clearAsync();
+                    Chrome.storage.clearAsync().then(function(){
+                        Chrome.storage.setAsync(DefaultSettings);
+                    });
+                    settings = DefaultSettings;
+                }
+                else
+                    settings = storage;
+
+                // Persist the new version in storage and settings
+                Chrome.storage.setAsync({version: info.version});
+                settings.version = info.version;
+
+                if(v.release != "patch")
+                    settings.status = "updated";
+            }
+            // If not new or minor version settings are the one saved in storage
+            else{
+                settings = storage;
+                delete settings.status;
+            }
         }
-
-        // If nothing special settings are the one saved in storage
-        else
-            settings = storage;
 
         return [settings, cache, settings.status];
     });
@@ -175,12 +190,38 @@ angular.module('cardboard.factories')
 
 }]);
 
-function isNewerVersion(newVersion, oldVersion){
-    // if version is not even a string we know it's a new version
+function semver(newVersion, oldVersion){
+    // if version is not even a string we know it's a new major version
     if(typeof oldVersion !== 'string')
-        return true;
+        return { isNew: true, release: "major"};
 
-    return versionCompare(newVersion, oldVersion) > 0;
+    var result = {
+        isNew: false
+    };
+
+    var newV = newVersion.split('.');
+    var oldV = oldVersion.split('.');
+
+    for(var i in newV){
+        // if number is greater it's a new version
+        if(newV[i] > oldV[i]){
+            result.isNew = true;
+
+            // if it's the first iteration it's a major
+            if(i == 0)
+                result.release = "major";
+            // if it's the second iteration it's a minor
+            else if(i == 1)
+                result.release = "minor";
+            // if it's the third or more iteration it's a patch
+            else
+                result.release = "patch";
+            // we can stop here
+            break;
+        }
+    }
+
+    return result;
 }
 
 // see https://github.com/petkaantonov/bluebird/blob/master/API.md#option-promisifier
@@ -235,47 +276,4 @@ function isNestedAPI(api){
         if(api == nested[i])
             return true;
     return false;
-}
-
-
-// from https://gist.github.com/TheDistantSea/8021359
-function versionCompare(v1, v2, options) {
-    var lexicographical = options && options.lexicographical,
-        zeroExtend = options && options.zeroExtend,
-        v1parts = v1.split('.'),
-        v2parts = v2.split('.');
-
-    function isValidPart(x) {
-        return (lexicographical ? /^\d+[A-Za-z]*$/ : /^\d+$/).test(x);
-    }
-
-    if (!v1parts.every(isValidPart) || !v2parts.every(isValidPart))
-        return NaN;
-
-    if (zeroExtend) {
-        while (v1parts.length < v2parts.length) v1parts.push("0");
-        while (v2parts.length < v1parts.length) v2parts.push("0");
-    }
-
-    if (!lexicographical) {
-        v1parts = v1parts.map(Number);
-        v2parts = v2parts.map(Number);
-    }
-
-    for (var i = 0; i < v1parts.length; ++i) {
-        if (v2parts.length == i)
-            return 1;
-
-        if (v1parts[i] == v2parts[i])
-            continue;
-        else if (v1parts[i] > v2parts[i])
-            return 1;
-        else
-            return -1;
-    }
-
-    if (v1parts.length != v2parts.length)
-        return -1;
-
-    return 0;
 }
