@@ -176,9 +176,9 @@ angular.module('cardboard.factories')
 }]);
 
 function isNewerVersion(newVersion, oldVersion){
-    // if version is not even a string we know it's older
+    // if version is not even a string we know it's a new version
     if(typeof oldVersion !== 'string')
-        return false;
+        return true;
 
     return versionCompare(newVersion, oldVersion) > 0;
 }
