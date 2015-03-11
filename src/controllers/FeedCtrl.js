@@ -3,31 +3,34 @@ angular.module('cardboard.controllers')
 .controller('FeedCtrl',[
     '$scope',
     '$timeout',
+    'ChromePermissions',
+    'ChromeSettings',
     'ChromeFactory',
-    function($scope, $timeout, Chrome){
+    function($scope, $timeout, Permissions, Settings, Chrome){
 
     $scope.isDrag = false;
 
     // Prevent the FAB from flashing due to value beeing brievly undefined
     $scope.allCardsEnabled = true;
 
-    $scope.settings.spread(function(settings){
+    $scope.settings.then(function(settings){
 
         // init welcome messages
-        $scope.dailyMsg = settings.welcomeMessages[Math.floor((Math.random() * settings.welcomeMessages.length))];
+        $scope.dailyMsg = settings.sync.welcomeMessages[Math.floor((Math.random() * settings.sync.welcomeMessages.length))];
 
         // init cards
-        return Promise.map(settings.cards, function(card){
+        return Promise.map(settings.sync.cards, function(card){
             // if cardboard installed or updated we show the changelog
-            if(settings.status && card.name == 'changelog' && ($scope.route()=='/feed') )
+            if(settings.update && card.name == 'changelog' && ($scope.route()=='/feed') )
                 card.enabled = true;
 
             // if the card has permission we check for them before
             if(card.permissions)
-                return Chrome.permissions.check(card.permissions)
-                .then(function(granted){
+                return Permissions.contains({permissions: card.permissions})
+                .then(function(permissions){
+                    // if a permission is denied we can't enable the card
                     // Disable the card if not granted AND enabled
-                    card.enabled = (granted && card.enabled);
+                    card.enabled = (!permissions.denied && card.enabled);
                     return card;
                 });
             else
@@ -36,7 +39,7 @@ angular.module('cardboard.controllers')
     })
     .then(function(cards){
         // we save the init state
-        Chrome.storage.setAsync({'cards':cards});
+        Settings.set({'cards':cards});
 
         $scope.$apply(function(){
             $scope.cards = cards;
@@ -57,7 +60,7 @@ angular.module('cardboard.controllers')
             on = card.enabled;
 
         if(on)
-            Chrome.permissions.request(card.permissions)
+            Permissions.request({permissions: card.permissions})
             .then(function(){
                 // Granted
                 tracker.sendEvent('Card', 'Granted', card.name);
@@ -70,7 +73,7 @@ angular.module('cardboard.controllers')
                 toast("Card needs permission to run", 4000);
             });
         else
-            Chrome.permissions.revoke(card.permissions)
+            Permissions.remove({permissions: card.permissions})
             .then(function(){
                 tracker.sendEvent('Card', 'Removed', card.name);
                 disable(card);
@@ -84,7 +87,7 @@ angular.module('cardboard.controllers')
             $scope.allCardsDisabled = false;
         });
         checkCardsEnabled();
-        Chrome.storage.setAsync({'cards':$scope.cards});
+        Settings.set({'cards':$scope.cards});
     }
     function disable(card){
         $scope.$apply(function(){
@@ -94,7 +97,7 @@ angular.module('cardboard.controllers')
                 $scope.allCardsEnabled = false;
         });
         checkCardsDisabled();
-        Chrome.storage.setAsync({'cards':$scope.cards});
+        Settings.set({'cards':$scope.cards});
     }
 
     function checkCardsEnabled(){

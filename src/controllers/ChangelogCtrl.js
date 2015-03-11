@@ -4,7 +4,7 @@ angular.module('cardboard.controllers')
     '$scope',
     'ChromeFactory',
     function($scope, Chrome){
-    $scope.settings.spread(function(settings){
-        $scope.version = settings.version;
+    $scope.settings.then(function(settings){
+        $scope.version = settings.self.version;
     });
 }]);

@@ -2,11 +2,10 @@ angular.module('cardboard.controllers')
 
 .controller('TopSitesCtrl', [
     '$scope',
-    'ChromeFactory',
-    function($scope, Chrome){
+    function($scope){
     $scope.maxTopSites = 5;
 
-    Chrome.topSites.getAsync().then(function(topSites){
+    chrome.topSites.getAsync().then(function(topSites){
         $scope.$apply(function(){
             $scope.topSites = topSites;
         });
