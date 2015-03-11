@@ -5,6 +5,7 @@ var tracker = service.getTracker('UA-60245585-4');
 angular.module('cardboard', [
 	'ngRoute',
 	'ngAnimate',
+	'ngChromePermissions',
 	'angular-packery',
 	'cardboard.controllers',
 	'cardboard.factories',

@@ -1,10 +1,9 @@
 angular.module('cardboard.directives')
 
 .directive('myPieDownloader', [
-    'ChromeFactory',
     '$interval',
     '$timeout',
-    function(Chrome, $interval, $timeout) {
+    function($interval, $timeout) {
     return {
         scope:{
             stream: "="
@@ -32,7 +31,7 @@ angular.module('cardboard.directives')
 
             function pollProgress(){
                 if(scope.stream.state == "in_progress" && !scope.stream.paused)
-                    Chrome.downloads.searchAsync({id:scope.stream.id})
+                    chrome.downloads.searchAsync({id:scope.stream.id})
                     .then(function(dl){
                         // update received bytes and estimated time at each iteration
                         scope.stream.bytesReceived = dl[0].bytesReceived;
