@@ -4,7 +4,7 @@
             <p class="daily">{{dailyMsg}}</p>
             <p>Add cards with the button in the bottom right corner</p>
         </div>
-        <div ng-repeat="card in cards" ng-if="card.enabled" ng-include="card.template" class="card-wrapper"></div>
+        <div ng-repeat="card in cards track by card.name" ng-if="card.enabled" ng-include="card.template" class="card-wrapper"></div>
     </packery>
 </section>
 
