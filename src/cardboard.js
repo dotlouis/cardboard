@@ -172,7 +172,7 @@ angular.module('cardboard', [
 		},
 		{
 			id: 10,
-			name: "Seatte",
+			name: "Seattle",
 			type: "Google Now",
 			url: {
 				dawn: "https://i.imgur.com/7nsrzRK.jpg",
