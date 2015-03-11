@@ -2,9 +2,8 @@ angular.module('cardboard.factories')
 
 .factory('TrendsFactory', [
     '$http',
-    'ChromeFactory',
     'DefaultSettings',
-    function($http, Chrome, DefaultSettings){
+    function($http, DefaultSettings){
     var Trends = {};
 
     function fromNetwork(){
@@ -18,7 +17,7 @@ angular.module('cardboard.factories')
                     allTrends = allTrends.concat(data[i]);
 
             // update the lastRefresh Date and cache trends data
-            Chrome.cache.setAsync({
+            chrome.storage.local.setAsync({
                 'trends': {
                     'lastRefresh': new Date().toString(),
                     'data': allTrends
@@ -37,7 +36,7 @@ angular.module('cardboard.factories')
     }
 
     Trends.get = function(){
-        return Chrome.cache.getAsync("trends")
+        return chrome.storage.local.getAsync("trends")
         .then(function(cache){
             // if there is nothing in cache we load trends from network
             if(!cache.trends)

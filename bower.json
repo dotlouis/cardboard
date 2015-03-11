@@ -38,6 +38,7 @@
     "materialize": "=0.95.2",
     "moment": "~2.9.0",
     "angular-animate": "~1.3.14",
-    "chrome-platform-analytics": "~1.3.0"
+    "chrome-platform-analytics": "~1.3.0",
+    "ng-chrome-permissions": "virtual-dev/ng-chrome-permissions"
   }
 }

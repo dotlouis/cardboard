@@ -6,16 +6,18 @@ angular.module('cardboard.controllers')
     '$http',
     '$timeout',
     'DefaultSettings',
-    'ChromeFactory',
     'ChromePermissions',
     'ChromeSettings',
     'TrendsFactory',
-    function($scope, $location, $http, $timeout, DefaultSettings, Chrome, Permissions, Settings, Trends){
+    function($scope, $location, $http, $timeout, DefaultSettings, Permissions, Settings, Trends){
 
     // we gather all the settings
     $scope.settings = Settings.get().then(function(settings){
-        if(settings.update == "major")
+        console.log(settings);
+        if(settings.update == "major"){
             settings.sync = DefaultSettings;
+            Settings.set(DefaultSettings);
+        }
         return settings;
     });
 

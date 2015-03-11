@@ -5,8 +5,7 @@ angular.module('cardboard.controllers')
     '$timeout',
     'ChromePermissions',
     'ChromeSettings',
-    'ChromeFactory',
-    function($scope, $timeout, Permissions, Settings, Chrome){
+    function($scope, $timeout, Permissions, Settings){
 
     $scope.isDrag = false;
 
