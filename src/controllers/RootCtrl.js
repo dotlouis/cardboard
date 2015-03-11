@@ -7,31 +7,37 @@ angular.module('cardboard.controllers')
     '$timeout',
     'DefaultSettings',
     'ChromeFactory',
+    'ChromePermissions',
+    'ChromeSettings',
     'TrendsFactory',
-    function($scope, $location, $http, $timeout, DefaultSettings, Chrome, Trends){
+    function($scope, $location, $http, $timeout, DefaultSettings, Chrome, Permissions, Settings, Trends){
 
-    // We gather all the settings;
-    $scope.settings = Chrome.settings;
+    // we gather all the settings
+    $scope.settings = Settings.get().then(function(settings){
+        if(settings.update == "major")
+            settings.sync = DefaultSettings;
+        return settings;
+    });
 
     // then we init background and trends with it
-    $scope.settings.spread(function(settings, cache, status){
+    $scope.settings.then(function(settings){
 
         // Init trends
-        $scope.trends = settings.trends;
+        $scope.trends = settings.sync.trends;
         $scope.trends.data = Trends.get();
         $scope.trends.start = true;
 
         // If local background (dataURl) we get it from cache
-        for(var i in settings.backgrounds)
-            if(settings.backgrounds[i].type == "Local" && settings.backgrounds[i].url)
-                settings.backgrounds[i].url = cache.localBackgroundDataUrl;
+        for(var i in settings.sync.backgrounds)
+            if(settings.sync.backgrounds[i].type == "Local" && settings.sync.backgrounds[i].url)
+                settings.sync.backgrounds[i].url = settings.local.localBackgroundDataUrl;
 
-        $scope.backgrounds = settings.backgrounds;
-        $scope.background = settings.backgrounds[settings.backgroundId];
+        $scope.backgrounds = settings.sync.backgrounds;
+        $scope.background = settings.sync.backgrounds[settings.sync.backgroundId];
         $scope.setBackground($scope.background);
 
         // if it's a new install we redirect to the onboarding page
-        if(status == "new")
+        if(settings.update == "major")
             $location.path("onboarding");
     });
 

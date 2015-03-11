@@ -2,13 +2,12 @@ angular.module('cardboard.controllers')
 
 .controller('BookmarkCtrl', [
     '$scope',
-    'ChromeFactory',
-    function($scope, Chrome){
+    function($scope){
     // init tabs
     $('.card.bookmarks .tabs').tabs();
     $('.card.bookmarks .tabs').tabs('select_tab', 'recent-bookmarks');
 
-    Chrome.bookmarks.getRecentAsync(5).then(function(recents){
+    chrome.bookmarks.getRecentAsync(5).then(function(recents){
         $scope.$apply(function(){
             $scope.recents = recents;
         });
@@ -16,17 +15,17 @@ angular.module('cardboard.controllers')
     });
 
     // get root bookmarks
-    Chrome.bookmarks.getChildrenAsync("0").then(function(root){
+    chrome.bookmarks.getChildrenAsync("0").then(function(root){
         $scope.$apply(function(){
             $scope.tree = root;
         });
     });
 
     $scope.getChildren = function(id){
-        Chrome.bookmarks.getChildrenAsync(id).then(function(children){
+        chrome.bookmarks.getChildrenAsync(id).then(function(children){
             if(children.length > 0){
                 $scope.tree = children;
-                return Chrome.bookmarks.getAsync(children[0].parentId);
+                return chrome.bookmarks.getAsync(children[0].parentId);
             }
             else
                 return Promise.reject("Empty");

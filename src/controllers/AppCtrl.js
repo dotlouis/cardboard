@@ -2,13 +2,12 @@ angular.module('cardboard.controllers')
 
 .controller('AppCtrl', [
     '$scope',
-    'ChromeFactory',
-    function($scope, Chrome){
+    function($scope){
     $scope.apps = [];
     $scope.extensions = [];
     $scope.themes = [];
 
-    Chrome.management.getAllAsync()
+    chrome.management.getAllAsync()
     .then(function(all){
         angular.forEach(all, function(value, key){
             if(value.type == "extension")
@@ -31,7 +30,7 @@ angular.module('cardboard.controllers')
 
     $scope.launch = function(){
         if(this.app.launchType == "OPEN_AS_WINDOW")
-            Chrome.management.launchApp(this.app.id);
+            chrome.management.launchApp(this.app.id);
     }
 
     $scope.getIcon = function(){
@@ -58,7 +57,7 @@ angular.module('cardboard.controllers')
         // We don't update scope to avoid suddenly changing apps position after click
 
         // We save frequency in storage
-        Chrome.storage.setAsync({'cards': $scope.$parent.cards});
+        chrome.storage.sync.setAsync({'cards': $scope.$parent.cards});
     };
 
 }]);

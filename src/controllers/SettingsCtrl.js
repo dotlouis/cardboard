@@ -4,8 +4,7 @@ angular.module('cardboard.controllers')
     '$scope',
     '$q',
     '$timeout',
-    'ChromeFactory',
-    function($scope, $q, $timeout, Chrome){
+    function($scope, $q, $timeout){
 
     // Animate the setting container
     $timeout(function(){
@@ -15,7 +14,7 @@ angular.module('cardboard.controllers')
     $scope.save = function(storageKey, value){
         var toSave = {};
         toSave[storageKey] = value;
-        Chrome.storage.setAsync(toSave);
+        chrome.storage.sync.setAsync(toSave);
     };
 
     service.getConfig().addCallback(function(config){
@@ -94,7 +93,7 @@ angular.module('cardboard.controllers')
             if(bgs[i].type == "Local")
                 bgs[i].url = true;
 
-        Chrome.storage.setAsync({
+        chrome.storage.sync.setAsync({
             'backgrounds': bgs,
             'backgroundId': bg.id
         });

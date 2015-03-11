@@ -3,8 +3,7 @@ angular.module('cardboard.controllers')
 .controller('QuickSettingsCtrl', [
     '$rootScope',
     '$scope',
-    'ChromeFactory',
-    function($rootScope, $scope, Chrome){
+    function($rootScope, $scope){
 
     $scope.clearTypes = {
         "cache": false,
@@ -47,7 +46,7 @@ angular.module('cardboard.controllers')
                 $scope.$apply();
             });
 
-            Chrome.browsingData.removeAsync({since: 0},$scope.clearTypes)
+            chrome.browsingData.removeAsync({since: 0},$scope.clearTypes)
             // Promise.delay(3000) //mocks
             .then(function(){
                 // completed

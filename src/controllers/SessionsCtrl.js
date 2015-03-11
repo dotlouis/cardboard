@@ -2,19 +2,18 @@ angular.module('cardboard.controllers')
 
 .controller('SessionsCtrl', [
     '$scope',
-    'ChromeFactory',
-    function($scope, Chrome){
+    function($scope){
     $scope.maxDevices = 5;
     $scope.maxDeviceTabs = 5;
     $scope.maxRecentlyClosed = 5;
 
-    var willGetRecentlyClosed = Chrome.sessions.getRecentlyClosedAsync({
+    var willGetRecentlyClosed = chrome.sessions.getRecentlyClosedAsync({
         maxResults: $scope.maxRecentlyClosed
     }).then(function(recentlyClosed){
         $scope.recentlyClosed = mergeTabsAndWindows(recentlyClosed);
     });
 
-    var willGetDevices = Chrome.sessions.getDevicesAsync({
+    var willGetDevices = chrome.sessions.getDevicesAsync({
         maxResults: $scope.maxDevices
     }).then(function(devices){
         for(var d in devices)
