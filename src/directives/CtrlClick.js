@@ -16,7 +16,7 @@ angular.module('cardboard.directives')
 
                 if(scope.url){
                     // in background tab if ctrl or cmd key is held
-                    if(event.ctrlKey || event.metaKey)
+                    if(event.ctrlKey || event.metaKey || event.which == 2)
                         chrome.tabs.create({
                             url: scope.url,
                             active: false
