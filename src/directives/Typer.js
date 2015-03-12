@@ -10,6 +10,7 @@ angular.module('cardboard.directives')
             delay: "=",
             start: "=",
             wipeDelay: "=",
+            term: "=",
             callbackFn: "&"
         },
         link: function(scope, element, attrs){
@@ -46,7 +47,7 @@ angular.module('cardboard.directives')
                 function parse(source){
                     // We iterate sequentially through the array or promise of an array
                     return Promise.each(source, function(str, index, value){
-
+                        scope.$apply(function(){scope.term = str;});
                         // Write each word
                         return write(str)
                         .then(function(){
