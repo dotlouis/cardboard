@@ -13,6 +13,7 @@
             <button ng-click="openUrl()" class="btn waves-effect waves-light">From URL</button>
         </div>
         <div class="sub-setting">
+            <p>Display daily search trends in the header</p>
             <div class="switch"><label>Google Trends<input type="checkbox" ng-model="$parent.trends.enabled" ng-change="save('trends',$parent.trends); track('Trends',($parent.trends.enabled ? 'Enabled': 'Disabled'))"><span class="lever"></span></label></div>
         </div>
     </div>

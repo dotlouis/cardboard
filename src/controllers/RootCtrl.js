@@ -13,7 +13,6 @@ angular.module('cardboard.controllers')
 
     // we gather all the settings
     $scope.settings = Settings.get().then(function(settings){
-        console.log(settings);
         if(settings.update == "major"){
             settings.sync = DefaultSettings;
             Settings.set(DefaultSettings);
