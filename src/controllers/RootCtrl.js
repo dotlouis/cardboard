@@ -42,6 +42,10 @@ angular.module('cardboard.controllers')
             $location.path("onboarding");
     });
 
+    $scope.searchTrend = function(){
+        return 'https://google.com/search?q='+encodeURI($scope.trendTerm);
+    };
+
     $scope.setBackground = function(background){
         // check background property exists to avoid errors due to promise not
         // beeing resolved yet
