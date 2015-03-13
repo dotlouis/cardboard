@@ -3,7 +3,7 @@
     "name": "Cardboard - New Tab Page",
     "author": "virtual-dev",
     "description": "The default New Tab is not Google enough ? Try Cardboard, Now with more Material Design (plus nifty features)",
-    "version": "2.0.1",
+    "version": "2.0.2",
     "chrome_url_overrides": {
         "newtab": "index.html"
     },

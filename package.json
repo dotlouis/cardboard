@@ -1,6 +1,6 @@
 {
   "name": "cardboard",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "The default New Tab is not Google enough ? Try Cardboard, Now with more Material Design (plus nifty features)",
   "main": "index.html",
   "scripts": {
