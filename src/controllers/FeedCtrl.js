@@ -20,7 +20,7 @@ angular.module('cardboard.controllers')
         // init cards
         return Promise.map(settings.sync.cards, function(card){
             // if cardboard installed or updated we show the changelog
-            if(settings.update && card.name == 'changelog' && ($scope.route()=='/feed') )
+            if(settings.update && settings.update != "patch" && card.name == 'changelog' && ($scope.route()=='/feed') )
                 card.enabled = true;
 
             // if the card has permission we check for them before
