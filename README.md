@@ -13,9 +13,12 @@ v2.0
 *Warning: This is for development purpose and not the right way to get the extension for daily use. If you want the stable version head over the [Chrome Web Store](https://chrome.google.com/webstore/detail/card-board-new-tab-page/hilmkmopmiomkmehbhajigccnglobaap) and install it from here.*
 
 1. `bower install`
-2. Open [chrome://extensions/](chrome://extensions/)
-3. In top-right corner tick `Developer Mode`
-4. Click `Load unpack extension` and choose the root cardboard folder
+2. Delete the `bower_components/chrome-platform-analytics/src/`
+    directory otherwise Chrome will complain about multiple manifest.json
+3. Open [chrome://extensions/](chrome://extensions/)
+4. In top-right corner tick `Developer Mode`
+5. Click `Load unpack extension` and choose the root cardboard folder
+
 
 ## Notes on permissions
 
