@@ -1,6 +1,8 @@
 var gulp = require('gulp');
 var uglify = require('gulp-uglify');
 var inject = require('gulp-inject');
+var useref = require('gulp-useref');
+var filter = require('gulp-filter');
 var ngAnnotate = require('gulp-ng-annotate');
 var htmlify = require('gulp-angular-htmlify');
 var minifyCss = require('gulp-minify-css');
@@ -9,11 +11,9 @@ var templateCache = require('gulp-angular-templatecache');
 var angularFilesort = require('gulp-angular-filesort');
 var del = require('del');
 var size = require('gulp-filesize');
-var usemin = require('gulp-usemin');
 var rev = require('gulp-rev');
 var git = require('gulp-git');
 var bump = require('gulp-bump');
-var filter = require('gulp-filter');
 var tag_version = require('gulp-tag-version');
 
 gulp.task('default',['build', 'templates'], function(){
@@ -54,20 +54,28 @@ gulp.task('inject', function(){
 
 // Build a production-ready dist folder
 gulp.task('build',['templates'], function(){
+
+    // copy the manifest to dist/
     gulp.src('manifest.json')
         .pipe(gulp.dest('dist'));
 
+    // copy resources/ to dist/
     gulp.src('resources/**')
         .pipe(gulp.dest('dist/resources'));
 
-    gulp.src('bower_components/materialize/font/**')
+    // copy materialize fonts to dist/
+    gulp.src('bower_components/materialize/dist/font/**')
         .pipe(gulp.dest('dist/font'));
 
-    gulp.src('bower_components/**')
-        .pipe(gulp.dest('dist/bower_components'));
+    var assets = useref.assets();
+    // var bowerUnMinJs = filter(['bower_components/**/*.js','!bower_components/**/*.min.js','!google-analytics-bundle.js']);
+    // var appJs = filter(['src/**/*.js']);
+    // var unMinCss = filter(['*.css','!*.min.css']);
 
     return gulp.src('index.html')
+        // inject css in index.html
         .pipe(inject(gulp.src('src/**/*.css',{read: false})))
+        // inject cached templates in index.html
         .pipe(inject(
             gulp.src('templates-*.js',{
                 read: false,
@@ -78,20 +86,32 @@ gulp.task('build',['templates'], function(){
                 addRootSlash: false
             }
         ))
+        // inject app files in index.html
         .pipe(inject(
             gulp.src('src/**/*.js')
             .pipe(angularFilesort())
         ))
-        .pipe(usemin({
-            css: [minifyCss({
-                keepSpecialComments: 0
-            }), rev()],
-            js: [ngAnnotate({single_quotes: true}), uglify(), rev()]
-        }))
-        .pipe(htmlify({
-            customPrefixes: ['my-']
-        }))
-        // .pipe(minifyHtml())
+        // get build blocks assets
+        .pipe(assets)
+        // // exclude the already minified JS files
+        // .pipe(bowerUnMinJs)
+        // .pipe(size())
+        // // minify
+        // .pipe(uglify())
+        // .pipe(bowerUnMinJs.restore())
+        // // exclude the already minified CSS files
+        // .pipe(unMinCss)
+        // .pipe(size())
+        // // minify
+        // .pipe(minifyCss())
+        // .pipe(unMinCss.restore())
+        // // restore filtered stream
+        .pipe(assets.restore())
+        // concat build blocks
+        .pipe(useref())
+        // .pipe(htmlify({
+        //     customPrefixes: ['my-']
+        // }))
         .pipe(size())
         .pipe(gulp.dest('dist/'));
 });
