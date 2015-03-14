@@ -86,7 +86,7 @@ angular.module('cardboard.controllers')
 
         // Save the background dataUrl to the cache
         if(bg.type == "Local")
-            Chrome.cache.setAsync({"localBackgroundDataUrl": bg.url});
+            chrome.storage.local.setAsync({"localBackgroundDataUrl": bg.url});
 
         // Remove dataUrl because it's too big to fit sync storage
         for(var i in bgs)
