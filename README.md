@@ -32,7 +32,7 @@ v2.0
 - **system.cpu**: to collect and display your computer's cpu usage
 - **system.memory**: to collect and display your computer's memory usage
 - **system.storage**: to collect and display your computer's storage usage
-- **https://hawttrends.appspot.com/api/terms/**: to fetch google trends at this adress
+- **https://hawttrends.appspot.com/api/terms/**: to fetch google trends at this address
 - [Optional] **tabs**: to show your recently closed tabs (session card)
 - [Optional] **topSites**: to display your most visited websites
 - [Optional] **bookmarks**: to display your bookmarks
