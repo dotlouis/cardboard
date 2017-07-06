@@ -5,7 +5,7 @@ angular.module('cardboard.controllers')
             $scope.apps = [];
             $scope.extensions = [];
             $scope.themes = [];
-            if (!chrome.management)
+            if (!chrome.management.getAll)
                 return;
             chrome.management.getAll(function (all) {
                 angular.forEach(all, function (value, key) {
