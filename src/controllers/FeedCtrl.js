@@ -117,18 +117,20 @@ angular.module('cardboard.controllers')
                         for (let i = 0; i < items.length; i++) {
                             const itemElem = items[i];
                             const posElem = pckry.getItemElements();
+                            // If card is not in last pos add it.
                             posElem.forEach(function (element, index) {
                                 posElem[index] = element.getAttribute('data-item-id');
                             });
                             if (!posElem.includes(items[i].getAttribute('data-item-id')))
                                 pckry.addItems(items[i]);
+                            // Drag card
                             const draggie = new Draggabilly(itemElem);
                             pckry.bindDraggabillyEvents(draggie);
                         }
-                    }, 0);
+                    }, 250);
                 });
+                // save drag positions
                 pckry.on('dragItemPositioned', function () {
-                    // save drag positions
                     chrome.storage.sync.setAsync({ 'dragPositions': JSON.stringify(pckry.getShiftPositions('data-item-id')) });
                 });
             };
@@ -184,16 +186,12 @@ angular.module('cardboard.controllers')
                             initLayout: false,
                         });
                     }
-                    $timeout(function () {
-                        pckry.appended(itemElem);
-                        $timeout(function () {
-                            // save drag positions
-                            chrome.storage.sync.setAsync({ 'dragPositions': JSON.stringify(pckry.getShiftPositions('data-item-id')) });
-                            const draggie = new Draggabilly(itemElem);
-                            pckry.bindDraggabillyEvents(draggie);
-                        }, 0)
-                    }, 400);
-                }, 100);
+                    pckry.appended(itemElem);
+                    // save drag positions
+                    chrome.storage.sync.setAsync({ 'dragPositions': JSON.stringify(pckry.getShiftPositions('data-item-id')) });
+                    const draggie = new Draggabilly(itemElem);
+                    pckry.bindDraggabillyEvents(draggie);
+                }, 250);
             }
             function disable(card) {
                 $scope.$apply(function () {
