@@ -193,7 +193,7 @@ angular.module('cardboard.controllers')
                             pckry.bindDraggabillyEvents(draggie);
                         }, 0)
                     }, 400);
-                }, 250);
+                }, 100);
             }
             function disable(card) {
                 $scope.$apply(function () {
