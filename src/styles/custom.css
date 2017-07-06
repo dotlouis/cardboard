@@ -9,7 +9,7 @@
   font-family: 'Material Icons';
   font-weight: normal;
   font-style: normal;
-  font-size: 24px;
+  font-size: 1.25em;
   line-height: 1;
   letter-spacing: normal;
   text-transform: none;
@@ -92,7 +92,12 @@ header{
     position: relative;
 }
 
-.fab{
+.btn-floating > i {
+    -webkit-transition: transform .75s;
+    transition: transform .75s;
+}
+
+.fab {
     z-index: 9;
 }
 .fab ul{
@@ -102,7 +107,6 @@ header{
     margin-left: -104px;
     transition-property: display;
     transition-delay: .7s;
-    display: none;
 }
 .fab li{
     display: flex;
