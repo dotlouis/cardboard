@@ -60,6 +60,7 @@ angular.module('cardboard.controllers')
 
             let pckry;
             let childLoaded = 0;
+            let ngForEnd = false;
 
             $scope.settings.then(function (settings) {
 
@@ -96,44 +97,58 @@ angular.module('cardboard.controllers')
                 });
 
             $scope.onEnd = function () {
-                const grid = document.querySelector('#grid');
-                pckry = new Packery(grid, {
-                    itemSelector: '#grid-item',
-                    columnWidth: 400,
-                    gutter: 10,
-                    percentPosition: true,
-                    initLayout: false,
-                });
-                if (!pckry)
-                    return;
-                chrome.storage.sync.get('dragPositions', function (initPositions) {
-                    $timeout(function () {
-                        let pos;
-                        if (Object.keys(initPositions).length !== 0)
-                            pos = JSON.parse(initPositions.dragPositions);
-                        // init layout with saved positions
-                        pckry.initShiftLayout(pos, 'data-item-id');
-                        const items = grid.querySelectorAll('#grid-item');
-                        for (let i = 0; i < items.length; i++) {
-                            const itemElem = items[i];
-                            const posElem = pckry.getItemElements();
-                            // If card is not in last pos add it.
-                            posElem.forEach(function (element, index) {
-                                posElem[index] = element.getAttribute('data-item-id');
-                            });
-                            if (!posElem.includes(items[i].getAttribute('data-item-id')))
-                                pckry.addItems(items[i]);
-                            // Drag card
-                            const draggie = new Draggabilly(itemElem);
-                            pckry.bindDraggabillyEvents(draggie);
-                        }
-                    }, 250);
-                });
-                // save drag positions
-                pckry.on('dragItemPositioned', function () {
-                    chrome.storage.sync.setAsync({ 'dragPositions': JSON.stringify(pckry.getShiftPositions('data-item-id')) });
-                });
+                ngForEnd = true;
             };
+
+            $scope.$on('$includeContentLoaded', function (event, target) {
+                if (target.includes("cards"))
+                    childLoaded++;
+                const enabledCardLength = $scope.cards.filter((card) => { return card.enabled }).length;
+                if (enabledCardLength === childLoaded)
+                    initLayout();
+            });
+
+            function initLayout() {
+                $timeout(() => {
+                    if (ngForEnd) {
+                        const grid = document.querySelector('#grid');
+                        pckry = new Packery(grid, {
+                            itemSelector: '#grid-item',
+                            columnWidth: 400,
+                            gutter: 10,
+                            percentPosition: true,
+                            initLayout: false,
+                        });
+                        if (!pckry)
+                            return;
+                        chrome.storage.sync.get('dragPositions', function (initPositions) {
+                            let pos;
+                            if (Object.keys(initPositions).length !== 0)
+                                pos = JSON.parse(initPositions.dragPositions);
+                            const items = grid.querySelectorAll('#grid-item');
+                            // Add unkown card to packery
+                            for (let i = 0; i < items.length; i++) {
+                                const posElem = pckry.getItemElements();
+                                // If card is not in last pos add it.
+                                posElem.forEach((element, index) => { posElem[index] = element.getAttribute('data-item-id'); });
+                                if (!posElem.includes(items[i].getAttribute('data-item-id')))
+                                    pckry.addItems(items[i]);
+                            }
+                            // init layout with saved positions
+                            pckry.initShiftLayout(pos, 'data-item-id');
+                            // Drag card
+                            for (let i = 0; i < items.length; i++) {
+                                const draggie = new Draggabilly(items[i]);
+                                pckry.bindDraggabillyEvents(draggie);
+                            }
+                        });
+                        // save drag positions
+                        pckry.on('dragItemPositioned', function () {
+                            chrome.storage.sync.setAsync({ 'dragPositions': JSON.stringify(pckry.getShiftPositions('data-item-id')) });
+                        });
+                    }
+                }, 250);
+            }
 
             $scope.toggle = function (card, on) {
                 const self = this;
@@ -154,7 +169,7 @@ angular.module('cardboard.controllers')
                             // Denied, we don't enable the card
                             tracker.sendEvent('Card', 'Denied', card.name);
                             disable(card);
-                            //toast("Card needs permission to run", 4000);
+                            Materialize.toast("Card needs permission to run", 4000);
                         });
                 else
                     Permissions.remove({ permissions: card.permissions })
@@ -204,11 +219,11 @@ angular.module('cardboard.controllers')
                 Settings.set({ 'cards': $scope.cards });
                 const selector = '[data-item-id="' + card.name + '"]'
                 const itemElem = document.querySelector(selector);
+                pckry.remove(itemElem);
+                chrome.storage.sync.setAsync({ 'dragPositions': JSON.stringify(pckry.getShiftPositions('data-item-id')) });
                 $timeout(function () {
-                    pckry.remove(itemElem);
-                    chrome.storage.sync.setAsync({ 'dragPositions': JSON.stringify(pckry.getShiftPositions('data-item-id')) });
                     pckry.shiftLayout();
-                }, 400);
+                }, 250);
             }
 
             function checkCardsEnabled() {
