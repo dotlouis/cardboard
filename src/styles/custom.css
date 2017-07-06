@@ -218,8 +218,10 @@ button.disabled
 .card ::-webkit-scrollbar {
     display: none;
 }
-.card .card-title{
+#feed .card .card-title {
     cursor: move;
+}
+.card .card-title{
     padding: 12px 20px;
     color: white;
     background-color: #546e7a;
