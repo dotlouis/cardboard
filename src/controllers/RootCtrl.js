@@ -8,7 +8,8 @@ angular.module('cardboard.controllers')
         'ChromePermissions',
         'ChromeSettings',
         'TrendsFactory',
-        function ($scope, $location, $http, $timeout, DefaultSettings, Permissions, Settings, Trends) {
+        'DoodlesFactory',
+        function ($scope, $location, $http, $timeout, DefaultSettings, Permissions, Settings, Trends, Doodles) {
 
             // we gather all the settings
             $scope.settings = Settings.get().then(function (settings) {
@@ -28,6 +29,13 @@ angular.module('cardboard.controllers')
                 $scope.trends = settings.sync.trends;
                 $scope.trends.data = Trends.get($scope.trends.enabled);
                 $scope.trends.start = true
+
+                // Init doodles
+                $scope.doodles = settings.sync.doodles;
+                const doodles = Doodles.get($scope.doodles.enabled);
+                Promise.resolve(doodles, () => { }).then(function (str) {
+                    $scope.doodles.data = str;
+                });
 
                 // If local background (dataURl) we get it from cache
                 for (var i in settings.sync.backgrounds)

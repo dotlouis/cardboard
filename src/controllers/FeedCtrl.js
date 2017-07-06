@@ -191,16 +191,8 @@ angular.module('cardboard.controllers')
                 $timeout(function () {
                     const selector = '[data-item-id="' + card.name + '"]'
                     const itemElem = document.querySelector(selector);
-                    if (!pckry) {
-                        const grid = document.querySelector('#grid');
-                        pckry = new Packery(grid, {
-                            itemSelector: '#grid-item',
-                            columnWidth: 400,
-                            gutter: 10,
-                            percentPosition: true,
-                            initLayout: false,
-                        });
-                    }
+                    if (!pckry)
+                        return;
                     pckry.appended(itemElem);
                     // save drag positions
                     chrome.storage.sync.setAsync({ 'dragPositions': JSON.stringify(pckry.getShiftPositions('data-item-id')) });

@@ -15,6 +15,8 @@
         <div class="sub-setting">
             <p>Display daily search trends in the header</p>
             <div class="switch"><label>Google Trends<input type="checkbox" ng-model="$parent.trends.enabled" ng-change="save('trends',$parent.trends); track('Trends',($parent.trends.enabled ? 'Enabled': 'Disabled'))"><span class="lever"></span></label></div>
+            <p>Display Google doodles</p>
+            <div class="switch"><label>Google Doodles<input type="checkbox" ng-model="$parent.doodles.enabled" ng-change="save('doodles',$parent.doodles); track('Doodles',($parent.doodles.enabled ? 'Enabled': 'Disabled'))"><span class="lever"></span></label></div>
         </div>
     </div>
 

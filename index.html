@@ -24,6 +24,7 @@
 		 class="header-typer trends">
 			<my-typer source="trends.data" start="trends.start" term="trendTerm"></my-typer>
 		</div>
+		<img class="doodle" ng-show="route() == '/feed' && doodles.enabled" ng-src="{{doodles.data}}" />
 		<my-typer ng-show="route() == '/settings'" source="['Settings']" start="route() == '/settings'" class="header-typer"></my-typer>
 		<div id="more" ng-show="route() == '/feed'"><a ng-href="#!/settings" ng-click="wipe()"><i class="material-icons small waves-effect waves-light white-text">settings</i></a></div>
 	</header>
@@ -67,7 +68,7 @@
 	<script src="/src/filters/Bytes.js"></script>
 	<script src="/src/factories/bootstrap.js"></script>
 	<script src="/src/factories/TrendsFactory.js"></script>
-	<script src="/src/factories/DoodleFactory.js"></script>
+	<script src="/src/factories/DoodlesFactory.js"></script>
 	<script src="/src/factories/ChromeSettings.js"></script>
 	<script src="/src/directives/bootstrap.js"></script>
 	<script src="/src/directives/Typer.js"></script>
