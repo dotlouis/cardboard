@@ -219,6 +219,7 @@ button.disabled
     display: none;
 }
 .card .card-title{
+    cursor: move;
     padding: 12px 20px;
     color: white;
     background-color: #546e7a;

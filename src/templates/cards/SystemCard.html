@@ -45,23 +45,14 @@
     }
 
     .card.system .storage .wrapper-info {
-        border-width: 1px;
-        border-style: solid;
-        border-color: #ddd;
-        border-bottom-style: none;
-        border-radius: 5px;
         margin: 0;
     }
 
     .card.system .storage-unit {
         display: flex;
         align-items: center;
-        border-width: 1px;
-        border-style: solid;
-        border-color: #ddd;
-        border-bottom-style: none;
         padding: 5px 7px;
-        height: 50px;
+        height: 40px;
     }
 
     .card.system .storage-unit .progress {
@@ -75,15 +66,11 @@
     .card.system .storage-unit p {
         margin-bottom: 0;
         z-index: 2;
-        margin-left: 15px;
     }
 
     .card.system .storage-unit i {
-        font-size: 25px;
-        height: 37px;
-        width: 25px;
-        z-index: 2;
-        flex-shrink: 0;
+        color: #424242;
+        font-size: 1.25rem;
     }
 
     .card.system .storage-unit .disk-name {
@@ -95,11 +82,6 @@
         flex-shrink: 0;
         z-index: 2;
     }
-
-    .card.system i.fixed {
-        height: 0;
-        width: 0;
-    }
 </style>
 <div id="grid-item" data-item-id="{{card.name}}">
     <div class="card system" ng-controller="SystemCtrl">
@@ -110,7 +92,7 @@
         <div class="card-content">
             <div class="wrapper cpu">
                 <div class="wrapper-name">
-                    <i class="material-icons">memory</i>
+                    <i class="material-icons">nfc</i>
                     <div>CPU</div>
                 </div>
                 <div class="wrapper-info">
@@ -122,7 +104,7 @@
             </div>
             <div class="wrapper memory">
                 <div class="wrapper-name">
-                    <i class="material-icons">view_column</i>
+                    <i class="material-icons">memory</i>
                     <div>Memory</div>
                 </div>
                 <div class="wrapper-info">
@@ -138,14 +120,15 @@
                 </div>
                 <ul class="wrapper-info">
                     <li class="storage-unit waves-effect" ng-repeat="unit in storage">
-                        <i ng-if="unit.type == 'removable'" class="material-icons small" ng-class="{'fixed':unit.type == 'fixed'}">usb</i>
-                        <i ng-if="unit.type != 'removable'" ng-class="{'fixed':unit.type == 'fixed'}"></i>
-                        <p ng-if="unit.name" class="disk-name">{{unit.name}}</p>
-                        <p ng-if="!unit.name" class="disk-name">{{unit.capacity | bytes}} Volume</p>
-                        <p class="disk-capacity">{{unit.available | bytes}} available of {{unit.capacity | bytes}}</p>
-                        <div class="progress">
-                            <div class="determinate" style="transition: transform .5s ease-in-out; width: 100%; overflow: hidden; transform: translateX(-{{unit.percent}}%);"></div>
-                        </div>
+                        <i ng-if="unit.type == 'removable'" class="material-icons">usb</i>
+                        <!--<i ng-if="unit.type != 'removable'" class="material-icons">dns</i>-->
+                        <p ng-if="unit.name" class="disk-name" title="{{unit.name}}">{{ unit.name | limitTo: 25 }}{{unit.name.length
+                            < 25 ? '' : '...'}}</p>
+                                <p ng-if="!unit.name" class="disk-name">{{unit.capacity | bytes}} Volume</p>
+                                <p class="disk-capacity">{{unit.used | bytes}}/{{unit.capacity | bytes}}</p>
+                                <div class="progress">
+                                    <div class="determinate" style="transition: transform .5s ease-in-out; width: 100%; overflow: hidden; transform: translateX(-{{unit.percent}}%);"></div>
+                                </div>
                     </li>
                 </ul>
             </div>
