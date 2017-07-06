@@ -11,7 +11,6 @@ angular.module('cardboard.factories')
                         Materialize.toast("Can't load doodles", 4000);
                         deferred.resolve(['Google Doodles']);
                     } else {
-                        console.log(res.data.doodles[0]);
                         const doodles = { url: "https://www.google.com/doodles/" + res.data.doodles[0].name, img: "https:" + res.data.doodles[0].hires_url };
                         // update the lastRefresh Date and cache trends data
                         chrome.storage.local.setAsync({
@@ -35,7 +34,6 @@ angular.module('cardboard.factories')
             Doodles.get = function (enabled = false) {
                 return chrome.storage.local.getAsync("doodles")
                     .then(function (cache) {
-                        return fromNetwork();
                         // if there is nothing in cache we load doodle from network
                         if (!cache.doodles)
                             return fromNetwork();
