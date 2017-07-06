@@ -17,11 +17,13 @@ angular.module('cardboard.controllers')
             });
 
             chrome.system.storage.getInfoAsync().then(function (storage) {
+                console.log(storage);
                 $scope.$apply(function () {
                     storage.forEach(function (disk, index) {
                         chrome.system.storage.getAvailableCapacity(disk.id, function (res) {
                             storage[index].available = res.availableCapacity;
                             storage[index].percent = (storage[index].available / storage[index].capacity) * 100;
+                            storage[index].used = storage[index].capacity - storage[index].available;
                             $scope.storage = storage;
                         });
                     });
