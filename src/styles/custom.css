@@ -254,7 +254,6 @@ button.disabled
 .card .tabs .indicator{
 	background-color: white;
     height: 4px;
-	z-index: 1;
 }
 .card .card-content{
     padding: 10px 0;
