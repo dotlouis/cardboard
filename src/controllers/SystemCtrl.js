@@ -24,10 +24,12 @@ angular.module('cardboard.controllers')
                                 storage[index].available = res.availableCapacity;
                                 storage[index].percent = (storage[index].available / storage[index].capacity) * 100;
                                 storage[index].used = storage[index].capacity - storage[index].available;
+                                $scope.dev = true;
                                 $scope.storage = storage;
                             });
                         });
                     } catch (err) {
+                        $scope.dev = false;
                         $scope.storage = storage;
                     }
                 });

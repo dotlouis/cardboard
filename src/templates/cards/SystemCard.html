@@ -121,14 +121,14 @@
                 <ul class="wrapper-info">
                     <li class="storage-unit waves-effect" ng-repeat="unit in storage">
                         <i ng-if="unit.type == 'removable'" class="material-icons">usb</i>
-                        <p ng-if="!unit.used" ng-if="unit.name" class="disk-name" title="{{unit.name}}">{{ unit.name | limitTo: 25 }}{{unit.name.length
+                        <p ng-if="!dev" ng-if="unit.name" class="disk-name" title="{{unit.name}}">{{ unit.name | limitTo: 25 }}{{unit.name.length
                             < 25 ? '' : '...'}}</p>
                                 <p ng-if="!unit.name" class="disk-name">{{unit.capacity | bytes}} Volume</p>
                                 <p class="disk-capacity">{{unit.used | bytes}}/{{unit.capacity | bytes}}</p>
                                 <div class="progress">
                                     <div class="determinate" style="transition: transform .5s ease-in-out; width: 100%; overflow: hidden; transform: translateX(-{{unit.percent}}%);"></div>
                                 </div>
-                                <p ng-if="unit.used" ng-if="unit.name" class="disk-name" title="{{unit.name}}">{{ unit.name | limitTo: 25 }}{{unit.name.length
+                                <p ng-if="dev" ng-if="unit.name" class="disk-name" title="{{unit.name}}">{{ unit.name | limitTo: 25 }}{{unit.name.length
                                     < 25 ? '' : '...'}}</p>
                                         <p ng-if="!unit.name" class="disk-name">{{unit.capacity | bytes}} Volume</p>
                                         <p class="disk-capacity">{{unit.capacity | bytes}}</p>
