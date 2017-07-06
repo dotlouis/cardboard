@@ -12,6 +12,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
         flex-basis: 55px;
         font-size: 12px;
         font-weight: bold;
@@ -44,7 +45,11 @@
     }
 
     .card.system .storage .wrapper-info {
-        padding-top: 5px;
+        border-width: 1px;
+        border-style: solid;
+        border-color: #ddd;
+        border-bottom-style: none;
+        border-radius: 5px;
         margin: 0;
     }
 
@@ -59,12 +64,17 @@
         height: 50px;
     }
 
-    .card.system .storage-unit:last-child {
-        border-bottom-style: solid;
+    .card.system .storage-unit .progress {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        margin: 0;
+        border-radius: 0;
     }
 
     .card.system .storage-unit p {
         margin-bottom: 0;
+        z-index: 2;
         margin-left: 15px;
     }
 
@@ -72,15 +82,18 @@
         font-size: 25px;
         height: 37px;
         width: 25px;
+        z-index: 2;
         flex-shrink: 0;
     }
 
     .card.system .storage-unit .disk-name {
         flex-grow: 1;
+        z-index: 2;
     }
 
     .card.system .storage-unit .disk-capacity {
         flex-shrink: 0;
+        z-index: 2;
     }
 
     .card.system i.fixed {
@@ -129,7 +142,10 @@
                         <i ng-if="unit.type != 'removable'" ng-class="{'fixed':unit.type == 'fixed'}"></i>
                         <p ng-if="unit.name" class="disk-name">{{unit.name}}</p>
                         <p ng-if="!unit.name" class="disk-name">{{unit.capacity | bytes}} Volume</p>
-                        <p class="disk-capacity">{{unit.capacity | bytes}}</p>
+                        <p class="disk-capacity">{{unit.available | bytes}} available of {{unit.capacity | bytes}}</p>
+                        <div class="progress">
+                            <div class="determinate" style="transition: transform .5s ease-in-out; width: 100%; overflow: hidden; transform: translateX(-{{unit.percent}}%);"></div>
+                        </div>
                     </li>
                 </ul>
             </div>
