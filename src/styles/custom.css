@@ -66,6 +66,7 @@ header{
 }
 .trends{
     cursor: pointer;
+    z-index: 2;
 }
 #more{
     position: absolute;

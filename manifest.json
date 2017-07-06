@@ -23,7 +23,7 @@
         "system.memory",
         "system.storage",
         "https://hawttrends.appspot.com/api/terms/",
-        "https://www.google.com/doodles/doodles.xml"
+        "https://www.google.com/doodles/search"
     ],
     "optional_permissions": [
         "tabs",
