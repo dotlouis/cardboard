@@ -241,7 +241,9 @@ button.disabled
     color: #757575;
 }
 .card .dropdown-card-btn{
-    margin-left: auto;
+    position: absolute;
+    top: 3.5%;
+    right: 18px;
     margin-right: -18px;
     display: inline-flex;
 }
