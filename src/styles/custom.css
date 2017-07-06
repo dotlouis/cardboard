@@ -69,9 +69,13 @@ header{
     z-index: 2;
 }
 .doodle {
+    z-index: 2;
+    margin: 0 auto;
+    text-align: center;
+}
+.doodle > img {
     max-width: 100%;
-    max-height: 100%;
-    margin: auto;
+    max-height: 200px;
 }
 #more{
     position: absolute;
