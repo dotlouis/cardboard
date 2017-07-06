@@ -29,7 +29,7 @@ angular.module('cardboard.controllers')
             $scope.saveBackgroundFromDevice = function () {
                 // backgroundFromDevice is defined into <bg-pick> (directive)
                 if (!this.backgroundFromDevice)
-                    toast("no file selected", 4000);
+                    Materialize.toast("no file selected", 4000);
                 else
                     this.backgroundFromDevice.then(function (bg) {
                         $scope.track('Background', 'Saved', 'From Device');
@@ -44,7 +44,7 @@ angular.module('cardboard.controllers')
             $scope.saveBackgroundFromUrl = function () {
                 // backgroundFromUrl is defined via ng-model (view)
                 if (!this.backgroundFromUrl)
-                    toast("invalid URL", 4000);
+                    Materialize.toast("invalid URL", 4000);
                 else {
                     $scope.track('Background', 'Saved', 'From URL');
                     $scope.backgroundSave({

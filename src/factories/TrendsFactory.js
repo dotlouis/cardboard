@@ -10,7 +10,7 @@ angular.module('cardboard.factories')
                     // Load trends (even if disabled to allow quick toggle)
                     .then(function (res) {
                         if (res.status !== 200) {
-                            toast("Can't load trends", 4000);
+                            Materialize.toast("Can't load trends", 4000);
                             deferred.resolve(['Google Trends']);
                         } else {
                             let allTrends = [];
@@ -29,7 +29,7 @@ angular.module('cardboard.factories')
                             deferred.resolve(shuffle(allTrends));
                         }
                     }, function (error) {
-                        toast("Can't load trends", 4000);
+                        Materialize.toast("Can't load trends", 4000);
                         deferred.resolve(['Google Trends']);
                     });
 

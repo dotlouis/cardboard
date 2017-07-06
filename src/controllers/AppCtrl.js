@@ -5,27 +5,26 @@ angular.module('cardboard.controllers')
             $scope.apps = [];
             $scope.extensions = [];
             $scope.themes = [];
-            if (!chrome.management.getAll)
-                return;
-            chrome.management.getAll(function (all) {
-                angular.forEach(all, function (value, key) {
-                    if (value.type == "extension")
-                        $scope.extensions.push(value);
-                    else if (value.type == "theme")
-                        $scope.themes.push(value);
-                    else if (value.enabled) {
-                        if ($scope.$parent.card.settings && $scope.$parent.card.settings[value.id])
-                            value.frequency = $scope.$parent.card.settings[value.id].frequency;
-                        else
-                            value.frequency = 0;
+            if (chrome.management.getAll)
+                chrome.management.getAll(function (all) {
+                    angular.forEach(all, function (value, key) {
+                        if (value.type == "extension")
+                            $scope.extensions.push(value);
+                        else if (value.type == "theme")
+                            $scope.themes.push(value);
+                        else if (value.enabled) {
+                            if ($scope.$parent.card.settings && $scope.$parent.card.settings[value.id])
+                                value.frequency = $scope.$parent.card.settings[value.id].frequency;
+                            else
+                                value.frequency = 0;
 
-                        $scope.apps.push(value);
-                    }
+                            $scope.apps.push(value);
+                        }
+                    });
+                    $scope.$apply();
                 });
-                $scope.$apply();
-                $scope.initDropdowns('.card.apps .dropdown-card-btn');
-                $('.card.apps .tooltipped').tooltip({ delay: 1000 });
-            });
+            $scope.initDropdowns('.card.apps .dropdown-card-btn');
+            $('.card.apps .tooltipped').tooltip({ delay: 1000 });
 
             $scope.launch = function () {
                 if (this.app.launchType == "OPEN_AS_WINDOW")
@@ -33,7 +32,7 @@ angular.module('cardboard.controllers')
             }
 
             $scope.getIcon = function () {
-                var icon_url;
+                let icon_url;
                 if (this.app.icons)
                     icon_url = this.app.icons[this.app.icons.length - 1].url;
                 else
