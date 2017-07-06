@@ -26,14 +26,8 @@ angular.module('cardboard.controllers')
 
                 // Init trends
                 $scope.trends = settings.sync.trends;
-                if ($scope.trends.enabled)
-                    $scope.trends.data = Trends.get();
+                $scope.trends.data = Trends.get($scope.trends.enabled);
                 $scope.trends.start = true
-
-                $http.get("https://www.google.com/doodles/search?query=France").then(function (res) {
-                    $('header').append('<img src="http:' + res.data.doodles[0].hires_url + '">');
-                    console.log(res.data.doodles[0].hires_url);
-                });
 
                 // If local background (dataURl) we get it from cache
                 for (var i in settings.sync.backgrounds)

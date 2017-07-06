@@ -36,14 +36,14 @@ angular.module('cardboard.factories')
                 return deferred.promise;
             }
 
-            Trends.get = function () {
+            Trends.get = function (enabled = false) {
                 return chrome.storage.local.getAsync("trends")
                     .then(function (cache) {
                         // if there is nothing in cache we load trends from network
                         if (!cache.trends)
                             return fromNetwork();
-                        // if cache is outdated (1 day)
-                        else if (!(new Date(cache.trends.lastRefresh).isSameDateAs(new Date())))
+                        // if cache is outdated (1 day) and trends enabled
+                        else if (enabled && !(new Date(cache.trends.lastRefresh).isSameDateAs(new Date())))
                             return fromNetwork();
                         // we return the cached trends
                         return shuffle(cache.trends.data);
