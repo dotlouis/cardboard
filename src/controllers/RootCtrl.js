@@ -79,7 +79,10 @@ angular.module('cardboard.controllers')
             /********* USEFUL STUFF **********/
 
             $scope.getFavicon = function (url) {
-                return DefaultSettings.faviconURL + encodeURI(url);
+                const regex = /(chrome:\/\/|view-source:)/ig;
+                if (!regex.test(url))
+                    return DefaultSettings.faviconURL + encodeURI(url);
+                return "";
             };
 
             $scope.initDropdowns = function (selector) {
