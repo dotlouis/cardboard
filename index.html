@@ -25,7 +25,7 @@
 			<my-typer source="trends.data" start="trends.start" term="trendTerm"></my-typer>
 		</div>
 		<my-typer ng-show="route() == '/settings'" source="['Settings']" start="route() == '/settings'" class="header-typer"></my-typer>
-		<div id="more" ng-show="route() == '/feed'"><a ng-href="#!/settings" ng-click="wipe()"><i class="material-icons small waves-effect waves-light white-text">more_vert</i></a></div>
+		<div id="more" ng-show="route() == '/feed'"><a ng-href="#!/settings" ng-click="wipe()"><i class="material-icons small waves-effect waves-light white-text">settings</i></a></div>
 	</header>
 	<div class="global progress" ng-class="{'loading':$root.loading}">
 		<div class="indeterminate"></div>
