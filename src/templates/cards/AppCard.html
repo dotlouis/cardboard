@@ -43,8 +43,10 @@
 <div id="grid-item" data-item-id="{{card.name}}">
 	<div class="card apps" ng-controller="AppCtrl">
 		<div class="card-title">
-			Apps
-			<span data-activates="dropdown-card-apps" class="dropdown-card-btn"><i class="material-icons small waves-effect waves-light">more_vert</i></span>
+			<span>
+                <i class="material-icons">{{card.icon}}</i> Apps
+                <span data-activates="dropdown-card-system" class="dropdown-card-btn"><i class="material-icons small waves-effect waves-light">more_vert</i></span>
+			</span>
 		</div>
 		<ul class="card-content">
 			<li class="app waves-effect tooltipped" data-position="bottom" data-tooltip="Chrome Web Store">

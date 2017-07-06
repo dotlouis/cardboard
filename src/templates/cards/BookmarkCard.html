@@ -64,8 +64,10 @@
 <div id="grid-item" data-item-id="{{card.name}}">
 	<div class="card bookmarks" ng-controller="BookmarkCtrl">
 		<div class="card-title">
-			Bookmarks
-			<span data-activates="dropdown-card-bookmarks" class="dropdown-card-btn"><i class="material-icons small waves-effect waves-light">more_vert</i></span>
+			<span>
+                <i class="material-icons">{{card.icon}}</i> Bookmarks
+                <span data-activates="dropdown-card-system" class="dropdown-card-btn"><i class="material-icons small waves-effect waves-light">more_vert</i></span>
+			</span>
 		</div>
 		<ul class="tabs">
 			<li class="tab waves-effect waves-light"><a href="#recent-bookmarks">Recents</a></li>
