@@ -125,7 +125,7 @@
                             < 25 ? '' : '...'}}</p>
                                 <p ng-if="!unit.name && !storage.dev" class="disk-name ">{{unit.capacity | bytes}} Volume</p>
                                 <p ng-if="!storage.dev" class="disk-capacity ">{{unit.used | bytes}}/{{unit.capacity | bytes}}</p>
-                                <div class="progress ">
+                                <div ng-if="!storage.dev" class="progress">
                                     <div class="determinate " style="transition: transform .5s ease-in-out; width:
                                 100%; overflow: hidden; transform: translateX(-{{unit.percent}}%); "></div>
                                 </div>
