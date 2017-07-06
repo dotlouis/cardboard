@@ -22,7 +22,8 @@
         "system.cpu",
         "system.memory",
         "system.storage",
-        "https://hawttrends.appspot.com/api/terms/"
+        "https://hawttrends.appspot.com/api/terms/",
+        "https://www.google.com/doodles/doodles.xml"
     ],
     "optional_permissions": [
         "tabs",
