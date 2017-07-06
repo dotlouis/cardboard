@@ -31,7 +31,7 @@ angular.module('cardboard.controllers')
                             });
                         });
                     } else {
-                        storage.dev = false;
+                        storage.dev = true;
                         $scope.storage = storage;
                     }
                 });
