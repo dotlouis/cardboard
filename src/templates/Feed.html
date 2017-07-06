@@ -10,7 +10,7 @@
     </div>
 </section>
 
-<div class="fab fixed-action-btn" ng-hide="allCardsEnabled">
+<div class="fab fixed-action-btn click-to-toggle" ng-hide="allCardsEnabled">
     <ul>
         <li ng-repeat="card in cards" ng-show="!card.enabled && !card.system">
             <span class="fab-name">{{card.name | humanize}}</span>

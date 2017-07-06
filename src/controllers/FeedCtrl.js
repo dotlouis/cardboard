@@ -248,10 +248,10 @@ angular.module('cardboard.controllers')
 
             /********* FAB STUFF **********/
 
-            var fab = $('.fixed-action-btn');
-            fab.off("mouseenter mouseleave"); // Disable FAB on hover
+            var fab = $('.fab');
+            //fab.off("mouseenter mouseleave"); // Disable FAB on hover
 
-            $('.fixed-action-btn').mouseleave(fabOff);
+            //$('.fixed-action-btn').mouseleave(fabOff);
 
             $scope.triggerFab = function () {
                 if ($scope.fab)
@@ -261,31 +261,12 @@ angular.module('cardboard.controllers')
             };
 
             function fabOn() {
-                var time = 0;
-                fab.children('ul').css('display', 'block');
-                fab.find('ul a.btn-floating').reverse().each(function () {
-                    $(this).velocity(
-                        { opacity: "1", scaleX: "1", scaleY: "1", translateY: "0" },
-                        { duration: 100, delay: time });
-                    time += 40;
-                });
+                $('.btn-floating > i:last').css({ '-webkit-transform': 'rotate(405deg)' });
                 $scope.fab = true;
             }
 
             function fabOff() {
-                var time = 0;
-                fab.find('ul a.btn-floating').velocity("stop", true);
-                fab.find('ul a.btn-floating').velocity(
-                    { opacity: "0", scaleX: ".4", scaleY: ".4", translateY: "40px" },
-                    {
-                        duration: 100,
-                        complete: function () {
-                            setTimeout(function () {
-                                fab.children('ul').css('display', 'none');
-                            }, 50);
-                        }
-                    });
-
+                $('.btn-floating > i:last').css({ '-webkit-transform': 'rotate(0deg)' });
                 $scope.fab = false;
             }
 
