@@ -192,6 +192,10 @@ angular.module('cardboard', [
 				url: "https://hawttrends.appspot.com/api/terms/",
 				enabled: true
 			},
+			doodles: {
+				url: "https://www.google.com/doodles/search?query=France",
+				enabled: false
+			},
 			cards: [
 				{
 					name: "apps",

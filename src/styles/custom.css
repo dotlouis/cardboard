@@ -68,16 +68,22 @@ header{
     cursor: pointer;
     z-index: 2;
 }
+.doodle {
+    max-width: 100%;
+    max-height: 100%;
+    margin: auto;
+}
 #more{
     position: absolute;
     top: 0;
     right: 0;
-    z-index: 1;
+    z-index: 3;
 }
 #more i{
     margin: 10px;
     padding: 0 7.5px;
     border-radius: 50%;
+    text-shadow: 0px 0px 1px #000000;
 }
 
 #back i{
