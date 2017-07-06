@@ -174,7 +174,7 @@ angular.module('cardboard.controllers')
                         chrome.storage.sync.setAsync({ 'dragPositions': JSON.stringify(pckry.getShiftPositions('data-item-id')) });
                         const draggie = new Draggabilly(itemElem);
                         pckry.bindDraggabillyEvents(draggie);
-                    }, 200);
+                    }, 400);
                 }, 0);
             }
             function disable(card) {
