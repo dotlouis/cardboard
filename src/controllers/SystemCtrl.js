@@ -17,8 +17,8 @@ angular.module('cardboard.controllers')
             });
 
             chrome.system.storage.getInfoAsync().then(function (storage) {
-                try {
-                    $scope.$apply(function () {
+                $scope.$apply(function () {
+                    if (chrome.system.storage.getAvailableCapacity) {
                         storage.forEach(function (disk, index) {
                             chrome.system.storage.getAvailableCapacity(disk.id, function (res) {
                                 if (res) {
@@ -30,14 +30,11 @@ angular.module('cardboard.controllers')
                                 }
                             });
                         });
-                    });
-                } catch (err) {
-                    console.log("test");
-                    $scope.$apply(function () {
+                    } else {
                         storage.dev = false;
                         $scope.storage = storage;
-                    });
-                }
+                    }
+                });
             });
 
             chrome.system.storage.onAttached.addListener(function (storage) {
