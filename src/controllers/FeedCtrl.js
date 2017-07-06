@@ -168,11 +168,13 @@ angular.module('cardboard.controllers')
                 $timeout(function () {
                     const selector = '[data-item-id="' + card.name + '"]'
                     const itemElem = document.querySelector(selector);
-                    pckry.appended(itemElem);
-                    // save drag positions
-                    chrome.storage.sync.setAsync({ 'dragPositions': JSON.stringify(pckry.getShiftPositions('data-item-id')) });
-                    const draggie = new Draggabilly(itemElem);
-                    pckry.bindDraggabillyEvents(draggie);
+                    $timeout(function () {
+                        pckry.appended(itemElem);
+                        // save drag positions
+                        chrome.storage.sync.setAsync({ 'dragPositions': JSON.stringify(pckry.getShiftPositions('data-item-id')) });
+                        const draggie = new Draggabilly(itemElem);
+                        pckry.bindDraggabillyEvents(draggie);
+                    }, 200);
                 }, 0);
             }
             function disable(card) {
