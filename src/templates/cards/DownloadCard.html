@@ -87,8 +87,10 @@
 <div id="grid-item" data-item-id="{{card.name}}">
 	<div class="card downloads" ng-controller="DownloadCtrl">
 		<div class="card-title">
-			Downloads
-			<span data-activates="dropdown-card-download" class="dropdown-card-btn"><i class="material-icons small waves-effect waves-light">more_vert</i></span>
+			<span>
+                <i class="material-icons">{{card.icon}}</i> Downloads
+                <span data-activates="dropdown-card-system" class="dropdown-card-btn"><i class="material-icons small waves-effect waves-light">more_vert</i></span>
+			</span>
 		</div>
 		<ul class="card-content">
 			<li ng-repeat="download in downloads | limitTo: '5'" ng-click="open(); track(card.name, 'Opened')" class="download waves-effect">

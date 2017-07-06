@@ -226,11 +226,18 @@ button.disabled
     color: white;
     background-color: #546e7a;
 }
+.card .card-title > span {
+    display: flex;
+    align-items: center;
+}
+.card .card-title > span > i {
+    padding-right: 10px;
+}
 .card p label{
     color: #757575;
 }
 .card .dropdown-card-btn{
-    float: right;
+    margin-left: auto;
     margin-right: -18px;
     display: inline-flex;
 }

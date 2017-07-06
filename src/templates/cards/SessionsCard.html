@@ -51,8 +51,10 @@
 <div id="grid-item" data-item-id="{{card.name}}">
 	<div class="card sessions" ng-controller="SessionsCtrl">
 		<div class="card-title">
-			Sessions
-			<span data-activates="dropdown-card-sessions" class="dropdown-card-btn"><i class="material-icons small waves-effect waves-light">more_vert</i></span>
+			<span>
+                <i class="material-icons">{{card.icon}}</i> Sessions
+                <span data-activates="dropdown-card-system" class="dropdown-card-btn"><i class="material-icons small waves-effect waves-light">more_vert</i></span>
+			</span>
 		</div>
 		<ul class="tabs">
 			<li class="tab waves-effect waves-light"><a ng-href="#tab-content-recent">Recently Closed</a></li>

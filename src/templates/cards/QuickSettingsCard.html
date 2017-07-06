@@ -19,8 +19,10 @@
 <div id="grid-item" data-item-id="{{card.name}}">
 	<div class="card quicksettings" ng-controller="QuickSettingsCtrl">
 		<div class="card-title">
-			Quick Settings
-			<span data-activates="dropdown-card-quicksettings" class="dropdown-card-btn"><i class="material-icons small waves-effect waves-light">more_vert</i></span>
+			<span>
+                <i class="material-icons">{{card.icon}}</i> Quick Settings
+                <span data-activates="dropdown-card-system" class="dropdown-card-btn"><i class="material-icons small waves-effect waves-light">more_vert</i></span>
+			</span>
 		</div>
 		<div class="card-content">
 			<p>
