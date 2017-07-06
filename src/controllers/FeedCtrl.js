@@ -193,7 +193,7 @@ angular.module('cardboard.controllers')
                             pckry.bindDraggabillyEvents(draggie);
                         }, 0)
                     }, 400);
-                }, 0);
+                }, 250);
             }
             function disable(card) {
                 $scope.$apply(function () {
@@ -248,10 +248,7 @@ angular.module('cardboard.controllers')
 
             /********* FAB STUFF **********/
 
-            var fab = $('.fab');
-            //fab.off("mouseenter mouseleave"); // Disable FAB on hover
-
-            //$('.fixed-action-btn').mouseleave(fabOff);
+            const fab = $('.fab');
 
             $scope.triggerFab = function () {
                 if ($scope.fab)
