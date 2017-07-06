@@ -30,6 +30,10 @@ angular.module('cardboard.controllers')
                     $scope.trends.data = Trends.get();
                 $scope.trends.start = true
 
+                $http.get("https://www.google.com/doodles/doodles.xml").then(function (res) {
+                    console.log(xmlToJson(new DOMParser().parseFromString(res.data, 'text/xml')).rss.channel.item);
+                });
+
                 // If local background (dataURl) we get it from cache
                 for (var i in settings.sync.backgrounds)
                     if (settings.sync.backgrounds[i].type == "Local" && settings.sync.backgrounds[i].url)
@@ -79,7 +83,7 @@ angular.module('cardboard.controllers')
 
             /********* USEFUL STUFF **********/
 
-            $scope.xmlToJson = function (xml) {
+            function xmlToJson(xml) {
 
                 // Create the return object
                 var obj = {};
