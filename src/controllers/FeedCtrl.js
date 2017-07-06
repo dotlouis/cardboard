@@ -116,6 +116,12 @@ angular.module('cardboard.controllers')
                         const items = grid.querySelectorAll('#grid-item');
                         for (let i = 0; i < items.length; i++) {
                             const itemElem = items[i];
+                            const posElem = pckry.getItemElements();
+                            posElem.forEach(function (element, index) {
+                                posElem[index] = element.getAttribute('data-item-id');
+                            });
+                            if (!posElem.includes(items[i].getAttribute('data-item-id')))
+                                pckry.addItems(items[i]);
                             const draggie = new Draggabilly(itemElem);
                             pckry.bindDraggabillyEvents(draggie);
                         }
