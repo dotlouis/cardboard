@@ -33,6 +33,10 @@ body {
     background-color: #f5f5f5;
 }
 
+#grid-item {
+    display: none;
+}
+
 .waves-effect{
     z-index: initial;
 }
