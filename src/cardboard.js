@@ -37,7 +37,7 @@ angular.module('cardboard', [
 		function ($rootScope, $location) {
 			// Track route changes
 			$rootScope.$on('$routeChangeSuccess', function () {
-				var path = $location.path();
+				const path = $location.path();
 				tracker.sendAppView(path.substring(1));
 			});
 		}]).value('DefaultSettings', {

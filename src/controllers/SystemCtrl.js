@@ -43,7 +43,7 @@ angular.module('cardboard.controllers')
             });
 
             chrome.system.storage.onDetached.addListener(function (storageId) {
-                for (var i in $scope.storage)
+                for (let i in $scope.storage)
                     if ($scope.storage[i].id == storageId)
                         $scope.storage.splice(i, 1);
                 $scope.$apply();

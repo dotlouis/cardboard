@@ -35,6 +35,7 @@ body {
 
 #grid-item {
     display: none;
+    z-index: 3;
 }
 
 .waves-effect{
