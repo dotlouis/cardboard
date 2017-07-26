@@ -149,7 +149,7 @@ angular.module('cardboard.controllers')
                                     posElem.push(items[i].getAttribute('data-item-id'));
                                     needToSave = true;
                                 }
-                                const draggie = new Draggabilly(items[i]);
+                                const draggie = new Draggabilly(items[i], { handle: '.card-title' });
                                 pckry.bindDraggabillyEvents(draggie);
                             }
                             if (needToSave)
@@ -213,7 +213,7 @@ angular.module('cardboard.controllers')
                     }
                     // save drag positions
                     chrome.storage.sync.setAsync({ 'dragPositions': JSON.stringify(pckry.getShiftPositions('data-item-id')) });
-                    const draggie = new Draggabilly(itemElem);
+                    const draggie = new Draggabilly(itemElem, { handle: '.card-title' });
                     pckry.bindDraggabillyEvents(draggie);
                 }, 200);
             }
