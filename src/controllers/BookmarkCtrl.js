@@ -12,6 +12,10 @@ angular.module('cardboard.controllers')
                     $scope.recents = recents;
                 });
                 $scope.initDropdowns('.card.bookmarks .dropdown-card-btn');
+                // dirty fix for the tab indicator to display at correct size
+                setTimeout(function () {
+                    $('.card.bookmarks .tabs').tabs();
+                }, 450);
             });
 
             // get root bookmarks
