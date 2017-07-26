@@ -62,7 +62,7 @@
 	}
 </style>
 <div id="grid-item" data-item-id="{{card.name}}">
-	<div class="card bookmarks" ng-controller="BookmarkCtrl">
+	<div class="card z-depth-1 bookmarks" ng-controller="BookmarkCtrl">
 		<div class="card-title">
 			<span>
                 <i class="material-icons">{{card.icon}}</i> Bookmarks
@@ -70,8 +70,8 @@
 			</span>
 		</div>
 		<ul class="tabs">
-			<li class="tab waves-effect waves-light"><a href="#recent-bookmarks">Recents</a></li>
-			<li class="tab waves-effect waves-light"><a href="#all-bookmarks" ng-click="track(card.name,'Tab','All')">All</a></li>
+			<li class="tab"><a href="#recent-bookmarks">Recents</a></li>
+			<li class="tab"><a href="#all-bookmarks" ng-click="track(card.name,'Tab','All')">All</a></li>
 		</ul>
 		<ul id="recent-bookmarks" class="card-content">
 			<li ng-repeat="node in recents" ng-include="'node.html'" class="waves-effect"></li>
