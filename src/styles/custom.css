@@ -160,7 +160,7 @@ header {
     display: flex;
     flex-direction: column-reverse;
     align-items: flex-start;
-    z-index: 1;
+    z-index: 4;
 }
 
 .toast {

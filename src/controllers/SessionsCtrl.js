@@ -27,7 +27,7 @@ angular.module('cardboard.controllers')
                     $scope.$apply();
                     $scope.initDropdowns('.card.sessions .dropdown-card-btn');
                     $('.card.sessions .tabs').tabs();
-                    // // dirty fix for the tab indicator to display at correct size
+                    // dirty fix for the tab indicator to display at correct size
                     setTimeout(function () {
                         $('.card.sessions .tabs').tabs('select_tab', 'tab-content-recent');
                     }, 450);
