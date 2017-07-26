@@ -49,7 +49,7 @@
 	}
 </style>
 <div id="grid-item" data-item-id="{{card.name}}">
-	<div class="card sessions" ng-controller="SessionsCtrl">
+	<div class="card z-depth-1 sessions" ng-controller="SessionsCtrl">
 		<div class="card-title">
 			<span>
                 <i class="material-icons">{{card.icon}}</i> Sessions
@@ -57,8 +57,8 @@
 			</span>
 		</div>
 		<ul class="tabs">
-			<li class="tab waves-effect waves-light"><a ng-href="#tab-content-recent">Recently Closed</a></li>
-			<li ng-repeat="(key,node) in devices" class="tab waves-effect waves-light"><a ng-href="#tab-content-{{key}}" ng-click="track(card.name,'Tab','Device')">{{node.deviceName}}</a></li>
+			<li class="tab"><a ng-href="#tab-content-recent">Recently Closed</a></li>
+			<li ng-repeat="(key,node) in devices" class="tab"><a ng-href="#tab-content-{{key}}" ng-click="track(card.name,'Tab','Device')">{{node.deviceName}}</a></li>
 		</ul>
 		<ul id="tab-content-recent" class="card-content">
 			<li ng-repeat="node in recentlyClosed | limitTo:maxRecentlyClosed">

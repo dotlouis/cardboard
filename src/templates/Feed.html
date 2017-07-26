@@ -5,7 +5,7 @@
             <p>Add cards with the button in the bottom right corner</p>
         </div>
         <div ng-repeat="card in cards | filter: {enabled:true} track by card.name" repeat-end="onEnd()" ng-include="card.template"
-            class="z-depth-1 card-wrapper">
+            class="card-wrapper">
         </div>
     </div>
 </section>

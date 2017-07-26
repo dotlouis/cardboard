@@ -34,12 +34,16 @@ Packery.prototype.initShiftLayout = function (positions, attr) {
     this.items = positions.map(function (itemPosition) {
         const selector = '[' + attr + '="' + itemPosition.attr + '"]';
         const itemElem = this.element.querySelector(selector);
-        itemElem.style.display = 'block';
-        let item = this.getItem(itemElem);
-        if (!item)
+        if (itemElem) {
+            itemElem.style.display = 'block';
+            let item = this.getItem(itemElem);
+            if (!item)
+                return false;
+            item.rect.x = Math.round(itemPosition.x * this.packer.width);
+            return item;
+        } else {
             return false;
-        item.rect.x = Math.round(itemPosition.x * this.packer.width);
-        return item;
+        }
     }, this).filter(function (value) {
         return value !== false;
     });
@@ -203,7 +207,10 @@ angular.module('cardboard.controllers')
                 $timeout(function () {
                     const selector = '[data-item-id="' + card.name + '"]'
                     const itemElem = document.querySelector(selector);
-                    pckry.appended(itemElem);
+                    if (itemElem) {
+                        pckry.appended(itemElem);
+                        itemElem.style.display = 'block';
+                    }
                     // save drag positions
                     chrome.storage.sync.setAsync({ 'dragPositions': JSON.stringify(pckry.getShiftPositions('data-item-id')) });
                     const draggie = new Draggabilly(itemElem);
