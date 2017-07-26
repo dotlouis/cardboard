@@ -131,9 +131,10 @@
                                     <div class="determinate " style="transition: transform .5s ease-in-out; width:
                                 100%; overflow: hidden; transform: translateX(-{{unit.percent}}%); "></div>
                                 </div>
-                                <p ng-if="unit.name && storage.dev" class="disk-name " title="{{unit.name}} ">{{ unit.name | limitTo: 25 }}</p>
-                                <p ng-if="!unit.name && storage.dev" class="disk-name ">{{unit.capacity | bytes}} Volume</p>
-                                <p ng-if="storage.dev" class="disk-capacity ">{{unit.capacity | bytes}}</p>
+                                <p ng-if="unit.name && storage.dev" class="disk-name " title="{{unit.name}} ">{{ unit.name | limitTo: 25 }}{{unit.name.length
+                                    < 25 ? '' : '...'}}</p>
+                                        <p ng-if="!unit.name && storage.dev" class="disk-name ">{{unit.capacity | bytes}} Volume</p>
+                                        <p ng-if="storage.dev" class="disk-capacity ">{{unit.capacity | bytes}}</p>
                     </li>
                 </ul>
             </div>
