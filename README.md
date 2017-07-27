@@ -5,7 +5,7 @@ The default New Tab is not Google enough ? Try Cardboard, Now with more Material
 
 [Google + page](https://plus.google.com/115967816314012668475/about)  
 
-v2.0
+v2.1
 ![Cardboard Material](https://cloud.githubusercontent.com/assets/1891109/6474276/b2bddb98-c1ff-11e4-8d9b-1ed6f0593929.png)
 
 ##Installation

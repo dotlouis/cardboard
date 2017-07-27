@@ -13,6 +13,11 @@ Packery.prototype.getShiftPositions = function (attrName) {
 
 Packery.prototype.initShiftLayout = function (positions, attr) {
     if (!positions) {
+        //Unhide cards
+        this.items.forEach(function (item) {
+            if (item)
+                item.element.style.display = 'block';
+        });
         // if no initial positions, run packery layout
         this.layout();
         return;
