@@ -1,23 +1,25 @@
 <section id="feed">
-    <packery column-width="400" gutter="10" transition-duration="0" draggable="{{isDrag}}">
-        <div class="empty-feed" ng-class="{'reveal':allCardsDisabled}">
+    <div id="grid">
+        <div ng-if="allCardsDisabled" class="empty-feed reveal">
             <p class="daily">{{dailyMsg}}</p>
             <p>Add cards with the button in the bottom right corner</p>
         </div>
-        <div ng-repeat="card in cards track by card.name" ng-if="card.enabled" ng-include="card.template" class="card-wrapper"></div>
-    </packery>
+        <div ng-repeat="card in cards | filter: {enabled:true} track by card.name" repeat-end="onEnd()" ng-include="card.template"
+            class="card-wrapper">
+        </div>
+    </div>
 </section>
 
-<div class="fab fixed-action-btn" ng-hide="allCardsEnabled">
+<div class="fab fixed-action-btn click-to-toggle" ng-hide="allCardsEnabled">
     <ul>
         <li ng-repeat="card in cards" ng-show="!card.enabled && !card.system">
             <span class="fab-name">{{card.name | humanize}}</span>
             <a ng-click="toggle(card,true)" class="btn-floating blue-grey waves-effect waves-light" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px); opacity: 0;">
-                <i class="large" ng-class="card.icon"></i>
+                <i class="large material-icons">{{ card.icon }}</i>
             </a>
         </li>
     </ul>
     <a class="btn-floating btn-large red waves-effect waves-light" ng-click="triggerFab()">
-        <i class="large mdi-content-add"></i>
+        <i class="large material-icons">add</i>
     </a>
 </div>

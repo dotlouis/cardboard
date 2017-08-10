@@ -1,46 +1,51 @@
 <style>
-.card.quicksettings{
-	height: 250px;
-}
-.card.quicksettings .card-content p{
-	padding: 4px 20px;
-}
-.card.quicksettings .card-content button{
-	float: right;
-	margin-right: 10px;
-	margin-bottom: 12px;
-	color: #f44336;
-	font-weight: 500;
-	transition-property: color;
-}
+	.card.quicksettings {
+		height: 250px;
+	}
+
+	.card.quicksettings .card-content p {
+		padding: 4px 20px;
+	}
+
+	.card.quicksettings .card-content button {
+		float: right;
+		margin-right: 10px;
+		margin-bottom: 12px;
+		color: #f44336;
+		font-weight: 500;
+		transition-property: color;
+	}
 </style>
-<packery-object>
-<div class="card quicksettings" ng-controller="QuickSettingsCtrl">
-	<div class="card-title">
-		Quick Settings
-		<span data-activates="dropdown-card-quicksettings" class="dropdown-card-btn"><i class="mdi-navigation-more-vert waves-effect waves-light"></i></span>
-	</div>
-	<div class="card-content">
-		<p>
-			<input type="checkbox" id="checkCache" ng-model="clearTypes.cache"/>
-			<label for="checkCache">Cache</label>
-		</p>
-		<p>
-			<input type="checkbox" id="checkCookies" ng-model="clearTypes.cookies"/>
-			<label for="checkCookies">Cookies</label>
-		</p>
-		<p>
-			<input type="checkbox" id="checkHistory" ng-model="clearTypes.history"/>
-			<label for="checkHistory">History</label>
-		</p>
-		<p>
-			<input type="checkbox" id="checkLocalStorage" ng-model="clearTypes.localStorage"/>
-			<label for="checkLocalStorage">Local Storage</label>
-		</p>
-		<button ng-click="clear(); track(card.name, 'Cleared')" ng-class="{'disabled': clearDisabled(), 'waves-light': clearDisabled() && waveTimeout}" class="waves-effect waves-light btn-flat white">{{clearText}}</button>
+<div id="grid-item" data-item-id="{{card.name}}">
+	<div class="card z-depth-1 quicksettings" ng-controller="QuickSettingsCtrl">
+		<div class="card-title">
+			<span>
+                <i class="material-icons">{{card.icon}}</i> Quick Settings
+                <span data-activates="dropdown-card-quicksettings" class="dropdown-card-btn"><i class="material-icons small waves-effect waves-light">more_vert</i></span>
+			</span>
+		</div>
+		<div class="card-content">
+			<p>
+				<input type="checkbox" id="checkCache" ng-model="clearTypes.cache" />
+				<label for="checkCache">Cache</label>
+			</p>
+			<p>
+				<input type="checkbox" id="checkCookies" ng-model="clearTypes.cookies" />
+				<label for="checkCookies">Cookies</label>
+			</p>
+			<p>
+				<input type="checkbox" id="checkHistory" ng-model="clearTypes.history" />
+				<label for="checkHistory">History</label>
+			</p>
+			<p>
+				<input type="checkbox" id="checkLocalStorage" ng-model="clearTypes.localStorage" />
+				<label for="checkLocalStorage">Local Storage</label>
+			</p>
+			<button ng-click="clear(); track(card.name, 'Cleared')" ng-class="{'disabled': clearDisabled(), 'waves-light': clearDisabled() && waveTimeout}"
+			 class="waves-effect waves-light btn-flat white">{{clearText}}</button>
+		</div>
 	</div>
 </div>
-</packery-object>
 
 <ul id="dropdown-card-quicksettings" class="dropdown-content">
 	<li ng-click="goTo('chrome://settings')"><a>More</a></li>

@@ -3,7 +3,7 @@
     "name": "Cardboard - New Tab Page",
     "author": "virtual-dev",
     "description": "The default New Tab is not Google enough ? Try Cardboard, Now with more Material Design (plus nifty features)",
-    "version": "2.0.3",
+    "version": "2.1.0",
     "chrome_url_overrides": {
         "newtab": "index.html"
     },
@@ -22,7 +22,8 @@
         "system.cpu",
         "system.memory",
         "system.storage",
-        "https://hawttrends.appspot.com/api/terms/"
+        "https://hawttrends.appspot.com/api/terms/",
+        "https://www.google.com/doodles/search"
     ],
     "optional_permissions": [
         "tabs",

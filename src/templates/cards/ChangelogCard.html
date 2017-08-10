@@ -1,79 +1,73 @@
 <style>
-.card.changelog{
-	font-size: 14px;
-	height: 415px;
-}
-.card.changelog .card-title{
-	padding: 0;
-	background: transparent;
-}
-.card.changelog .version{
-	float: right;
-	padding-top: 10px;
-	font-size: 14px;
-}
-.card.changelog .card-content p{
-	padding: 4px 20px;
-}
-.card.changelog .card-content p label{
-	color: white;
-}
-.card.changelog .card-content [type="checkbox"]:checked+label:before{
-	border-bottom-color: #00bfa5; /* teal accent 4 */
-	border-right-color: #00bfa5; /* teal accent 4 */
-}
-.card.changelog .card-content [type="checkbox"]:not(:checked)+label:before {
-	border-color: white;
-}
-.card.changelog .card-content button{
-	float: right;
-	margin-right: 10px;
-	margin-bottom: 12px;
-	font-weight: 500;
-	transition-property: color;
-	background: #455a64;
-}
+	.card.changelog {
+		font-size: 14px;
+		height: 415px;
+	}
+
+	.card.changelog .card-title {
+		padding: 0;
+		background: transparent;
+	}
+
+	.card.changelog .version {
+		float: right;
+		padding-top: 10px;
+		font-size: 14px;
+	}
+
+	.card.changelog .card-content p {
+		padding: 4px 20px;
+	}
+
+	.card.changelog .card-content p label {
+		color: white;
+	}
+
+	.card.changelog .card-content [type="checkbox"]:checked+label:before {
+		border-bottom-color: #00bfa5;
+		/* teal accent 4 */
+		border-right-color: #00bfa5;
+		/* teal accent 4 */
+	}
+
+	.card.changelog .card-content [type="checkbox"]:not(:checked)+label:before {
+		border-color: white;
+	}
+
+	.card.changelog .card-content button {
+		float: right;
+		margin-right: 10px;
+		margin-bottom: 12px;
+		font-weight: 500;
+		transition-property: color;
+		background: #455a64;
+	}
 </style>
-<packery-object>
-<div class="card card-panel blue-grey darken-1 changelog" ng-controller="ChangelogCtrl">
-	<div class="card-title">
-		What's new
-		<span class="version">{{version}}</span>
-	</div>
-	<div class="card-content">
-		<p>
-			<input type="checkbox" checked="checked"/>
-			<label>Such material. much design. wow</label>
-		</p>
-		<p>
-			<input type="checkbox" checked="checked"/>
-			<label>Google Trends</label>
-		</p>
-		<p>
-			<input type="checkbox" checked="checked"/>
-			<label>See all your bookmarks and folders</label>
-		</p>
-		<p>
-			<input type="checkbox" checked="checked"/>
-			<label>Synced devices and recently closed tabs</label>
-		</p>
-		<p>
-			<input type="checkbox" checked="checked"/>
-			<label>Recent history</label>
-		</p>
-		<p>
-			<input type="checkbox" checked="checked"/>
-			<label>System card. Yeah... nerd !</label>
-		</p>
-		<p>
-			<input type="checkbox" checked="checked"/>
-			<label>Choose a background from URL</label>
-		</p>
-		<p style="margin-bottom: 15px;">
-			<input type="checkbox"/>
-			<label>Card ordering in the work. #soon</label>
-		</p>
-		<button ng-click="toggle(card,false)" class="waves-effect waves-light btn-flat teal-text text-accent-4">Got it</button>
+<div id="grid-item" data-item-id="{{card.name}}">
+	<div class="card z-depth-1 card-panel blue-grey darken-1 changelog" ng-controller="ChangelogCtrl">
+		<div class="card-title">
+			What's new
+			<span class="version">{{version}}</span>
+		</div>
+		<div class="card-content">
+			<p>
+				<input type="checkbox" checked="checked" />
+				<label>Card ordering <a target="_blank" href="https://github.com/dotlouis/cardboard/issues/8">#8</a></label>
+			</p>
+			<p>
+				<input type="checkbox" checked="checked" />
+				<label>Google Doodle <a target="_blank" href="https://github.com/dotlouis/cardboard/issues/18">#18</a></label>
+			</p>
+			<p>
+				<input type="checkbox" checked="checked" />
+				<label>Update all depencies</label>
+			</p>
+			<p>
+				<input type="checkbox" checked="checked" />
+				<label>Fix issue <a target="_blank" href="https://github.com/dotlouis/cardboard/issues/51">#51</a>, 
+				<a target="_blank" href="https://github.com/dotlouis/cardboard/issues/42">#42</a></label>
+			</p>
+			<button ng-click="toggle(card,false)" class="waves-effect waves-light btn-flat teal-text text-accent-4">Got it</button>
+		</div>
 	</div>
 </div>
-</packery-object>

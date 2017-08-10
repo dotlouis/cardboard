@@ -5,7 +5,7 @@ The default New Tab is not Google enough ? Try Cardboard, Now with more Material
 
 [Google + page](https://plus.google.com/115967816314012668475/about)  
 
-v2.0
+v2.1
 ![Cardboard Material](https://cloud.githubusercontent.com/assets/1891109/6474276/b2bddb98-c1ff-11e4-8d9b-1ed6f0593929.png)
 
 ##Installation
@@ -32,7 +32,7 @@ v2.0
 - **system.cpu**: to collect and display your computer's cpu usage
 - **system.memory**: to collect and display your computer's memory usage
 - **system.storage**: to collect and display your computer's storage usage
-- **https://hawttrends.appspot.com/api/terms/**: to fetch google trends at this adress
+- **https://hawttrends.appspot.com/api/terms/**: to fetch google trends at this address
 - [Optional] **tabs**: to show your recently closed tabs (session card)
 - [Optional] **topSites**: to display your most visited websites
 - [Optional] **bookmarks**: to display your bookmarks

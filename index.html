@@ -1,30 +1,36 @@
 <!DOCTYPE HTML>
 <html>
+
 <head>
-	<meta charset="utf-8"/>
+	<meta charset="utf-8" />
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
 	<title>New Tab</title>
 
 	<!-- build:css cardboard.min.css-->
-	<link rel="stylesheet" href="bower_components/materialize/dist/css/materialize.min.css"/>
+	<link rel="stylesheet" href="bower_components/materialize/dist/css/materialize.min.css" />
 	<!-- inject:css -->
 	<link rel="stylesheet" href="/src/styles/animations.css">
 	<link rel="stylesheet" href="/src/styles/custom.css">
 	<!-- endinject -->
 	<!-- endbuild -->
 </head>
+
 <body ng-app="cardboard" ng-csp ng-strict-di ng-controller="RootCtrl">
 
-	<header class="blue-grey white-text" ng-style="{'background-image':'url('+backgroundImageUrl+')'}">
-		<div id="back" ng-show="route() == '/settings'"><a href="#/feed" ng-click="wipe()"><i class="mdi-navigation-arrow-back medium waves-effect waves-light white-text"></i></a></div>
+	<header class="z-depth-1 blue-grey white-text" ng-style="{'background-image':'url('+backgroundImageUrl+')'}">
+		<div id="back" ng-show="route() == '/settings'"><a href="#!/feed" ng-click="wipe()"><i class="material-icons medium waves-effect waves-light white-text">arrow_back</i></a></div>
 		<my-typer ng-if="route() == '/onboarding'" source="['Welcome to Cardboard']" start="route() == '/onboarding'" class="header-typer"></my-typer>
-		<div ng-show="route() == '/feed' && trends.enabled" my-ctrl-click url="searchTrend()" before-click="track('Trends','Searched')" class="header-typer trends">
+		<div ng-show="route() == '/feed' && trends.enabled" my-ctrl-click url="searchTrend()" before-click="track('Trends','Searched')"
+		 class="header-typer trends">
 			<my-typer source="trends.data" start="trends.start" term="trendTerm"></my-typer>
 		</div>
+		<a class="doodle" ng-show="route() == '/feed' && doodles.enabled" href="{{doodles.data.url}}"><img ng-class="{right: trends.enabled}" ng-src="{{doodles.data.img}}" /></a>
 		<my-typer ng-show="route() == '/settings'" source="['Settings']" start="route() == '/settings'" class="header-typer"></my-typer>
-		<div id="more" ng-show="route() == '/feed'"><a href="#/settings" ng-click="wipe()"><i class="mdi-navigation-more-vert small waves-effect waves-light white-text"></i></a></div>
+		<div id="more" ng-show="route() == '/feed'"><a ng-href="#!/settings" ng-click="wipe()"><i class="material-icons small waves-effect waves-light white-text">settings</i></a></div>
 	</header>
-	<div class="global progress" ng-class="{'loading':$root.loading}"><div class="indeterminate"></div></div>
+	<div class="global progress" ng-class="{'loading':$root.loading}">
+		<div class="indeterminate"></div>
+	</div>
 
 	<div class="wipe-ripple-wrapper">
 		<div ng-if="wipeRipple" class="wipe-ripple"></div>
@@ -34,60 +40,63 @@
 
 	<div id="toast-container"></div>
 
-<!-- build:js google-analytics-bundle.js-->
-<script src="bower_components/chrome-platform-analytics/google-analytics-bundle.js"></script>
-<!-- endbuild -->
+	<!-- build:js google-analytics-bundle.js-->
+	<script src="bower_components/chrome-platform-analytics/google-analytics-bundle.js"></script>
+	<!-- endbuild -->
 
-<!-- build:js dependencies.min.js-->
-<script src="bower_components/angular/angular.min.js"></script>
-<script src="bower_components/angular-route/angular-route.min.js"></script>
-<script src="bower_components/angular-animate/angular-animate.min.js"></script>
-<script src="bower_components/bluebird/js/browser/bluebird.min.js"></script>
-<script src="bower_components/packery/dist/packery.pkgd.min.js"></script>
-<script src="bower_components/draggabilly/dist/draggabilly.pkgd.min.js"></script>
-<script src="bower_components/angular-packery/dist/packery.min.js"></script>
-<script src="bower_components/jquery/dist/jquery.min.js"></script>
-<script src="bower_components/materialize/dist/js/materialize.min.js"></script>
-<script src="bower_components/moment/min/moment.min.js"></script>
-<script src="bower_components/ng-chrome-permissions/ng-chrome-permissions.js"></script>
-<!-- endbuild -->
+	<!-- build:js dependencies.min.js-->
+	<script src="bower_components/angular/angular.min.js"></script>
+	<script src="bower_components/angular-route/angular-route.min.js"></script>
+	<script src="bower_components/angular-animate/angular-animate.min.js"></script>
+	<script src="bower_components/bluebird/js/browser/bluebird.min.js"></script>
+	<script src="bower_components/packery/dist/packery.pkgd.min.js"></script>
+	<script src="bower_components/draggabilly/dist/draggabilly.pkgd.min.js"></script>
+	<script src="bower_components/angular-packery/dist/packery.min.js"></script>
+	<script src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="bower_components/materialize/dist/js/materialize.min.js"></script>
+	<script src="bower_components/moment/min/moment.min.js"></script>
+	<script src="bower_components/ng-chrome-permissions/ng-chrome-permissions.js"></script>
+	<!-- endbuild -->
 
-<!-- build:js cardboard.min.js-->
-<!-- inject:js -->
-<script src="/src/filters/bootstrap.js"></script>
-<script src="/src/filters/Humanize.js"></script>
-<script src="/src/filters/Host.js"></script>
-<script src="/src/filters/FromNow.js"></script>
-<script src="/src/filters/Filename.js"></script>
-<script src="/src/filters/Bytes.js"></script>
-<script src="/src/factories/bootstrap.js"></script>
-<script src="/src/factories/TrendsFactory.js"></script>
-<script src="/src/factories/ChromeSettings.js"></script>
-<script src="/src/directives/bootstrap.js"></script>
-<script src="/src/directives/Typer.js"></script>
-<script src="/src/directives/ProgressBar.js"></script>
-<script src="/src/directives/PieDownloader.js"></script>
-<script src="/src/directives/CtrlClick.js"></script>
-<script src="/src/directives/BgPick.js"></script>
-<script src="/src/controllers/bootstrap.js"></script>
-<script src="/src/controllers/TopSitesCtrl.js"></script>
-<script src="/src/controllers/SystemCtrl.js"></script>
-<script src="/src/controllers/SettingsCtrl.js"></script>
-<script src="/src/controllers/SessionsCtrl.js"></script>
-<script src="/src/controllers/RootCtrl.js"></script>
-<script src="/src/controllers/QuickSettingsCtrl.js"></script>
-<script src="/src/controllers/HistoryCtrl.js"></script>
-<script src="/src/controllers/FeedCtrl.js"></script>
-<script src="/src/controllers/DownloadCtrl.js"></script>
-<script src="/src/controllers/ChangelogCtrl.js"></script>
-<script src="/src/controllers/BookmarkCtrl.js"></script>
-<script src="/src/controllers/AppCtrl.js"></script>
-<script src="/src/cardboard.js"></script>
-<!-- endinject -->
-<!-- endbuild -->
+	<!-- build:js cardboard.min.js-->
+	<!-- inject:js -->
+	<script src="/src/filters/bootstrap.js"></script>
+	<script src="/src/filters/Humanize.js"></script>
+	<script src="/src/filters/Host.js"></script>
+	<script src="/src/filters/FromNow.js"></script>
+	<script src="/src/filters/Filename.js"></script>
+	<script src="/src/filters/Bytes.js"></script>
+	<script src="/src/factories/bootstrap.js"></script>
+	<script src="/src/factories/TrendsFactory.js"></script>
+	<script src="/src/factories/DoodlesFactory.js"></script>
+	<script src="/src/factories/ChromeSettings.js"></script>
+	<script src="/src/directives/bootstrap.js"></script>
+	<script src="/src/directives/Typer.js"></script>
+	<script src="/src/directives/ProgressBar.js"></script>
+	<script src="/src/directives/PieDownloader.js"></script>
+	<script src="/src/directives/CtrlClick.js"></script>
+	<script src="/src/directives/BgPick.js"></script>
+	<script src="/src/directives/RepeatEnd.js"></script>
+	<script src="/src/controllers/bootstrap.js"></script>
+	<script src="/src/controllers/TopSitesCtrl.js"></script>
+	<script src="/src/controllers/SystemCtrl.js"></script>
+	<script src="/src/controllers/SettingsCtrl.js"></script>
+	<script src="/src/controllers/SessionsCtrl.js"></script>
+	<script src="/src/controllers/RootCtrl.js"></script>
+	<script src="/src/controllers/QuickSettingsCtrl.js"></script>
+	<script src="/src/controllers/HistoryCtrl.js"></script>
+	<script src="/src/controllers/FeedCtrl.js"></script>
+	<script src="/src/controllers/DownloadCtrl.js"></script>
+	<script src="/src/controllers/ChangelogCtrl.js"></script>
+	<script src="/src/controllers/BookmarkCtrl.js"></script>
+	<script src="/src/controllers/AppCtrl.js"></script>
+	<script src="/src/cardboard.js"></script>
+	<!-- endinject -->
+	<!-- endbuild -->
 
-<!-- templates:js -->
-<!-- endinject -->
+	<!-- templates:js -->
+	<!-- endinject -->
 
 </body>
+
 </html>

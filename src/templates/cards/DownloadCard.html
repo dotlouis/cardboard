@@ -1,112 +1,127 @@
 <style>
-.card.downloads{
-	height: 380px;
-}
-.card.downloads .download{
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 10px 15px;
-	padding-right: 5px;
-}
-.card.downloads .download:hover{
-	background-color: #f5f5f5;
-}
-.card.downloads .download .info{
-	flex-grow: 1;
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-}
-.card.downloads .download .info .name{
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	font-size: 13px;
-}
-.card.downloads .download .info .host,
-.card.downloads .download .info .size{
-	color: #757575;
-}
-.card.downloads .download .icon{
-	flex-shrink: 0;
-	width: 38px;
-	height: 38px;
-	margin-right: 7px;
-	overflow: hidden;
-}
-.card.downloads .download .fileicon{
-	height: inherit;
-	background-repeat: no-repeat;
-	background-position: center;
-}
-.card.downloads .download .pie{
-	display: block;
-	position: relative;
-	height: inherit;
-	box-shadow: inset 1px 1px 2px #d8d8d8;
-	border-radius: 19px;
-	background-color: #f5f5f5;
-}
-.card.downloads .download .pie .fileicon{
-	position: absolute;
-	width: 100%;
-	left: 0;
-	top: 0;
-	background-size: 22px;
-}
-.card.downloads .download .status{
-	flex-shrink: 0;
-	margin-left: 7px;
-	font-size: 11px;
-	color: #757575;
-	text-align: right;
-}
-.card.downloads .download .more{
-	flex-shrink: 0;
-}
-.card.downloads .download .more i{
-	margin-left: 10px;
-	padding: 0px 5px;
-	border-radius: 50%;
-	font-size: 20px;
-}
+	.card.downloads {
+		height: 380px;
+	}
+
+	.card.downloads .download {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 10px 15px;
+		padding-right: 5px;
+	}
+
+	.card.downloads .download:hover {
+		background-color: #f5f5f5;
+	}
+
+	.card.downloads .download .info {
+		flex-grow: 1;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+
+	.card.downloads .download .info .name {
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		font-size: 13px;
+	}
+
+	.card.downloads .download .info .host,
+	.card.downloads .download .info .size {
+		color: #757575;
+	}
+
+	.card.downloads .download .icon {
+		flex-shrink: 0;
+		width: 38px;
+		height: 38px;
+		margin-right: 7px;
+		overflow: hidden;
+	}
+
+	.card.downloads .download .fileicon {
+		height: inherit;
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+
+	.card.downloads .download .pie {
+		display: block;
+		position: relative;
+		height: inherit;
+		box-shadow: inset 1px 1px 2px #d8d8d8;
+		border-radius: 19px;
+		background-color: #f5f5f5;
+	}
+
+	.card.downloads .download .pie .fileicon {
+		position: absolute;
+		width: 100%;
+		left: 0;
+		top: 0;
+		background-size: 22px;
+	}
+
+	.card.downloads .download .status {
+		flex-shrink: 0;
+		margin-left: 7px;
+		font-size: 11px;
+		color: #757575;
+		text-align: right;
+	}
+
+	.card.downloads .download .more {
+		flex-shrink: 0;
+	}
+
+	.card.downloads .download .more i {
+		margin-left: 10px;
+		padding: 0px 5px;
+		border-radius: 50%;
+		font-size: 20px;
+	}
 </style>
-<packery-object>
-<div class="card downloads" ng-controller="DownloadCtrl">
-	<div class="card-title">
-		Downloads
-		<span data-activates="dropdown-card-download" class="dropdown-card-btn"><i class="mdi-navigation-more-vert waves-effect waves-light"></i></span>
+<div id="grid-item" data-item-id="{{card.name}}">
+	<div class="card z-depth-1 downloads" ng-controller="DownloadCtrl">
+		<div class="card-title">
+			<span>
+                <i class="material-icons">{{card.icon}}</i> Downloads
+                <span data-activates="dropdown-card-download" class="dropdown-card-btn"><i class="material-icons small waves-effect waves-light">more_vert</i></span>
+			</span>
+		</div>
+		<ul class="card-content">
+			<li ng-repeat="download in downloads | limitTo: '5'" ng-click="open(); track(card.name, 'Opened')" class="download waves-effect">
+				<div class="icon" ng-switch on="download.state">
+					<my-pie-downloader ng-switch-when="in_progress" class="pie" stream="download">
+						<div class="fileicon" ng-style="{'background-image': 'url('+download.icon+')'}"></div>
+					</my-pie-downloader>
+					<div ng-switch-default class="fileicon" ng-style="{'background-image': 'url('+download.icon+')'}"></div>
+				</div>
+
+				<div class="info">
+					<div class="name">{{download.filename | filename}}</div>
+					<span class="size"><span ng-if="download.state == 'in_progress'">{{download.bytesReceived | bytes}} / </span>{{download.totalBytes
+					| bytes}}</span> -
+					<span class="host">{{download.url | host}}</span>
+				</div>
+
+				<div class="status">{{getStatus() | lowercase }}</div>
+				<div data-activates="{{'dropdown-'+download.id}}" class="more"><i class="mdi-navigation-more-vert waves-effect"></i></div>
+				<ul id="{{'dropdown-'+download.id}}" class="dropdown-content">
+					<li ng-if="download.canResume" ng-click="resume()"><a>Resume</a></li>
+					<li ng-if="download.state == 'in_progress' && !download.canResume" ng-click="pause()"><a>Pause</a></li>
+					<li ng-if="download.state == 'in_progress'" ng-click="cancel()"><a>Cancel</a></li>
+					<li ng-if="download.state != 'in_progress'" ng-click="retry()"><a>Retry</a></li>
+					<li ng-if="download.state != 'in_progress'" ng-click="remove()"><a>Remove</a></li>
+					<li ng-if="download.exists && download.state =='complete'" ng-click="show()"><a>Show in folder</a></li>
+				</ul>
+			</li>
+		</ul>
 	</div>
-	<ul class="card-content">
-		<li ng-repeat="download in downloads | limitTo: '5'" ng-click="open(); track(card.name, 'Opened')" class="download waves-effect">
-			<div class="icon" ng-switch on="download.state">
-				<my-pie-downloader ng-switch-when="in_progress" class="pie" stream="download">
-					<div class="fileicon" ng-style="{'background-image': 'url('+download.icon+')'}"></div>
-				</my-pie-downloader>
-				<div ng-switch-default class="fileicon" ng-style="{'background-image': 'url('+download.icon+')'}"></div>
-			</div>
-
-			<div class="info">
-				<div class="name">{{download.filename | filename}}</div>
-				<span class="size"><span ng-if="download.state == 'in_progress'">{{download.bytesReceived | bytes}} / </span>{{download.totalBytes | bytes}}</span> -
-				<span class="host">{{download.url | host}}</span>
-			</div>
-
-			<div class="status">{{getStatus() | lowercase }}</div>
-			<div data-activates="{{'dropdown-'+download.id}}" class="more"><i class="mdi-navigation-more-vert waves-effect"></i></div>
-			<ul id="{{'dropdown-'+download.id}}" class="dropdown-content">
-				<li ng-if="download.canResume" ng-click="resume()"><a>Resume</a></li>
-				<li ng-if="download.state == 'in_progress' && !download.canResume" ng-click="pause()"><a>Pause</a></li>
-				<li ng-if="download.state == 'in_progress'" ng-click="cancel()"><a>Cancel</a></li>
-				<li ng-if="download.state != 'in_progress'" ng-click="retry()"><a>Retry</a></li>
-				<li ng-if="download.state != 'in_progress'" ng-click="remove()"><a>Remove</a></li>
-				<li ng-if="download.exists && download.state =='complete'" ng-click="show()"><a>Show in folder</a></li>
-			</ul>
-		</li>
-	</ul>
 </div>
-</packery-object>
 
 <ul id="dropdown-card-download" class="dropdown-content">
 	<li ng-click="goTo('chrome://downloads')"><a>More</a></li>

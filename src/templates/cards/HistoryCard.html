@@ -1,64 +1,72 @@
 <style>
-.card.history{
-	height: 250px;
-}
-.card.history .node{
-	cursor: pointer;
-	display: flex;
-	align-items: center;
-	padding: 7px 15px;
-	margin: 0;
-	text-transform: none;
-}
-.card.history .node:hover{
-	background-color: #f5f5f5;
-}
-.card.history .node .title{
-	color: #424242;
-	margin-left: 9px;
-	font-size: 13px;
-	flex-grow: 1;
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-}
-.card.history .card-content i{
-	width: 20px;
-	height: 20px;
-	background-size: 16px;
-	background-repeat: no-repeat;
-	background-position: center;
-	font-size: 20px;
-	line-height: 18px;
-	color: #757575;
-	flex-shrink: 0;
-}
-.card.history .card-content .node .more{
-	flex-shrink: 0;
-	color: #757575;
-	margin-left: 10px;
-}
-.card.history .card-content .node .time{
-	font-size: 11px;
-}
+	.card.history {
+		height: 250px;
+	}
+
+	.card.history .node {
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		padding: 7px 15px;
+		margin: 0;
+		text-transform: none;
+	}
+
+	.card.history .node:hover {
+		background-color: #f5f5f5;
+	}
+
+	.card.history .node .title {
+		color: #424242;
+		margin-left: 9px;
+		font-size: 13px;
+		flex-grow: 1;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+
+	.card.history .card-content i {
+		width: 20px;
+		height: 20px;
+		background-size: 16px;
+		background-repeat: no-repeat;
+		background-position: center;
+		font-size: 20px;
+		line-height: 18px;
+		color: #757575;
+		flex-shrink: 0;
+	}
+
+	.card.history .card-content .node .more {
+		flex-shrink: 0;
+		color: #757575;
+		margin-left: 10px;
+	}
+
+	.card.history .card-content .node .time {
+		font-size: 11px;
+	}
 </style>
-<packery-object>
-<div class="card history" ng-controller="HistoryCtrl">
-	<div class="card-title">
-		History
-		<span data-activates="dropdown-card-history" class="dropdown-card-btn"><i class="mdi-navigation-more-vert waves-effect waves-light"></i></span>
-	</div>
-	<ul class="card-content">
-		<li ng-repeat="node in history | limitTo:maxHistory">
-			<a my-ctrl-click url="node.url" before-click="track(card.name,'Opened')" class="node waves-effect">
+<div id="grid-item" data-item-id="{{card.name}}">
+	<div class="card z-depth-1 history" ng-controller="HistoryCtrl">
+		<div class="card-title">
+			<span>
+                <i class="material-icons">{{card.icon}}</i> History
+                <span data-activates="dropdown-card-history" class="dropdown-card-btn"><i class="material-icons small waves-effect waves-light">more_vert</i></span>
+			</span>
+		</div>
+		<ul class="card-content">
+			<li ng-repeat="node in history | limitTo:maxHistory">
+				<a my-ctrl-click url="node.url" before-click="track(card.name,'Opened')" class="node waves-effect">
 				<i ng-style="{'background-image': 'url('+getFavicon(node.url)+')'}"></i>
 				<span class="title">{{node.title != '' ? node.title : node.url }}</span>
 				<span class="more time">{{node.lastVisitTime | fromNow}}</span>
 			</a>
-		</li>
-	</ul>
+			</li>
+		</ul>
+	</div>
 </div>
-</packery-object>
 
 <ul id="dropdown-card-history" class="dropdown-content">
 	<li ng-click="goTo('chrome://history')"><a>More</a></li>

@@ -1,76 +1,84 @@
 <style>
-.card.sessions{
-	height: 298px;
-}
-.card.sessions .node{
-	cursor: pointer;
-	display: flex;
-	align-items: center;
-	padding: 7px 15px;
-	margin: 0;
-	text-transform: none;
-}
-.card.sessions .node:hover{
-	background-color: #f5f5f5;
-}
-.card.sessions .node .title{
-	color: #424242;
-	margin-left: 9px;
-	font-size: 13px;
-	flex-grow: 1;
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-}
-.card.sessions .card-content i{
-	width: 20px;
-	height: 20px;
-	background-size: 16px;
-	background-repeat: no-repeat;
-	background-position: center;
-	font-size: 20px;
-	line-height: 18px;
-	color: #757575;
-	flex-shrink: 0;
-}
-.card.sessions .card-content .node .more{
-	flex-shrink: 0;
-	color: #757575;
-	margin-left: 10px;
-}
-.card.sessions .card-content .node .time{
-	font-size: 11px;
-}
+	.card.sessions {
+		height: 298px;
+	}
+
+	.card.sessions .node {
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		padding: 7px 15px;
+		margin: 0;
+		text-transform: none;
+	}
+
+	.card.sessions .node:hover {
+		background-color: #f5f5f5;
+	}
+
+	.card.sessions .node .title {
+		color: #424242;
+		margin-left: 9px;
+		font-size: 13px;
+		flex-grow: 1;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+
+	.card.sessions .card-content i {
+		width: 20px;
+		height: 20px;
+		background-size: 16px;
+		background-repeat: no-repeat;
+		background-position: center;
+		font-size: 20px;
+		line-height: 18px;
+		color: #757575;
+		flex-shrink: 0;
+	}
+
+	.card.sessions .card-content .node .more {
+		flex-shrink: 0;
+		color: #757575;
+		margin-left: 10px;
+	}
+
+	.card.sessions .card-content .node .time {
+		font-size: 11px;
+	}
 </style>
-<packery-object>
-<div class="card sessions" ng-controller="SessionsCtrl">
-	<div class="card-title">
-		Sessions
-		<span data-activates="dropdown-card-sessions" class="dropdown-card-btn"><i class="mdi-navigation-more-vert waves-effect waves-light"></i></span>
-	</div>
-	<ul class="tabs">
-		<li class="tab waves-effect waves-light"><a ng-href="#tab-content-recent">Recently Closed</a></li>
-		<li ng-repeat="(key,node) in devices" class="tab waves-effect waves-light"><a ng-href="#tab-content-{{key}}" ng-click="track(card.name,'Tab','Device')">{{node.deviceName}}</a></li>
-	</ul>
-	<ul id="tab-content-recent" class="card-content">
-		<li ng-repeat="node in recentlyClosed | limitTo:maxRecentlyClosed">
-			<a my-ctrl-click url="node.url" before-click="track(card.name, 'Opened', 'Recently Closed')" class="node waves-effect">
+<div id="grid-item" data-item-id="{{card.name}}">
+	<div class="card z-depth-1 sessions" ng-controller="SessionsCtrl">
+		<div class="card-title">
+			<span>
+                <i class="material-icons">{{card.icon}}</i> Sessions
+                <span data-activates="dropdown-card-sessions" class="dropdown-card-btn"><i class="material-icons small waves-effect waves-light">more_vert</i></span>
+			</span>
+		</div>
+		<ul class="tabs">
+			<li class="tab"><a ng-href="#tab-content-recent">Recently Closed</a></li>
+			<li ng-repeat="(key,node) in devices" class="tab"><a ng-href="#tab-content-{{key}}" ng-click="track(card.name,'Tab','Device')">{{node.deviceName}}</a></li>
+		</ul>
+		<ul id="tab-content-recent" class="card-content">
+			<li ng-repeat="node in recentlyClosed | limitTo:maxRecentlyClosed">
+				<a my-ctrl-click url="node.url" before-click="track(card.name, 'Opened', 'Recently Closed')" class="node waves-effect">
 				<i ng-style="{'background-image': 'url('+(node.favIconUrl != ''? node.favIconUrl: getFavicon(node.url))+')'}"></i>
 				<span class="title">{{node.title}}</span>
 				<span class="more time">{{node.lastModified | fromNow}}</span>
 			</a>
-		</li>
-	</ul>
-	<ul ng-repeat="(key,node) in devices" id="tab-content-{{key}}" class="card-content">
-		<li ng-repeat="tab in node.tabs | limitTo:maxDeviceTabs">
-			<a my-ctrl-click url="tab.url" before-click="track(card.name, 'Opened', 'Device Link')" class="node waves-effect">
+			</li>
+		</ul>
+		<ul ng-repeat="(key,node) in devices" id="tab-content-{{key}}" class="card-content">
+			<li ng-repeat="tab in node.tabs | limitTo:maxDeviceTabs">
+				<a my-ctrl-click url="tab.url" before-click="track(card.name, 'Opened', 'Device Link')" class="node waves-effect">
 				<i ng-style="{'background-image': 'url('+getFavicon(tab.url)+')'}"></i>
 				<span class="title">{{tab.title}}</span>
 			</a>
-		</li>
-	</ul>
+			</li>
+		</ul>
+	</div>
 </div>
-</packery-object>
 
 <ul id="dropdown-card-sessions" class="dropdown-content">
 	<li ng-click="toggle(card,false)"><a>Remove</a></li>

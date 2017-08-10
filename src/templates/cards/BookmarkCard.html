@@ -1,100 +1,109 @@
-
 <style>
-.card.bookmarks{
-	height: 298px;
-}
-.card.bookmarks .tab{
-	width: 50%;
-}
-.card.bookmarks .card-content{
-	height: 190px;
-	overflow-y: scroll;
-}
-.card.bookmarks .card-content li{
-	display: block;
-}
-.card.bookmarks .card-content li:hover{
-	background-color: #f5f5f5;
-}
+	.card.bookmarks {
+		height: 298px;
+	}
 
-.card.bookmarks .card-content .node{
-	cursor: pointer;
-	display: flex;
-	align-items: center;
-	padding: 7px 15px;
-	margin: 0;
-	text-transform: none;
-}
-.card.bookmarks .card-content .node .title{
-	color: #424242;
-	margin-left: 9px;
-	font-size: 13px;
-	flex-grow: 1;
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-}
-.card.bookmarks .card-content i{
-	width: 20px;
-	height: 20px;
-	background-size: 16px;
-	background-repeat: no-repeat;
-	background-position: center;
-	font-size: 20px;
-	line-height: 20px;
-	color: #757575;
-	flex-shrink: 0;
-}
-.card.bookmarks .card-content .node .more{
-	flex-shrink: 0;
-	color: #757575;
-	margin-left: 10px;
-}
-.card.bookmarks .card-content .node .time{
-	font-size: 11px;
-}
+	.card.bookmarks .tab {
+		width: 50%;
+	}
+
+	.card.bookmarks .card-content {
+		height: 190px;
+		overflow-y: scroll;
+	}
+
+	.card.bookmarks .card-content li {
+		display: block;
+	}
+
+	.card.bookmarks .card-content li:hover {
+		background-color: #f5f5f5;
+	}
+
+	.card.bookmarks .card-content .node {
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		padding: 7px 15px;
+		margin: 0;
+		text-transform: none;
+	}
+
+	.card.bookmarks .card-content .node .title {
+		color: #424242;
+		margin-left: 9px;
+		font-size: 13px;
+		flex-grow: 1;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+
+	.card.bookmarks .card-content i {
+		width: 20px;
+		height: 20px;
+		background-size: 16px;
+		background-repeat: no-repeat;
+		background-position: center;
+		font-size: 20px;
+		line-height: 20px;
+		color: #757575;
+		flex-shrink: 0;
+	}
+
+	.card.bookmarks .card-content .node .more {
+		flex-shrink: 0;
+		color: #757575;
+		margin-left: 10px;
+	}
+
+	.card.bookmarks .card-content .node .time {
+		font-size: 11px;
+	}
 </style>
-<packery-object>
-<div class="card bookmarks" ng-controller="BookmarkCtrl">
-	<div class="card-title">
-		Bookmarks
-		<span data-activates="dropdown-card-bookmarks" class="dropdown-card-btn"><i class="mdi-navigation-more-vert waves-effect waves-light"></i></span>
-	</div>
-	<ul class="tabs">
-		<li class="tab waves-effect waves-light"><a href="#recent-bookmarks">Recents</a></li>
-		<li class="tab waves-effect waves-light"><a href="#all-bookmarks" ng-click="track(card.name,'Tab','All')">All</a></li>
-	</ul>
-	<ul id="recent-bookmarks" class="card-content">
-		<li ng-repeat="node in recents" ng-include="'node.html'" class="waves-effect"></li>
-	</ul>
-	<ul id="all-bookmarks" class="card-content">
-		<li ng-if="tree[0].parentId !='0'" ng-click="getChildren(parentNode.parentId)" class="node waves-effect">
-			<i class="mdi-hardware-keyboard-arrow-left"></i>
-			<span class="title">{{parentNode.title}}</span>
-		</li>
-		<li ng-repeat="node in tree" ng-include="'node.html'" class="waves-effect"></li>
-	</ul>
-
-
-	<script type="text/ng-template" id="node.html">
-	<!-- // we check url property -->
-	<div ng-switch on="node.url">
-		<!-- // if undefined then it's a folder -->
-		<div ng-switch-when='undefined' ng-click="getChildren(node.id)" class="node">
-			<i class="mdi-file-folder"></i>
-			<span class="title">{{node.title}}</span>
-			<i class="more mdi-hardware-keyboard-arrow-right"></i>
+<div id="grid-item" data-item-id="{{card.name}}">
+	<div class="card z-depth-1 bookmarks" ng-controller="BookmarkCtrl">
+		<div class="card-title">
+			<span>
+                <i class="material-icons">{{card.icon}}</i> Bookmarks
+                <span data-activates="dropdown-card-bookmarks" class="dropdown-card-btn"><i class="material-icons small waves-effect waves-light">more_vert</i></span>
+			</span>
 		</div>
-		<!-- // else it's a bookmark -->
-		<a ng-switch-default my-ctrl-click url="node.url" before-click="track(card.name, 'Opened')" class="node">
+		<ul class="tabs">
+			<li class="tab"><a href="#recent-bookmarks">Recents</a></li>
+			<li class="tab"><a href="#all-bookmarks" ng-click="track(card.name,'Tab','All')">All</a></li>
+		</ul>
+		<ul id="recent-bookmarks" class="card-content">
+			<li ng-repeat="node in recents" ng-include="'node.html'" class="waves-effect"></li>
+		</ul>
+		<ul id="all-bookmarks" class="card-content">
+			<li ng-if="tree[0].parentId !='0'" ng-click="getChildren(parentNode.parentId)" class="node waves-effect">
+				<i class="mdi-hardware-keyboard-arrow-left"></i>
+				<span class="title">{{parentNode.title}}</span>
+			</li>
+			<li ng-repeat="node in tree" ng-include="'node.html'" class="waves-effect"></li>
+		</ul>
+
+
+		<script type="text/ng-template" id="node.html">
+			<!-- // we check url property -->
+			<div ng-switch on="node.url">
+				<!-- // if undefined then it's a folder -->
+				<div ng-switch-when='undefined' ng-click="getChildren(node.id)" class="node">
+					<i class="mdi-file-folder"></i>
+					<span class="title">{{node.title}}</span>
+					<i class="more mdi-hardware-keyboard-arrow-right"></i>
+				</div>
+				<!-- // else it's a bookmark -->
+				<a ng-switch-default my-ctrl-click url="node.url" before-click="track(card.name, 'Opened')" class="node">
 			<i ng-style="{'background-image': 'url('+getFavicon(node.url)+')'}"></i>
 			<span class="title">{{node.title}}</span>
 			<span class="more time">{{node.dateAdded | fromNow}}</span>
 		</a>
+			</div>
+		</script>
 	</div>
-	</script>
 </div>
-</packery-object>
 
 <ul id="dropdown-card-bookmarks" class="dropdown-content">
 	<li ng-click="goTo('chrome://bookmarks')"><a>More</a></li>

@@ -1,55 +1,61 @@
 <style>
-.card.topsites{
-	height: 250px;
-}
-.card.topsites .node{
-	cursor: pointer;
-	display: flex;
-	align-items: center;
-	padding: 7px 15px;
-	margin: 0;
-	text-transform: none;
-}
-.card.topsites .node:hover{
-	background-color: #f5f5f5;
-}
-.card.topsites .node .title{
-	color: #424242;
-	margin-left: 9px;
-	font-size: 13px;
-	flex-grow: 1;
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-}
-.card.topsites .card-content i{
-	width: 20px;
-	height: 20px;
-	background-size: 16px;
-	background-repeat: no-repeat;
-	background-position: center;
-	font-size: 20px;
-	line-height: 18px;
-	color: #757575;
-	flex-shrink: 0;
-}
+	.card.topsites {
+		height: 250px;
+	}
+
+	.card.topsites .node {
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		padding: 7px 15px;
+		margin: 0;
+		text-transform: none;
+	}
+
+	.card.topsites .node:hover {
+		background-color: #f5f5f5;
+	}
+
+	.card.topsites .node .title {
+		color: #424242;
+		margin-left: 9px;
+		font-size: 13px;
+		flex-grow: 1;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+
+	.card.topsites .card-content i {
+		width: 20px;
+		height: 20px;
+		background-size: 16px;
+		background-repeat: no-repeat;
+		background-position: center;
+		font-size: 20px;
+		line-height: 18px;
+		color: #757575;
+		flex-shrink: 0;
+	}
 </style>
-<packery-object>
-<div class="card topsites" ng-controller="TopSitesCtrl">
-	<div class="card-title">
-		Top Sites
-		<span data-activates="dropdown-card-topsites" class="dropdown-card-btn"><i class="mdi-navigation-more-vert waves-effect waves-light"></i></span>
-	</div>
-	<ul class="card-content">
-		<li ng-repeat="node in topSites | limitTo:maxTopSites">
-			<a my-ctrl-click url="node.url" before-click="track(card.name, 'Opened')" class="node waves-effect">
+<div id="grid-item" data-item-id="{{card.name}}">
+	<div class="card z-depth-1 topsites" ng-controller="TopSitesCtrl">
+		<div class="card-title">
+			<span>
+                <i class="material-icons">{{card.icon}}</i> Top Sites
+                <span data-activates="dropdown-card-topsites" class="dropdown-card-btn"><i class="material-icons small waves-effect waves-light">more_vert</i></span>
+			</span>
+		</div>
+		<ul class="card-content">
+			<li ng-repeat="node in topSites | limitTo:maxTopSites">
+				<a my-ctrl-click url="node.url" before-click="track(card.name, 'Opened')" class="node waves-effect">
 				<i ng-style="{'background-image': 'url('+getFavicon(node.url)+')'}"></i>
 				<span class="title">{{node.title}}</span>
 			</a>
-		</li>
-	</ul>
+			</li>
+		</ul>
+	</div>
 </div>
-</packery-object>
 
 <ul id="dropdown-card-topsites" class="dropdown-content">
 	<li ng-click="toggle(card,false)"><a>Remove</a></li>

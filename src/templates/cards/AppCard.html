@@ -1,60 +1,68 @@
 <style>
-.card.apps{
-	height: 440px;
-}
-.card.apps .card-content{
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	justify-content: flex-start;
-	padding: 10px 20px;
-	max-height: 380px;
-	overflow-y: scroll;
-}
-.card.apps .app a{
-	width: 120px;
-	height: 120px;
-	margin: 0;
-}
-.card.apps .app:hover{
-	background-color: #f5f5f5;
-}
-.card.apps i{
-	display: block;
-	width: inherit;
-	height: inherit;
-	background-size: 90px;
-	background-repeat: no-repeat;
-	background-position: center;
-}
-.card.apps button{
-	float: right;
-	margin-right: 10px;
-	margin-bottom: 12px;
-	color: #3f51b5;
-	transition-property: color;
-}
+	.card.apps {
+		height: 440px;
+	}
+
+	.card.apps .card-content {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: flex-start;
+		padding: 10px 20px;
+		max-height: 380px;
+		overflow-y: scroll;
+	}
+
+	.card.apps .app a {
+		width: 120px;
+		height: 120px;
+		margin: 0;
+	}
+
+	.card.apps .app:hover {
+		background-color: #f5f5f5;
+	}
+
+	.card.apps i {
+		display: block;
+		width: inherit;
+		height: inherit;
+		background-size: 90px;
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+
+	.card.apps button {
+		float: right;
+		margin-right: 10px;
+		margin-bottom: 12px;
+		color: #3f51b5;
+		transition-property: color;
+	}
 </style>
-<packery-object>
-<div class="card apps" ng-controller="AppCtrl">
-	<div class="card-title">
-		Apps
-		<span data-activates="dropdown-card-apps" class="dropdown-card-btn"><i class="mdi-navigation-more-vert waves-effect waves-light"></i></span>
-	</div>
-	<ul class="card-content">
-		<li class="app waves-effect tooltipped" data-position="bottom" data-tooltip="Chrome Web Store">
-			<a my-ctrl-click url="'https://chrome.google.com/webstore/category/home'" before-click="track(card.name, 'Launched')">
+<div id="grid-item" data-item-id="{{card.name}}">
+	<div class="card z-depth-1 apps" ng-controller="AppCtrl">
+		<div class="card-title">
+			<span>
+                <i class="material-icons">{{card.icon}}</i> Apps
+                <span data-activates="dropdown-card-apps" class="dropdown-card-btn"><i class="material-icons small waves-effect waves-light">more_vert</i></span>
+			</span>
+		</div>
+		<ul class="card-content">
+			<li class="app waves-effect tooltipped" data-position="bottom" data-tooltip="Chrome Web Store">
+				<a my-ctrl-click url="'https://chrome.google.com/webstore/category/home'" before-click="track(card.name, 'Launched')">
 				<i ng-style="{'background-image': 'url(/resources/cws128.webp)'}"></i>
 			</a>
-		</li>
-		<li ng-repeat="app in apps | orderBy:'-frequency'" ng-click="updateFrequency()" class="app waves-effect tooltipped" data-position="bottom" data-tooltip="{{app.name}}">
-			<a my-ctrl-click url="app.appLaunchUrl" before-click="track(card.name, 'Launched'); launch()">
+			</li>
+			<li ng-repeat="app in apps | orderBy:'-frequency'" ng-click="updateFrequency()" class="app waves-effect tooltipped" data-position="bottom"
+			 data-tooltip="{{app.name}}">
+				<a my-ctrl-click url="app.appLaunchUrl" before-click="track(card.name, 'Launched'); launch()">
 				<i ng-style="{'background-image': 'url('+getIcon()+')'}"></i>
 			</a>
-		</li>
-	</ul>
-<div>
-</packery-object>
+			</li>
+		</ul>
+	</div>
+</div>
 
 <ul id="dropdown-card-apps" class="dropdown-content">
 	<li ng-click="goTo('chrome://extensions')"><a>More</a></li>
