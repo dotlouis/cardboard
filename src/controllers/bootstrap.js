@@ -1,1 +1,1 @@
-angular.module('cardboard.controllers',[]);
+angular.module('cardboard.controllers', []);

@@ -21,7 +21,7 @@
     }
 
     .card.system .wrapper-name i {
-        font-size: 40px;
+        font-size: 34px;
         height: 45px;
         line-height: 55px;
     }
@@ -86,9 +86,9 @@
 <div id="grid-item" data-item-id="{{card.name}}">
     <div class="card z-depth-1 system" ng-controller="SystemCtrl">
         <div class="card-title">
-            <span>
-                <i class="material-icons">{{card.icon}}</i> System
-                <span data-activates="dropdown-card-system" class="dropdown-card-btn"><i class="material-icons small waves-effect waves-light">more_vert</i></span>
+            <i class="material-icons">{{card.icon}}</i> System
+            <span class="dropdown-card-btn">
+                <i data-activates="dropdown-card-system" class="material-icons small waves-effect waves-light">more_vert</i>
             </span>
         </div>
         <div class="card-content">

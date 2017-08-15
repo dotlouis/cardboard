@@ -7,6 +7,10 @@
 		padding: 4px 20px;
 	}
 
+	.card.quicksettings .card-content label {
+		color: #424242;
+	}
+
 	.card.quicksettings .card-content button {
 		float: right;
 		margin-right: 10px;
@@ -19,9 +23,9 @@
 <div id="grid-item" data-item-id="{{card.name}}">
 	<div class="card z-depth-1 quicksettings" ng-controller="QuickSettingsCtrl">
 		<div class="card-title">
-			<span>
-                <i class="material-icons">{{card.icon}}</i> Quick Settings
-                <span data-activates="dropdown-card-quicksettings" class="dropdown-card-btn"><i class="material-icons small waves-effect waves-light">more_vert</i></span>
+			<i class="material-icons">{{card.icon}}</i> <a ng-click="goTo('chrome://settings')">Settings</a>
+			<span class="dropdown-card-btn">
+				<i data-activates="dropdown-card-quicksettings" class="material-icons small waves-effect waves-light">more_vert</i>
 			</span>
 		</div>
 		<div class="card-content">
@@ -48,6 +52,5 @@
 </div>
 
 <ul id="dropdown-card-quicksettings" class="dropdown-content">
-	<li ng-click="goTo('chrome://settings')"><a>More</a></li>
 	<li ng-click="toggle(card,false)"><a>Remove</a></li>
 </ul>

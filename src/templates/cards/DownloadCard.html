@@ -87,9 +87,9 @@
 <div id="grid-item" data-item-id="{{card.name}}">
 	<div class="card z-depth-1 downloads" ng-controller="DownloadCtrl">
 		<div class="card-title">
-			<span>
-                <i class="material-icons">{{card.icon}}</i> Downloads
-                <span data-activates="dropdown-card-download" class="dropdown-card-btn"><i class="material-icons small waves-effect waves-light">more_vert</i></span>
+			<i class="material-icons">{{card.icon}}</i> <a ng-click="goTo('chrome://downloads')">Downloads</a>
+			<span class="dropdown-card-btn">
+				<i data-activates="dropdown-card-download" class="material-icons small waves-effect waves-light">more_vert</i>
 			</span>
 		</div>
 		<ul class="card-content">
@@ -124,6 +124,5 @@
 </div>
 
 <ul id="dropdown-card-download" class="dropdown-content">
-	<li ng-click="goTo('chrome://downloads')"><a>More</a></li>
 	<li ng-click="toggle(card,false)"><a>Remove</a></li>
 </ul>

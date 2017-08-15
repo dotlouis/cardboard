@@ -2,9 +2,7 @@
   "name": "cardboard",
   "version": "2.1.0",
   "homepage": "https://github.com/virtual-dev/cardboard",
-  "authors": [
-    "virtual-dev"
-  ],
+  "authors": ["virtual-dev"],
   "description": "The default New Tab is not Google enough ? Try Cardboard, Now with more Material Design (plus nifty features)",
   "main": "index.html",
   "keywords": [
@@ -23,13 +21,7 @@
   ],
   "private": true,
   "license": "MIT",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
+  "ignore": ["**/.*", "node_modules", "bower_components", "test", "tests"],
   "dependencies": {
     "angular": "~1.6.5",
     "angular-route": "~1.6.5",

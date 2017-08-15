@@ -23,7 +23,7 @@
 		background-color: #f5f5f5;
 	}
 
-	.card.apps i {
+	.card.apps .card-content i {
 		display: block;
 		width: inherit;
 		height: inherit;
@@ -43,9 +43,9 @@
 <div id="grid-item" data-item-id="{{card.name}}">
 	<div class="card z-depth-1 apps" ng-controller="AppCtrl">
 		<div class="card-title">
-			<span>
-                <i class="material-icons">{{card.icon}}</i> Apps
-                <span data-activates="dropdown-card-apps" class="dropdown-card-btn"><i class="material-icons small waves-effect waves-light">more_vert</i></span>
+			<i class="material-icons">{{card.icon}}</i> <a ng-click="goTo('chrome://extensions')">Apps</a>
+			<span class="dropdown-card-btn">
+				<i class="material-icons small waves-effect waves-light" data-activates="dropdown-card-apps">more_vert</i>
 			</span>
 		</div>
 		<ul class="card-content">
@@ -65,6 +65,5 @@
 </div>
 
 <ul id="dropdown-card-apps" class="dropdown-content">
-	<li ng-click="goTo('chrome://extensions')"><a>More</a></li>
 	<li ng-click="toggle(card,false)"><a>Remove</a></li>
 </ul>

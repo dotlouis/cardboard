@@ -1,1 +1,1 @@
-angular.module('cardboard.directives',[]);
+angular.module('cardboard.directives', []);

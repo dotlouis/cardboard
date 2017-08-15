@@ -62,7 +62,7 @@
 <section id="welcome">
 
     <div ng-if="nextCard == 0" class="card-wrapper">
-        <div class="card card-panel blue-grey darken-1" style="height: 140px">
+        <div class="card card-panel" style="height: 140px">
             <div class="card-title">
                 Hello there
             </div>
@@ -108,7 +108,7 @@
             <i class="material-icons" style="padding: 5px;">verified_user</i>
         </div>
 
-        <div class="card card-panel blue-grey darken-1" style="height: 118px">
+        <div class="card card-panel" style="height: 118px">
             <div class="card-content">
                 <p>See that button in the bottom right corner ?</p>
                 <p>Click it and choose a card you want to add</p>
@@ -126,7 +126,7 @@
             <i class="material-icons" style="padding: 5px;">insert_chart</i>
         </div>
 
-        <div class="card card-panel blue-grey darken-1" style="height: 140px">
+        <div class="card card-panel" style="height: 140px">
             <div class="card-title">
                 Congratulations! </div>
             <div class="card-content">
@@ -142,7 +142,7 @@
     <ul>
         <li ng-repeat="card in cards" ng-show="!card.enabled && !card.system">
             <span class="fab-name">{{card.name | humanize}}</span>
-            <a ng-click="toggle(card,true); next();" class="btn-floating blue-grey waves-effect waves-light" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px); opacity: 0;">
+            <a ng-click="toggle(card,true); next();" class="btn-floating waves-effect waves-light" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px); opacity: 0;">
                 <i class="large material-icons">{{ card.icon }}</i>
             </a>
         </li>

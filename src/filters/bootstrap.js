@@ -1,1 +1,1 @@
-angular.module('cardboard.filters',[]);
+angular.module('cardboard.filters', []);

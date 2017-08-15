@@ -1,1 +1,1 @@
-angular.module('cardboard.factories',[]);
+angular.module('cardboard.factories', []);

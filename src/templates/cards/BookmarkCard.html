@@ -64,9 +64,9 @@
 <div id="grid-item" data-item-id="{{card.name}}">
 	<div class="card z-depth-1 bookmarks" ng-controller="BookmarkCtrl">
 		<div class="card-title">
-			<span>
-                <i class="material-icons">{{card.icon}}</i> Bookmarks
-                <span data-activates="dropdown-card-bookmarks" class="dropdown-card-btn"><i class="material-icons small waves-effect waves-light">more_vert</i></span>
+			<i class="material-icons">{{card.icon}}</i> <a ng-click="goTo('chrome://bookmarks')">Bookmarks</a>
+			<span class="dropdown-card-btn">
+				<i data-activates="dropdown-card-bookmarks" class="material-icons small waves-effect waves-light">more_vert</i>
 			</span>
 		</div>
 		<ul class="tabs">
@@ -106,6 +106,5 @@
 </div>
 
 <ul id="dropdown-card-bookmarks" class="dropdown-content">
-	<li ng-click="goTo('chrome://bookmarks')"><a>More</a></li>
 	<li ng-click="toggle(card,false)"><a>Remove</a></li>
 </ul>

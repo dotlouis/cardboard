@@ -1,46 +1,29 @@
 /* SLIDE UP */
 /* for cards and setting view */
 
-.card-wrapper.ng-enter{
-    transition: opacity .2s linear .2s,
-                transform .2s ease-out .2s;
-    opacity: 0;
-    transform: translate3d(0,100px,0);
+.card-wrapper.ng-enter {
+  transition: opacity .2s linear .2s, transform .2s ease-out .2s;
+  opacity: 0;
+  transform: translate3d(0, 100px, 0);
 }
 .card-wrapper.ng-enter-stagger {
   transition-delay: .15s;
   transition-duration: 0s;
 }
-.card-wrapper.ng-enter.ng-enter-active{
-    opacity: 1;
-    transform: translate3d(0,0,0);
+.card-wrapper.ng-enter.ng-enter-active {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
 }
-
 
 /* SLIDE RIGHT */
 /* for cards when they dismiss */
 
-.card-wrapper.ng-leave{
-    transition: opacity .3s linear .1s,
-                transform .3s ease-in .1s;
-    opacity: 1;
-    transform: translate3d(0,0,0);
+.card-wrapper.ng-leave {
+  transition: opacity .3s linear .1s, transform .3s ease-in .1s;
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
 }
-.card-wrapper.ng-leave.ng-leave-active{
-    opacity: 0;
-    transform: translate3d(100px,0,0);
-}
-
-
-/* RIPPLE */
-
-.wipe-ripple.ng-enter{
-    transition: opacity 1.3s linear,
-                transform 1s linear;
-    opacity: 1;
-    transform: scale(0);
-}
-.wipe-ripple.ng-enter-active{
-    opacity: 0;
-    transform: scale(10);
+.card-wrapper.ng-leave.ng-leave-active {
+  opacity: 0;
+  transform: translate3d(100px, 0, 0);
 }

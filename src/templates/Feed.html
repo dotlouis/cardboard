@@ -14,7 +14,7 @@
     <ul>
         <li ng-repeat="card in cards" ng-show="!card.enabled && !card.system">
             <span class="fab-name">{{card.name | humanize}}</span>
-            <a ng-click="toggle(card,true)" class="btn-floating blue-grey waves-effect waves-light" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px); opacity: 0;">
+            <a ng-click="toggle(card,true)" class="btn-floating waves-effect waves-light" style="transform: scaleY(0.4) scaleX(0.4) translateY(40px); opacity: 0;">
                 <i class="large material-icons">{{ card.icon }}</i>
             </a>
         </li>

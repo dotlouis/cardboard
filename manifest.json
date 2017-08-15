@@ -1,35 +1,35 @@
 {
-    "manifest_version": 2,
-    "name": "Cardboard - New Tab Page",
-    "author": "virtual-dev",
-    "description": "The default New Tab is not Google enough ? Try Cardboard, Now with more Material Design (plus nifty features)",
-    "version": "2.1.0",
-    "chrome_url_overrides": {
-        "newtab": "index.html"
-    },
-    "icons": {
-        "16": "resources/icon16.png",
-        "48": "resources/icon48.png",
-        "128": "resources/icon128.png"
-    },
-    "permissions": [
-        "https://www.google-analytics.com/",
-        "storage",
-        "sessions",
-        "browsingData",
-        "downloads",
-        "downloads.open",
-        "system.cpu",
-        "system.memory",
-        "system.storage",
-        "https://hawttrends.appspot.com/api/terms/",
-        "https://www.google.com/doodles/search"
-    ],
-    "optional_permissions": [
-        "tabs",
-        "topSites",
-        "bookmarks",
-        "management",
-        "history"
-    ]
+  "manifest_version": 2,
+  "name": "Cardboard - New Tab Page",
+  "author": "virtual-dev",
+  "description": "The default New Tab is not Google enough ? Try Cardboard, Now with more Material Design (plus nifty features)",
+  "version": "2.1.0",
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  },
+  "icons": {
+    "16": "resources/icon16.png",
+    "48": "resources/icon48.png",
+    "128": "resources/icon128.png"
+  },
+  "permissions": [
+    "https://www.google-analytics.com/",
+    "storage",
+    "sessions",
+    "browsingData",
+    "downloads",
+    "downloads.open",
+    "system.cpu",
+    "system.memory",
+    "system.storage",
+    "https://hawttrends.appspot.com/api/terms/",
+    "https://www.google.com/doodles/search"
+  ],
+  "optional_permissions": [
+    "tabs",
+    "topSites",
+    "bookmarks",
+    "management",
+    "history"
+  ]
 }
