@@ -1,3 +1,34 @@
+<header ng-style="{'background-image': 'url('+backgroundImageUrl+')'}">
+    <!-- <my-typer ng-if="route() == '/onboarding'" source="['Welcome to Cardboard']" start="route() == '/onboarding'" class="header-typer"></my-typer> -->
+    <div ng-show="trends.enabled"
+        my-ctrl-click
+        url="searchTrend()"
+        before-click="track('Trends','Searched')"
+        class="header-typer trends">
+        <my-typer source="trends.data"
+            start="trends.start"
+            term="trendTerm"></my-typer>
+    </div>
+    <a class="doodle"
+        ng-show="doodles.enabled"
+        href="{{doodles.data.url}}">
+        <img ng-class="{right: trends.enabled}"
+            ng-src="{{doodles.data.img}}" />
+    </a>
+    <div id="more">
+        <a ng-href="#!/settings">
+            <i class="material-icons small waves-effect waves-light white-text">
+                settings
+            </i>
+        </a>
+    </div>
+</header>
+
+<div class="global progress" ng-class="{'loading':$root.loading}">
+    <div class="indeterminate"></div>
+</div>
+
+
 <section id="feed">
     <div id="grid">
         <div ng-if="allCardsDisabled" class="empty-feed reveal">

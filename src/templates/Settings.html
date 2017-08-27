@@ -1,67 +1,85 @@
-<section ng-if="settingsViewTimeout" class="card-wrapper container white z-depth-1">
+<div class="settings-route">
+    <header>
+        <div id="back">
+            <a href="#!/feed">
+                <i class="material-icons medium waves-effect waves-light white-text">
+                    arrow_back
+                </i>
+            </a>
+        </div>
+        <h1>Settings</h1>
+        <!-- <my-typer ng-show="route() == '/settings'" source="['Settings']" start="route() == '/settings'" class="header-typer"></my-typer> -->
+    </header>
 
-    <div class="category">
-        <div class="sub-header blue-text text-darken-3">Header</div>
-        <div class="sub-setting">
-            <label>Background</label>
-            <div class="md-select">
-                <select ng-model="$parent.background" ng-change="save('backgroundId',background.id); setBackground($parent.background)" ng-options="bg.name group by bg.type for bg in $parent.backgrounds"></select>
+    <div class="global progress" ng-class="{'loading':$root.loading}">
+        <div class="indeterminate"></div>
+    </div>
+
+
+    <section ng-if="settingsViewTimeout" class="card-wrapper container white z-depth-1">
+
+        <div class="category">
+            <div class="sub-header blue-text text-darken-3">Header</div>
+            <div class="sub-setting">
+                <label>Background</label>
+                <div class="md-select">
+                    <select ng-model="$parent.background" ng-change="save('backgroundId',background.id); setBackground($parent.background)" ng-options="bg.name group by bg.type for bg in $parent.backgrounds"></select>
+                </div>
+            </div>
+            <div class="sub-setting">
+                <button ng-click="openLocal()" class="btn waves-effect waves-light">From Local</button>
+                <button ng-click="openUrl()" class="btn waves-effect waves-light">From URL</button>
+            </div>
+            <div class="sub-setting">
+                <p>Display daily search trends in the header</p>
+                <div class="switch"><label>Google Trends<input type="checkbox" ng-model="$parent.trends.enabled" ng-change="save('trends',$parent.trends); track('Trends',($parent.trends.enabled ? 'Enabled': 'Disabled'))"><span class="lever"></span></label></div>
+                <p>Display Google doodles</p>
+                <div class="switch"><label>Google Doodles<input type="checkbox" ng-model="$parent.doodles.enabled" ng-change="save('doodles',$parent.doodles); track('Doodles',($parent.doodles.enabled ? 'Enabled': 'Disabled'))"><span class="lever"></span></label></div>
             </div>
         </div>
-        <div class="sub-setting">
-            <button ng-click="openLocal()" class="btn waves-effect waves-light">From Local</button>
-            <button ng-click="openUrl()" class="btn waves-effect waves-light">From URL</button>
-        </div>
-        <div class="sub-setting">
-            <p>Display daily search trends in the header</p>
-            <div class="switch"><label>Google Trends<input type="checkbox" ng-model="$parent.trends.enabled" ng-change="save('trends',$parent.trends); track('Trends',($parent.trends.enabled ? 'Enabled': 'Disabled'))"><span class="lever"></span></label></div>
-            <p>Display Google doodles</p>
-            <div class="switch"><label>Google Doodles<input type="checkbox" ng-model="$parent.doodles.enabled" ng-change="save('doodles',$parent.doodles); track('Doodles',($parent.doodles.enabled ? 'Enabled': 'Disabled'))"><span class="lever"></span></label></div>
-        </div>
-    </div>
 
-    <div class="category">
-        <div class="sub-header blue-text text-darken-3">Analytics</div>
-        <div class="sub-setting">
-            <p>
-                Help make Cardboard better by allowing it to see which cards you choose and how you use them. No content such as bookmarks,
-                links, downloads or apps are sent.
-                <a href="https://github.com/virtual-dev/cardboard/wiki/Analytics">learn more</a>
-            </p>
-            <div class="switch"><label>Enable Analytics<input type="checkbox" ng-model="$parent.analytics" ng-change="toggleAnalytics()"><span class="lever"></span></label></div>
-        </div>
-    </div>
-
-
-    <div class="category">
-        <div class="sub-header blue-text text-darken-3">About</div>
-        <p class="sub-setting">
-            Cardboard is developed by a <a href="https://plus.google.com/+LouisLafont">young french developer</a> when he's
-            not busy working on his startup, praying thy Lord Duarte or fighting exploding kittens.
-        </p>
-        <p>
-            Icons and webstore artworks kindly made by <a href="http://www.caseyls.com/">Casey Labatt Simon</a>
-        </p>
-
-        <div class="setting-flex">
+        <div class="category">
+            <div class="sub-header blue-text text-darken-3">Analytics</div>
             <div class="sub-setting">
-                <h4>Have 1 min?</h4>
                 <p>
-                    Help me improve Cardboard by taking 1 minute to review and report bugs
+                    Help make Cardboard better by allowing it to see which cards you choose and how you use them. No content such as bookmarks,
+                    links, downloads or apps are sent.
+                    <a href="https://github.com/virtual-dev/cardboard/wiki/Analytics">learn more</a>
                 </p>
-                <a href="https://chrome.google.com/webstore/support/hilmkmopmiomkmehbhajigccnglobaap" class="btn waves-effect waves-light">Feedback</a>
-            </div>
-
-            <div class="sub-setting">
-                <h4>Stay tuned</h4>
-                <p>Follow the project</p>
-                <a href="https://plus.google.com/115967816314012668475" class="btn waves-effect waves-light red">Google +</a>
-                <a href="https://github.com/virtual-dev/cardboard" class="btn waves-effect tooltipped github">github</a>
+                <div class="switch"><label>Enable Analytics<input type="checkbox" ng-model="$parent.analytics" ng-change="toggleAnalytics()"><span class="lever"></span></label></div>
             </div>
         </div>
-    </div>
-</section>
 
+
+        <div class="category">
+            <div class="sub-header blue-text text-darken-3">About</div>
+            <p class="sub-setting">
+                Cardboard is developed by a <a href="https://plus.google.com/+LouisLafont">young french developer</a> when he's
+                not busy working on his startup, praying thy Lord Duarte or fighting exploding kittens.
+            </p>
+            <p>
+                Icons and webstore artworks kindly made by <a href="http://www.caseyls.com/">Casey Labatt Simon</a>
+            </p>
+
+            <div class="setting-flex">
+                <div class="sub-setting">
+                    <h4>Have 1 min?</h4>
+                    <p>
+                        Help me improve Cardboard by taking 1 minute to review and report bugs
+                    </p>
+                    <a href="https://chrome.google.com/webstore/support/hilmkmopmiomkmehbhajigccnglobaap" class="btn waves-effect waves-light">Feedback</a>
+                </div>
+
+                <div class="sub-setting">
+                    <h4>Stay tuned</h4>
+                    <p>Follow the project</p>
+                    <a href="https://plus.google.com/115967816314012668475" class="btn waves-effect waves-light red">Google +</a>
+                    <a href="https://github.com/virtual-dev/cardboard" class="btn waves-effect tooltipped github">github</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
 
 
 

@@ -17,21 +17,6 @@
 
 <body ng-app="cardboard" ng-csp ng-strict-di ng-controller="RootCtrl">
 
-	<header class="blue darken-4" ng-style="{'background-image': route() == '/feed' ? 'url('+backgroundImageUrl+')' : 'none'}">
-		<div id="back" ng-show="route() == '/settings'"><a href="#!/feed"><i class="material-icons medium waves-effect waves-light white-text">arrow_back</i></a></div>
-		<my-typer ng-if="route() == '/onboarding'" source="['Welcome to Cardboard']" start="route() == '/onboarding'" class="header-typer"></my-typer>
-		<div ng-show="route() == '/feed' && trends.enabled" my-ctrl-click url="searchTrend()" before-click="track('Trends','Searched')"
-		 class="header-typer trends">
-			<my-typer source="trends.data" start="trends.start" term="trendTerm"></my-typer>
-		</div>
-		<a class="doodle" ng-show="route() == '/feed' && doodles.enabled" href="{{doodles.data.url}}"><img ng-class="{right: trends.enabled}" ng-src="{{doodles.data.img}}" /></a>
-		<my-typer ng-show="route() == '/settings'" source="['Settings']" start="route() == '/settings'" class="header-typer"></my-typer>
-		<div id="more" ng-show="route() == '/feed'"><a ng-href="#!/settings"><i class="material-icons small waves-effect waves-light white-text">settings</i></a></div>
-	</header>
-	<div class="global progress" ng-class="{'loading':$root.loading}">
-		<div class="indeterminate"></div>
-	</div>
-
 	<ng-view id="view"></ng-view>
 
 	<div id="toast-container"></div>

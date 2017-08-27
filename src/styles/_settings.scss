@@ -1,0 +1,24 @@
+@import 'materializeCustom';
+
+.settings-route {
+  header {
+    height: 56px;
+    font-size: 18px;
+    align-items: center;
+    background: $google-blue;
+
+    h1 {
+      margin: 0;
+      font-size: 20px;
+      line-height: initial;
+    }
+
+    #back i {
+      margin-left: 20px;
+      padding: 12.5px;
+      border-radius: 50%;
+      font-size: 20px;
+      z-index: 1;
+    }
+  }
+}

@@ -124,7 +124,7 @@ gulp.task('sass', function() {
 });
 
 gulp.task('sass:watch', function() {
-  gulp.watch('src/styles/custom.scss', ['sass']);
+  gulp.watch('src/styles/*.scss', ['sass']);
 });
 
 /**

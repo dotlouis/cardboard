@@ -6858,6 +6858,22 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   stroke-linecap: round;
   /*shape-rendering: crispEdges;*/ }
 
+.settings-route header {
+  height: 56px;
+  font-size: 18px;
+  align-items: center;
+  background: #3367d6; }
+  .settings-route header h1 {
+    margin: 0;
+    font-size: 20px;
+    line-height: initial; }
+  .settings-route header #back i {
+    margin-left: 20px;
+    padding: 12.5px;
+    border-radius: 50%;
+    font-size: 20px;
+    z-index: 1; }
+
 @font-face {
   font-family: 'Material Icons';
   font-style: normal;
@@ -6904,7 +6920,8 @@ header {
   transition: background .5s linear .2s;
   background-position: center;
   background-size: cover;
-  color: white; }
+  color: white;
+  position: relative; }
 
 .packery-drop-placeholder {
   background-color: rgba(0, 0, 0, 0.23);
@@ -6916,7 +6933,7 @@ header {
 .header-typer {
   flex: 1;
   align-self: center;
-  margin: 0 20px 0 50px;
+  padding: 0 30px;
   font-weight: 400;
   font-size: 7vw;
   text-shadow: 0 2px 1px rgba(0, 0, 0, 0.15);
@@ -6948,14 +6965,6 @@ header {
   padding: 7.5px;
   border-radius: 50%;
   text-shadow: 0 2px 1px rgba(0, 0, 0, 0.15); }
-
-#back i {
-  margin-top: 65px;
-  margin-left: 20px;
-  padding: 12.5px;
-  border-radius: 50%;
-  font-size: 50px;
-  z-index: 1; }
 
 #view {
   position: relative; }
@@ -7079,7 +7088,7 @@ button.disabled .btn.disabled, button.disabled .disabled.btn-large,
 
 .card .card-title {
   font-family: "Roboto Condensed";
-  background-color: #1565C0;
+  background-color: #3367d6;
   color: white;
   display: flex;
   height: 56px;
@@ -7112,7 +7121,7 @@ button.disabled .btn.disabled, button.disabled .disabled.btn-large,
   font-size: 24px; }
 
 .card .tabs {
-  background-color: #1565C0; }
+  background-color: #3367d6; }
   .card .tabs .tab {
     height: unset; }
 
